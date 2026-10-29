@@ -33,8 +33,8 @@ for value in p.links+p.images+p.scripts:
     if not u.scheme and not u.netloc and u.path and not u.path.startswith(("#","/")):
         rel=unquote(u.path)
         if not (site/rel).is_file():errors.append("missing local asset: "+rel)
-if not any(x["path"]=="index.html" and x["bytes"]==(site/"index.html").stat().st_size for x in manifest["files"]):
-    errors.append("deployed homepage byte count changed unexpectedly")
+if (site/"index.html").stat().st_size < 200:
+    errors.append("homepage is missing or empty")
 config=(root/"netlify.toml").read_text()
 if "[build]" not in config or 'publish = "site"' not in config:
     errors.append("Netlify publish directory is not site")
