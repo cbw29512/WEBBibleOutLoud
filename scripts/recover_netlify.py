@@ -68,7 +68,7 @@ while pending:
     if output.exists(): continue
     output.parent.mkdir(parents=True,exist_ok=True)
     output.write_bytes(data); total+=len(data)
-    items.append({"path":output.relative_to(ROOT).as_posix(),"bytes":len(data),"mime":mime})
+    items.append({"path":output.relative_to(ROOT.resolve()).as_posix(),"bytes":len(data),"mime":mime})
     text=data.decode("utf-8","replace")
     if "html" in mime or output.suffix.lower() in (".html",".htm"):
         parser=Links(); parser.feed(text)
