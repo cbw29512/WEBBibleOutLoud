@@ -1,0 +1,46 @@
+name: Recover published Web Bible Out Loud site
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/recover-netlify.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Recover files served by the immutable Netlify deployment
+        run: python scripts/recover_netlify.py
+      - name: Verify recovery is not an empty placeholder
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          m = json.loads(Path("recovery-manifest.json").read_text())
+          assert Path("site/index.html").exists()
+          assert m["file_count"] >= 2, "Only an index page was recovered; review needed"
+          print("Recovered", m["file_count"], "files and", m["bytes"], "bytes")
+          if m["failed"]: print("WARNING: missing linked files, see recovery-manifest.json")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: webbibleoutloud-netlify-recovery
+          path: |
+            site/
+            recovery-manifest.json
+          if-no-files-found: error
+      - name: Commit to a review branch (never change the production site)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c recovery/netlify-deploy-6ad27f5
+          git add site/ recovery-manifest.json
+          git commit -m "Recover site files from published Netlify deployment"
+          git push --set-upstream origin HEAD:refs/heads/recovery/netlify-deploy-6ad27f5
