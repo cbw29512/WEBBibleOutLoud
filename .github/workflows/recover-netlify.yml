@@ -8,6 +8,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/recover-netlify.yml'
+      - 'scripts/recover_netlify.py'
   workflow_dispatch:
 permissions:
   contents: write
