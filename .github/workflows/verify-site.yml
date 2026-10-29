@@ -10,8 +10,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Validate original published site and Netlify configuration
+      - name: Validate and render JSON-driven video cards
+        run: |
+          node --check scripts/render-videos.cjs
+          node scripts/render-videos.cjs
+          node scripts/render-videos.cjs --check
+      - name: Verify reporting links, privacy, layout, and Netlify configuration
         run: python scripts/verify_site.py
+      - uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+      - name: Install browser test dependency (CI only)
+        run: npm install --no-audit --no-fund --no-save playwright-core@1.56.1
+      - name: Test mobile and desktop in real Chrome
+        run: node scripts/verify-browser.cjs
