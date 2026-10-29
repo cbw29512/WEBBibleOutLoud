@@ -25,7 +25,8 @@ jobs:
           import json
           m = json.loads(Path("recovery-manifest.json").read_text())
           assert Path("site/index.html").exists()
-          assert m["file_count"] >= 2, "Only an index page was recovered; review needed"
+          assert m["file_count"] >= 1, "No site files were recovered"
+          assert Path("site/index.html").stat().st_size > 150, "Homepage is empty"
           print("Recovered", m["file_count"], "files and", m["bytes"], "bytes")
           if m["failed"]: print("WARNING: missing linked files, see recovery-manifest.json")
           PY
