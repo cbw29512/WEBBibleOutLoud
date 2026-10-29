@@ -1,0 +1,18 @@
+{
+  "source": "immutable public Netlify deployment",
+  "deploy_id": "6ad27f5a1e2ae144ba523478",
+  "url": "https://6ad27f5a1e2ae144ba523478--webbibleoutloud.netlify.app/",
+  "recovered_at": "2026-10-29T19:20:51.480315+00:00",
+  "files": [
+    {
+      "path": "index.html",
+      "bytes": 5329,
+      "mime": "text/html"
+    }
+  ],
+  "file_count": 1,
+  "bytes": 5329,
+  "failed": [],
+  "skipped": [],
+  "limitations": "Published browser files only; unreferenced files, unpublished source, Netlify functions, configuration and secrets cannot be inferred."
+}
