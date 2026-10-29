@@ -1,0 +1,4 @@
+[build]
+  publish = "site"
+
+# Single-file static website: no build command or runtime dependencies.

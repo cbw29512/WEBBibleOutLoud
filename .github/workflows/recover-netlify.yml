@@ -1,9 +1,5 @@
 name: Recover published Web Bible Out Loud site
 on:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/recover-netlify.yml'
   workflow_dispatch:
 permissions:
   contents: write
