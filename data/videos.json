@@ -1,0 +1,25 @@
+{
+  "description": "Latest videos shown on the homepage, newest first. Edit this list, then push to main; Netlify rebuilds the cards automatically.",
+  "videos": [
+    {
+      "title": "John 8:48 to 59: Before Abraham Came Into Existence, I AM",
+      "url": "https://youtube.com/shorts/pEQiiHwWE8Q"
+    },
+    {
+      "title": "John 8:21 to 30: Where I Am Going, You Can’t Come",
+      "url": "https://youtube.com/shorts/BTzkbcKtjl0"
+    },
+    {
+      "title": "John 8:12 to 20: I Am the Light of the World",
+      "url": "https://youtube.com/shorts/KKBqdvQ_LSA"
+    },
+    {
+      "title": "John 7:53 to 8:11: Neither Do I Condemn You",
+      "url": "https://youtube.com/shorts/RB1seSmQVWM"
+    },
+    {
+      "title": "John 6: The Bread of Life (full chapter)",
+      "url": "https://youtu.be/jzem45DF7BY"
+    }
+  ]
+}
