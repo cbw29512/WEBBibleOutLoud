@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="WEB Bible Out Loud">
+  <rect width="64" height="64" rx="13" fill="#10191d"/>
+  <rect x="5" y="5" width="54" height="54" rx="10" fill="none" stroke="#e9c984" stroke-width="2"/>
+  <text x="30" y="43" text-anchor="middle" fill="#e9c984" font-family="Georgia,serif" font-size="39" font-weight="bold">W</text>
+</svg>
