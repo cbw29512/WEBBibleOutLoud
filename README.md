@@ -18,9 +18,13 @@ After linking, every merge or push to `main` should build and deploy automatical
 
 ## Update the public video catalog
 
-The site was matched to the public @WEBBibleOutLoud channel on October 29, 2026: **62 Shorts and 9 full-length readings (71 total)**. All 71 are linked on the homepage. The 12 newest Shorts appear first, full readings follow, and the remaining 50 Shorts can be expanded on demand. The page includes a direct link to the YouTube channel for future uploads.
+The channel snapshot contains **71 public videos**: 62 Shorts, 5 complete Bible books (Genesis, Psalms, Obadiah, John, Revelation), and 4 longer chapter readings.
 
-Edit **`data/videos.json`** whenever new videos go public. Each entry has **`title`**, **`url`**, **`type`** (`short` or `long`), and **`publishedAt`** (the YouTube publication timestamp). Videos are sorted newest-first inside each category automatically, and duplicate IDs are rejected. The `featuredShorts` number controls how many Shorts appear before the expandable archive.
+The website's **All videos** tab shows newest uploads first. The **Complete books**, **Shorts**, and **Longer passages** tabs present available videos in *Scripture order*, not upload order. Complete books are pickable one by one; all five options appear in their canonical order from Genesis to Revelation.
+
+The **Greatest Bible stories** tab groups 32 existing Short clips across 14 narrated stories from the Gospel of John and displays their parts in the order they appear in Scripture. Other Old or New Testament stories should be added *only after actual matching videos have been published*. This collection is not presented as a complete list of every major story in the Bible.
+
+Edit **`data/videos.json`** whenever new videos go public. Entries require `title`, `url`, `type` (`short` or `long`), `publishedAt` (ISO YouTube timestamp), **`bibleBook`** (canonical Bible book name), **`chapter`**, and **`verse`** (the starting reference). Longer readings additionally require `scope`: `book` only for recordings of an entire Bible book, or `passage` for chapters and other sections. A Short may optionally have `story` with a meaningful name, placing that *existing video* in the Greatest Bible Stories tab. All videos are validated for URL uniqueness and Scripture metadata.
 
 The Git-driven Netlify build runs `node scripts/render-videos.cjs` to generate all cards and thumbnails in `site/index.html` from the JSON catalog. Run locally to keep the HTML source synchronized:
 
