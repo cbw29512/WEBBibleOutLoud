@@ -31,15 +31,34 @@ const axeScript = require.resolve("axe-core/axe.min.js");
       assert.equal(await page.locator('#video-grid .vid:visible').count(), 5);
       assert.match(await page.locator("#video-count").innerText(), /5 of 5/);
       assert.equal(await page.locator('[data-filter="book"]').getAttribute("aria-pressed"), "true");
+      assert.equal(await page.locator('#book-picker-wrap').isVisible(), true);
       const bookTitles = await page.locator('#video-grid .vid:visible .vid-title').allInnerTexts();
-      assert.ok(bookTitles.every(t => /Full Book/i.test(t)), "Full Books tab must contain complete books only");
+      assert.ok(bookTitles.every(t => /Full Book/i.test(t)), "Complete Books tab must contain complete books only");
+      const bibleBooks = await page.locator('#video-grid .vid:visible').evaluateAll(nodes => nodes.map(n => n.dataset.book));
+      assert.deepEqual(bibleBooks, ["Genesis","Psalms","Obadiah","John","Revelation"], "Books must appear in canonical Bible order");
+      const choices = await page.locator('#book-picker option').allTextContents();
+      assert.deepEqual(choices.slice(1), bibleBooks, "Book picker options must appear in Bible order");
+      await page.locator('#book-picker').selectOption("John");
+      assert.equal(await page.locator('#video-grid .vid:visible').count(), 1);
+      assert.match(await page.locator('#video-grid .vid:visible').innerText(), /John 1–21/);
+      await page.locator('#book-picker').selectOption("all");
+      assert.equal(await page.locator('#video-grid .vid:visible').count(), 5);
       await page.locator('[data-filter="passage"]').click();
       assert.equal(await page.locator('#video-grid .vid:visible').count(), 4);
       assert.match(await page.locator("#video-count").innerText(), /4 of 4/);
       const chapterTitles = await page.locator('#video-grid .vid:visible .vid-title').allInnerTexts();
       assert.ok(chapterTitles.every(t => !/Full Book/i.test(t)), "Longer passages tab must not claim to be complete books");
+      await page.locator('[data-filter="stories"]').click();
+      assert.equal(await page.locator('#stories-help').isVisible(), true);
+      assert.match(await page.locator("#video-count").innerText(), /9 of 32/);
+      assert.match(await page.locator('#video-grid .vid:visible').first().innerText(), /John 1:35–42/);
+      const storyRanks = await page.locator('#video-grid .vid:visible').evaluateAll(nodes => nodes.map(n => Number(n.dataset.scriptureOrder)));
+      assert.deepEqual(storyRanks, [...storyRanks].sort((a,b)=>a-b), "Bible stories must be in scripture order");
       await page.locator('[data-filter="short"]').click();
+      assert.equal(await page.locator('#book-picker-wrap').isVisible(), false);
       assert.match(await page.locator("#video-count").innerText(), /9 of 62/);
+      assert.match(await page.locator('#video-grid .vid:visible').first().innerText(), /John 1:1–5/);
+      assert.equal(await page.locator('#sort-label').innerText(), "Bible order");
       assert.equal(await page.locator('#video-grid .vid:visible').count(), 9);
       await page.locator('#load-more').click();
       assert.equal(await page.locator('#video-grid .vid:visible').count(), 18);
@@ -56,6 +75,8 @@ const axeScript = require.resolve("axe-core/axe.min.js");
       assert.match(await page.locator('#video-grid .vid:visible').first().innerText(), /Psalms/);
       await page.locator('#video-search').fill("");
       assert.equal(await page.locator('#video-grid .vid:visible').count(), 9);
+      assert.match(await page.locator('#video-grid .vid:visible').first().innerText(), /John 12:20–36/);
+      assert.equal(await page.locator('#sort-label').innerText(), "Newest uploads first");
 
       const layout = await page.evaluate(() => ({
         scroll: document.documentElement.scrollWidth,
@@ -90,7 +111,7 @@ const axeScript = require.resolve("axe-core/axe.min.js");
       runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21a","wcag21aa","wcag22aa"]}
     }));
     assert.deepEqual(privacyAudit.violations.map(v=>v.id),[],"Privacy page accessibility failures");
-    console.log("PASS: 320/390/768/1366px layouts, 5 true books, 4 longer passages, 71 videos, filters, WCAG axe checks, privacy");
+    console.log("PASS: Bible-order book picker, 62 canonical Shorts, 32 curated story clips, chronological filters, 71 videos and axe WCAG across 4 viewports");
   } finally {
     await browser.close();
   }
