@@ -15,13 +15,28 @@
   if (!cards.length || !search || !count || !more || !empty || !tabs.length ||
       !storiesHelp || !sortLabel) return;
 
+  // State: one validated collection, a nine-card page, and one active sorting mode.
+  // The "view" URL parameter makes category links bookmarkable and shareable.
+  const VIEWS = new Set(["all", "short", "book", "passage", "stories"]);
+  const PAGE = 9;
   let type = "all";
   let appliedOrder = "all";
-  let limit = 9;
-  const PAGE = 9;
+  let limit = PAGE;
   const normalize = text => String(text || "").toLocaleLowerCase().trim();
   const bibleRank = card => Number(card.dataset.scriptureOrder);
   const dateRank = card => Number(card.dataset.published);
+
+  function readView() {
+    try {
+      const requested = new URLSearchParams(window.location.search).get("view");
+      return requested && VIEWS.has(requested) ? requested : "all";
+    } catch (error) {
+      console.warn("Could not read the requested Bible collection", error);
+      return "all";
+    }
+  }
+  type = readView();
+
   function update() {
     const query = normalize(search.value);
     const bibleOrder = type !== "all";
@@ -58,13 +73,27 @@
       button.setAttribute("aria-pressed", String(button.dataset.filter === type));
     }
   }
-  for (const button of tabs) {
-    button.addEventListener("click", () => {
-      type = button.dataset.filter;
-      limit = PAGE;
-      update();
-    });
+  function selectView(next, keepInHistory) {
+    if (!VIEWS.has(next)) return;
+    type = next;
+    limit = PAGE;
+    if (keepInHistory && /^https?:$/.test(window.location.protocol)) {
+      try {
+        const url = new URL(window.location.href);
+        if (next === "all") url.searchParams.delete("view");
+        else url.searchParams.set("view", next);
+        window.history.pushState(null, "", url);
+      } catch (error) {
+        // Never block browsing because the browser rejected a history update.
+        console.warn("Could not save the Bible collection in the URL", error);
+      }
+    }
+    update();
   }
+  for (const button of tabs) {
+    button.addEventListener("click", () => selectView(button.dataset.filter, true));
+  }
+  window.addEventListener("popstate", () => selectView(readView(), false));
   search.addEventListener("input", () => {
     limit = PAGE;
     update();

@@ -20,6 +20,8 @@ After linking, every merge or push to `main` should build and deploy automatical
 
 The channel snapshot contains **71 public videos**: 62 Shorts, 5 complete Bible books (Genesis, Psalms, Obadiah, John, Revelation), and 4 longer chapter readings.
 
+Homepage collection shortcuts link directly to `?view=book#library`, `?view=short#library`, and `?view=stories#library`. Each is bookmarkable, and the category filter supports browser Back/Forward navigation. The links do not introduce another dropdown or another support CTA.
+
 The website's **All videos** tab shows newest uploads first. The **Complete books**, **Shorts**, and **Longer passages** tabs present available videos in *Scripture order*, not upload order. All five complete-book cards appear immediately in canonical order from Genesis to Revelation, each directly linked to its video without a dropdown.
 
 The **Greatest Bible stories** tab groups 32 existing Short clips across 14 narrated stories from the Gospel of John and displays their parts in the order they appear in Scripture. Other Old or New Testament stories should be added *only after actual matching videos have been published*. This collection is not presented as a complete list of every major story in the Bible.

@@ -76,6 +76,25 @@ verify('id="load-more"' in html and 'data-filter="book"' in html and 'data-filte
 verify('data-filter="stories"' in html and 'id="stories-help"' in html, "Bible stories tab or description missing")
 verify('id="book-picker"' not in html and 'BOOK_OPTIONS_START' not in html, "redundant full-book dropdown must stay removed")
 verify('id="sort-label"' in html, "sorting status text missing")
+
+verify(all(page.links.count("?view=" + view + "#library") == 1
+           for view in ("book", "short", "stories")),
+       "missing direct, shareable library collection links")
+verify('class="quick-browse"' in html and 'aria-label="Browse Bible recordings by collection"' in html,
+       "accessible category navigation is missing")
+schema_match = re.search(r'<script type="application/ld[+]json" id="full-books-schema">([^<]+)</script>', html)
+try:
+    book_schema = json.loads(schema_match.group(1)) if schema_match else {}
+except (ValueError, AttributeError) as exc:
+    print(f"Full-book JSON-LD could not be parsed: {exc}", file=sys.stderr)
+    book_schema = {}
+schema_entries = book_schema.get("itemListElement", [])
+verify([x.get("name", "").split(" ", 1)[0] for x in schema_entries] ==
+       ["Genesis", "Psalms", "Obadiah", "John", "Revelation"],
+       "SEO full-book list must be in canonical Bible order")
+verify([x.get("position") for x in schema_entries] == list(range(1, len(schema_entries) + 1)),
+       "SEO book list positions must be consecutive")
+
 story_clips=[v for v in data["videos"] if v.get("story")]
 verify(len(story_clips)==32 and len(set(v["story"] for v in story_clips))==14, "greatest stories curated catalog changed")
 verify(html.count('data-story="yes"')==len(story_clips), "curated story clips not rendered")
@@ -103,6 +122,8 @@ verify('button.dataset.filter' in js and 'search.addEventListener("input"' in js
 verify('card.dataset.scriptureOrder' in js and 'card.dataset.story === "yes"' in js,
        "Bible-order filtering or Greatest Stories is not functional")
 verify('book-picker' not in js, "unused book picker JavaScript remains")
+verify('new URLSearchParams(window.location.search)' in js and 'window.addEventListener("popstate"' in js,
+       "shareable views must synchronize with navigation history")
 verify("Content-Security-Policy:" in headers and "frame-ancestors 'none'" in headers,
        "baseline security policy missing")
 verify("X-Content-Type-Options: nosniff" in headers, "sniffing protection missing")
