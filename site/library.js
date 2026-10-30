@@ -19,7 +19,7 @@
   function update() {
     const query = normalize(search.value);
     const matching = cards.filter(card =>
-      (type === "all" || card.dataset.type === type) &&
+      (type === "all" || card.dataset.type === type || card.dataset.scope === type) &&
       normalize(card.dataset.search).includes(query)
     );
     const visible = new Set(matching.slice(0, limit));
