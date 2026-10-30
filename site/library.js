@@ -10,12 +10,10 @@
   const count = document.getElementById("video-count");
   const more = document.getElementById("load-more");
   const empty = document.getElementById("empty-state");
-  const picker = document.getElementById("book-picker");
-  const pickerWrap = document.getElementById("book-picker-wrap");
   const storiesHelp = document.getElementById("stories-help");
   const sortLabel = document.getElementById("sort-label");
   if (!cards.length || !search || !count || !more || !empty || !tabs.length ||
-      !picker || !pickerWrap || !storiesHelp || !sortLabel) return;
+      !storiesHelp || !sortLabel) return;
 
   let type = "all";
   let appliedOrder = "all";
@@ -44,9 +42,7 @@
       const category = type === "all" ||
         (type === "stories" ? card.dataset.story === "yes" :
           card.dataset.type === type || card.dataset.scope === type);
-      const selectedBook = type !== "book" || picker.value === "all" ||
-        card.dataset.book === picker.value;
-      return category && selectedBook && normalize(card.dataset.search).includes(query);
+      return category && normalize(card.dataset.search).includes(query);
     });
     const visible = new Set(matching.slice(0, limit));
     for (const card of cards) card.hidden = !visible.has(card);
@@ -56,7 +52,6 @@
     empty.hidden = matching.length > 0;
     more.hidden = matching.length <= limit;
     if (!more.hidden) more.textContent = "Show more videos (" + (matching.length - limit) + " remaining)";
-    pickerWrap.hidden = type !== "book";
     storiesHelp.hidden = type !== "stories";
     sortLabel.textContent = bibleOrder ? "Bible order" : "Newest uploads first";
     for (const button of tabs) {
@@ -67,14 +62,9 @@
     button.addEventListener("click", () => {
       type = button.dataset.filter;
       limit = PAGE;
-      picker.value = "all";
       update();
     });
   }
-  picker.addEventListener("change", () => {
-    limit = PAGE;
-    update();
-  });
   search.addEventListener("input", () => {
     limit = PAGE;
     update();

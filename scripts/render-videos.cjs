@@ -38,7 +38,6 @@ if(books.length+passages.length!==long.length)throw Error("Every long reading ne
 if(books.some(v=>!/Full Book/i.test(v.title)) || passages.some(v=>/Full Book/i.test(v.title)))throw Error("Inaccurate full-book label in video catalog");
 if(!shorts.length||!long.length)throw Error("Expected both Shorts and full-length videos");
 const featured=books.find(v=>/^John 1.21/i.test(v.title))||books[0];
-const orderedBooks=[...books].sort((a,b)=>a.scriptureOrder-b.scriptureOrder);
 const storyClips=videos.filter(v=>Boolean(v.story));
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const title=v=>v.title.split("|")[0].trim();
@@ -63,7 +62,6 @@ const paths=pathCard(shorts[0],"Latest short · Listen in minutes","Watch the la
 const card=v=>'<a class="vid" data-type="'+v.type+'" data-scope="'+(v.scope||"")+'" data-book="'+escape(v.bibleBook)+'" data-scripture-order="'+v.scriptureOrder+'" data-published="'+Date.parse(v.publishedAt)+'" data-story="'+(v.story?"yes":"no")+'" data-search="'+escape((v.title+" "+(v.story||"")).toLocaleLowerCase())+'" href="'+escape(v.url)+'" target="_blank" rel="noopener noreferrer">\n'+
 '  <span class="thumb"><img src="'+thumb(v)+'" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">'+(v.type==="short"?"Short":v.scope==="book"?"Complete book":"Chapter reading")+'</span></span>\n'+
 '  <span class="vid-content"><span class="vid-title">'+escape(title(v))+'</span>'+(v.story?'<span class="vid-story">'+escape(v.story)+'</span>':'')+'<span class="vid-meta"><span>'+escape(date(v))+'</span><span class="vid-cta">Watch ↗</span></span></span>\n</a>';
-const pickerOptions=orderedBooks.map(v=>'<option value="'+escape(v.bibleBook)+'">'+escape(v.bibleBook)+'</option>').join("\n");
 let html=fs.readFileSync(htmlPath,"utf8");
 function inject(name,body){
   const a="<!-- "+name+"_START -->",b="<!-- "+name+"_END -->";
@@ -76,7 +74,6 @@ inject("HERO_VIDEO",hero);
 inject("VIDEO_STATS",stats);
 inject("START_PATHS",paths);
 inject("VIDEO_CARDS",videos.map(card).join("\n"));
-inject("BOOK_OPTIONS",pickerOptions);
 const original=fs.readFileSync(htmlPath,"utf8");
 if(process.argv.includes("--check")){
   if(original!==html)throw Error("Generated HTML is stale. Run node scripts/render-videos.cjs");
