@@ -16,17 +16,20 @@ Open the **existing** [Netlify project](https://app.netlify.com/projects/webbibl
 
 After linking, every merge or push to `main` should build and deploy automatically. Verify the live Netlify deploy's `commit_ref` matches the merged GitHub commit.
 
-## Update latest videos
+## Update the public video catalog
 
-Edit **`data/videos.json`**. Each entry contains the display title and official YouTube video URL. Place the newest videos first and merge the change into `main`.
+The site was matched to the public @WEBBibleOutLoud channel on October 29, 2026: **62 Shorts and 9 full-length readings (71 total)**. All 71 are linked on the homepage. The 12 newest Shorts appear first, full readings follow, and the remaining 50 Shorts can be expanded on demand. The page includes a direct link to the YouTube channel for future uploads.
 
-Netlify automatically runs `node scripts/render-videos.cjs` during its Git-driven build, generating the cards and thumbnail URLs in `site/index.html`. No dependencies or API tokens are required. To render locally before committing, run:
+Edit **`data/videos.json`** whenever new videos go public. Each entry has **`title`**, **`url`**, **`type`** (`short` or `long`), and **`publishedAt`** (the YouTube publication timestamp). Videos are sorted newest-first inside each category automatically, and duplicate IDs are rejected. The `featuredShorts` number controls how many Shorts appear before the expandable archive.
+
+The Git-driven Netlify build runs `node scripts/render-videos.cjs` to generate all cards and thumbnails in `site/index.html` from the JSON catalog. Run locally to keep the HTML source synchronized:
 
 ```bash
 node scripts/render-videos.cjs
+node scripts/render-videos.cjs --check
 ```
 
-Keep the video URL to either a YouTube Shorts link (`https://youtube.com/shorts/VIDEOID`) or the short YouTube URL (`https://youtu.be/VIDEOID`). The generator rejects unsupported URLs or duplicates.
+Use canonical YouTube Shorts links (`https://youtube.com/shorts/VIDEOID`) for Shorts or `https://youtu.be/VIDEOID` for full readings. This is a curated snapshot, not automatic YouTube synchronization; refresh the JSON after new publications.
 
 ## Quality and security
 
