@@ -49,6 +49,10 @@ def verify(condition, issue):
 
 verify('id="hero-title">Scripture,' in html and 'class="brand-title">Bible Out Loud' in html, "missing site heading or branding")
 verify(page.canonicals == [HOME], "incorrect canonical homepage")
+verify('name="description"' in html and 'property="og:image"' in html and 'name="twitter:card"' in html,
+       "SEO metadata or social preview missing")
+verify('id="full-books-schema"' in html and '"numberOfItems":5' in html,
+       "full-book structured data missing")
 verify(len(page.videos) == len(data["videos"]) >= 1, "video cards do not match the JSON list")
 shorts = sorted([x for x in data["videos"] if x["type"] == "short"], key=lambda x: x["publishedAt"], reverse=True)
 readings = sorted([x for x in data["videos"] if x["type"] == "long"], key=lambda x: x["publishedAt"], reverse=True)
@@ -57,10 +61,16 @@ expected_order = sorted(data["videos"], key=lambda x: x["publishedAt"], reverse=
 verify(page.videos == [x["url"] for x in expected_order], "video order or URLs differ from JSON")
 verify(len(page.images) == len(data["videos"]) + 3, "missing library, hero or featured thumbnail")
 verify(len(set(page.videos)) == len(page.videos), "duplicate video cards")
+books=[x for x in readings if x.get("scope")=="book"]
+passages=[x for x in readings if x.get("scope")=="passage"]
+verify(len(books)==5 and all("Full Book" in x["title"] for x in books), "full books must have all chapters")
+verify(len(passages)==4 and all("Full Book" not in x["title"] for x in passages), "chapter readings mislabeled as books")
+verify(html.count('data-scope="book"')==5 and html.count('data-scope="passage"')==4, "wrong on-page category labels")
 verify(len(shorts) == 62 and len(readings) == 9 and len(page.videos) == 71,
        "baseline public channel library should contain 62 Shorts and 9 full readings")
 verify('id="video-search"' in html and 'id="video-grid"' in html, "searchable library markup missing")
-verify('id="load-more"' in html and 'data-filter="long"' in html, "video filters or pagination missing")
+verify('id="load-more"' in html and 'data-filter="book"' in html and 'data-filter="passage"' in html,
+       "separate full-book and longer-passage filters missing")
 verify('<!-- HERO_VIDEO_START -->' in html and '<!-- START_PATHS_START -->' in html, "generated hero missing")
 verify('href="styles.css"' in html and 'src="library.js"' in html, "site scripts/styles missing")
 verify((SITE / "styles.css").exists() and (SITE / "library.js").exists(), "UI asset files missing")
