@@ -11,9 +11,11 @@
   const more = document.getElementById("load-more");
   const empty = document.getElementById("empty-state");
   const storiesHelp = document.getElementById("stories-help");
+  const storyContainer = document.getElementById("story-collections");
+  const storyGroups = Array.from(storyContainer?.querySelectorAll(".story-collection") || []);
   const sortLabel = document.getElementById("sort-label");
   if (!cards.length || !search || !count || !more || !empty || !tabs.length ||
-      !storiesHelp || !sortLabel) return;
+      !storiesHelp || !sortLabel || !storyContainer || !storyGroups.length) return;
 
   // State: one validated collection, a nine-card page, and one active sorting mode.
   // The "view" URL parameter makes category links bookmarkable and shareable.
@@ -39,6 +41,30 @@
 
   function update() {
     const query = normalize(search.value);
+    const isStoryView = type === "stories";
+    grid.hidden = isStoryView;
+    storyContainer.hidden = !isStoryView;
+    storiesHelp.hidden = !isStoryView;
+
+    // Story state is grouped by title; a matching story retains all of its
+    // published parts rather than hiding individual clips during a search.
+    if (isStoryView) {
+      const matching = storyGroups.filter(group =>
+        normalize(group.dataset.storySearch).includes(query));
+      const visible = new Set(matching);
+      for (const group of storyGroups) group.hidden = !visible.has(group);
+      const clips = matching.reduce((total, group) =>
+        total + group.querySelectorAll(".story-clip-link").length, 0);
+      count.textContent = "Showing " + matching.length + " of " +
+        storyGroups.length + " stories · " + clips + " clips";
+      empty.hidden = matching.length > 0;
+      more.hidden = true;
+      sortLabel.textContent = "Scripture order";
+      for (const button of tabs) {
+        button.setAttribute("aria-pressed", String(button.dataset.filter === type));
+      }
+      return;
+    }
     const bibleOrder = type !== "all";
     // The static HTML is already newest-first. Avoid 71 unnecessary DOM moves on
     // initial load, search keystrokes, and pagination to protect responsiveness.
@@ -67,7 +93,6 @@
     empty.hidden = matching.length > 0;
     more.hidden = matching.length <= limit;
     if (!more.hidden) more.textContent = "Show more videos (" + (matching.length - limit) + " remaining)";
-    storiesHelp.hidden = type !== "stories";
     sortLabel.textContent = bibleOrder ? "Bible order" : "Newest uploads first";
     for (const button of tabs) {
       button.setAttribute("aria-pressed", String(button.dataset.filter === type));
