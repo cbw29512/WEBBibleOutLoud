@@ -98,11 +98,14 @@ verify([x.get("position") for x in schema_entries] == list(range(1, len(schema_e
 story_clips=[v for v in data["videos"] if v.get("story")]
 verify(len(story_clips)==32 and len(set(v["story"] for v in story_clips))==14, "greatest stories curated catalog changed")
 verify(html.count('data-story="yes"')==len(story_clips), "curated story clips not rendered")
+verify(html.count('class="story-collection"')==14 and html.count('class="story-clip-link"')==len(story_clips), "incorrect story/clip collection totals")
+verify('<!-- STORY_COLLECTIONS_START -->' in html and '<!-- STORY_COLLECTIONS_END -->' in html, "story markers missing")
 verify(html.count('data-book="John"')>=62, "missing canonical book attributes on Shorts")
 verify(html.count('data-scripture-order="')==len(data["videos"]), "missing Bible reference ordering for videos")
 verify('<!-- HERO_VIDEO_START -->' in html and '<!-- START_PATHS_START -->' in html, "generated hero missing")
 verify('href="styles.css"' in html and 'src="library.js"' in html, "site scripts/styles missing")
 verify((SITE / "styles.css").exists() and (SITE / "library.js").exists(), "UI asset files missing")
+verify('href="story-collections.css"' in html and (SITE / "story-collections.css").exists(), "story styles missing")
 verify("https://www.youtube.com/@WEBBibleOutLoud/videos" in page.links, "full channel link missing")
 verify(all(x.startswith("https://i.ytimg.com/vi/") for x in page.images), "unexpected thumbnail source")
 verify(any("youtube.com/@WEBBibleOutLoud" in x for x in page.links), "YouTube channel missing")
@@ -122,6 +125,7 @@ verify('button.dataset.filter' in js and 'search.addEventListener("input"' in js
 verify('card.dataset.scriptureOrder' in js and 'card.dataset.story === "yes"' in js,
        "Bible-order filtering or Greatest Stories is not functional")
 verify('book-picker' not in js, "unused book picker JavaScript remains")
+verify('group.dataset.storySearch' in js and 'storyContainer.hidden' in js, "story filtering missing")
 verify('new URLSearchParams(window.location.search)' in js and 'window.addEventListener("popstate"' in js,
        "shareable views must synchronize with navigation history")
 verify("Content-Security-Policy:" in headers and "frame-ancestors 'none'" in headers,
