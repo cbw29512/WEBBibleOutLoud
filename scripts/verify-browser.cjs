@@ -25,6 +25,9 @@ const axeScript = require.resolve("axe-core/axe.min.js");
       assert.equal(await page.locator("#video-grid .vid").count(), 71);
       assert.equal(await page.locator("#video-grid .vid:visible").count(), 9, "default view displays nine cards");
       assert.match(await page.locator("#video-count").innerText(), /9 of 71/);
+      const defaultRanks = await page.locator("#video-grid .vid").evaluateAll(nodes=>nodes.map(n=>Number(n.dataset.scriptureOrder)));
+      assert.deepEqual(defaultRanks,[...defaultRanks].sort((a,b)=>a-b), "All Videos must follow Scripture order across every card");
+      assert.match(await page.locator("#video-grid .vid:visible").first().innerText(), /Genesis/);
       assert.equal(await page.locator("a[href='https://buymeacoffee.com/divclass016']").count(), 1);
       assert.equal(await page.locator("#shop .product").count(), 4);
       assert.equal(await page.locator("a[href='/privacy.html']").count(), 1);
@@ -85,8 +88,8 @@ const axeScript = require.resolve("axe-core/axe.min.js");
       assert.match(await page.locator('#video-grid .vid:visible').first().innerText(), /Psalms/);
       await page.locator('#video-search').fill("");
       assert.equal(await page.locator('#video-grid .vid:visible').count(), 9);
-      assert.match(await page.locator('#video-grid .vid:visible').first().innerText(), /John 12:20–36/);
-      assert.equal(await page.locator('#sort-label').innerText(), "Newest uploads first");
+      assert.match(await page.locator('#video-grid .vid:visible').first().innerText(), /Genesis/);
+      assert.equal(await page.locator('#sort-label').innerText(), "Bible order");
 
       const layout = await page.evaluate(() => ({
         scroll: document.documentElement.scrollWidth,
