@@ -1,5 +1,5 @@
 {
-  "description": "All 71 public WEB Bible Out Loud uploads found on October 29, 2026: 62 Shorts and 9 long-form readings. Newest first within each category. Add new published videos and merge to main to refresh site.",
+  "description": "Full WEB Bible Out Loud catalog: 62 Shorts, 5 complete Bible books, and 4 longer chapter passages. Newest first within each filter.",
   "sourceChannel": "https://www.youtube.com/@WEBBibleOutLoud",
   "lastSynced": "2026-10-29",
   "featuredShorts": 12,
@@ -380,55 +380,64 @@
       "title": "John 1–21 — The Book of John, Full Book | Audio Bible With Text, Every Verse (WEB, No Music)",
       "url": "https://youtu.be/QHARnxtj87A",
       "type": "long",
-      "publishedAt": "2026-10-28T19:52:51Z"
+      "publishedAt": "2026-10-28T19:52:51Z",
+      "scope": "book"
     },
     {
       "title": "John 9–10 — The Man Born Blind & the Good Shepherd | Audio Bible With Text (WEB, No Music)",
       "url": "https://youtu.be/4ZzEnZ5hEX0",
       "type": "long",
-      "publishedAt": "2026-10-25T22:34:23Z"
+      "publishedAt": "2026-10-25T22:34:23Z",
+      "scope": "passage"
     },
     {
       "title": "Psalms 1–150 — The Book of Psalms, Full Book | Audio Bible With Text, Every Verse (WEB, No Music)",
       "url": "https://youtu.be/Xgd8a_CjHqs",
       "type": "long",
-      "publishedAt": "2026-10-25T17:28:59Z"
+      "publishedAt": "2026-10-25T17:28:59Z",
+      "scope": "book"
     },
     {
       "title": "Revelation 1–22 — Book of Revelation, Full Book | Audio Bible With Text, Every Verse (WEB, No Music)",
       "url": "https://youtu.be/pLGMTfwilh0",
       "type": "long",
-      "publishedAt": "2026-10-23T17:17:46Z"
+      "publishedAt": "2026-10-23T17:17:46Z",
+      "scope": "book"
     },
     {
       "title": "Obadiah — The Book of Obadiah, Full Book | Audio Bible With Text, Every Verse (WEB, No Music)",
       "url": "https://youtu.be/cL9P1mUIBsw",
       "type": "long",
-      "publishedAt": "2026-10-20T23:18:17Z"
+      "publishedAt": "2026-10-20T23:18:17Z",
+      "scope": "book"
     },
     {
       "title": "Genesis 1–50 — The Book of Genesis, Full Book | Audio Bible With Text, Every Verse (WEB, No Music)",
       "url": "https://youtu.be/zcLH4KSf1BM",
       "type": "long",
-      "publishedAt": "2026-10-20T00:39:27Z"
+      "publishedAt": "2026-10-20T00:39:27Z",
+      "scope": "book"
     },
     {
       "title": "John 7–8 — The Woman Caught in Adultery & Light of the World | Audio Bible With Text (WEB, No Music)",
       "url": "https://youtu.be/lGZXkQxFP9k",
       "type": "long",
-      "publishedAt": "2026-10-18T14:00:27Z"
+      "publishedAt": "2026-10-18T14:00:27Z",
+      "scope": "passage"
     },
     {
       "title": "John 6 — Feeding the Five Thousand & Jesus Walks on Water | Audio Bible With Text (WEB, No Music)",
       "url": "https://youtu.be/jzem45DF7BY",
       "type": "long",
-      "publishedAt": "2026-10-16T17:42:40Z"
+      "publishedAt": "2026-10-16T17:42:40Z",
+      "scope": "passage"
     },
     {
       "title": "John 1 — The Word Became Flesh | Audio Bible With Text, Every Verse (WEB, No Music)",
       "url": "https://youtu.be/IFusoymD8TE",
       "type": "long",
-      "publishedAt": "2026-09-24T18:50:18Z"
+      "publishedAt": "2026-09-24T18:50:18Z",
+      "scope": "passage"
     }
   ]
 }
