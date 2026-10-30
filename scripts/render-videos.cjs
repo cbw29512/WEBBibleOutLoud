@@ -24,8 +24,11 @@ const videos=dataset.videos.map(v=>{
   return {...v,id};
 }).sort((a,b)=>b.publishedAt.localeCompare(a.publishedAt));
 const shorts=videos.filter(v=>v.type==="short"),long=videos.filter(v=>v.type==="long");
+const books=long.filter(v=>v.scope==="book"),passages=long.filter(v=>v.scope==="passage");
+if(books.length+passages.length!==long.length)throw Error("Every long reading needs a book/passage scope");
+if(books.some(v=>!/Full Book/i.test(v.title)) || passages.some(v=>/Full Book/i.test(v.title)))throw Error("Inaccurate full-book label in video catalog");
 if(!shorts.length||!long.length)throw Error("Expected both Shorts and full-length videos");
-const featured=long.find(v=>/Full Book/i.test(v.title))||long[0];
+const featured=books.find(v=>/^John 1.21/i.test(v.title))||books[0];
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const title=v=>v.title.split("|")[0].trim();
 const thumb=v=>"https://i.ytimg.com/vi/"+v.id+"/hqdefault.jpg";
@@ -40,14 +43,14 @@ const hero='<article class="feature" aria-label="Featured full-length Bible read
 '    <h2 class="feature-title"><a href="'+escape(featured.url)+'" target="_blank" rel="noopener noreferrer">'+escape(title(featured))+'</a></h2>\n'+
 '    <p class="feature-sub">World English Bible · Captions · No music</p>\n'+
 '  </div>\n</article>';
-const stats='<div class="metrics" aria-label="Video library overview"><div class="metric"><strong>'+videos.length+'</strong> videos</div><div class="metric"><strong>'+shorts.length+'</strong> Shorts</div><div class="metric"><strong>'+long.length+'</strong> longer readings</div></div>';
+const stats='<div class="metrics" aria-label="Video library overview"><div class="metric"><strong>'+videos.length+'</strong> videos</div><div class="metric"><strong>'+shorts.length+'</strong> Shorts</div><div class="metric"><strong>'+books.length+'</strong> complete books</div><div class="metric"><strong>'+passages.length+'</strong> longer passages</div></div>';
 const pathCard=(v,label,action)=>'<a class="path-card" href="'+escape(v.url)+'" target="_blank" rel="noopener noreferrer">\n'+
 '  <img class="path-thumb" src="'+thumb(v)+'" alt="" width="112" height="84" loading="lazy">\n'+
 '  <span><span class="path-eyebrow">'+label+'</span><span class="path-name">'+escape(title(v))+'</span><span class="path-action">'+action+' ↗</span></span>\n</a>';
 const paths=pathCard(shorts[0],"Latest short · Listen in minutes","Watch the latest Short")+
-  pathCard(featured,"Featured long reading · Take your time","Start listening");
-const card=v=>'<a class="vid" data-type="'+v.type+'" data-search="'+escape(v.title.toLocaleLowerCase())+'" href="'+escape(v.url)+'" target="_blank" rel="noopener noreferrer">\n'+
-'  <span class="thumb"><img src="'+thumb(v)+'" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">'+(v.type==="short"?"Short":"Full reading")+'</span></span>\n'+
+  pathCard(featured,"Featured complete book · Take your time","Start listening");
+const card=v=>'<a class="vid" data-type="'+v.type+'" data-scope="'+(v.scope||"")+'" data-search="'+escape(v.title.toLocaleLowerCase())+'" href="'+escape(v.url)+'" target="_blank" rel="noopener noreferrer">\n'+
+'  <span class="thumb"><img src="'+thumb(v)+'" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">'+(v.type==="short"?"Short":v.scope==="book"?"Complete book":"Chapter reading")+'</span></span>\n'+
 '  <span class="vid-content"><span class="vid-title">'+escape(title(v))+'</span><span class="vid-meta"><span>'+escape(date(v))+'</span><span class="vid-cta">Watch ↗</span></span></span>\n</a>';
 let html=fs.readFileSync(htmlPath,"utf8");
 function inject(name,body){
@@ -64,8 +67,8 @@ inject("VIDEO_CARDS",videos.map(card).join("\n"));
 const original=fs.readFileSync(htmlPath,"utf8");
 if(process.argv.includes("--check")){
   if(original!==html)throw Error("Generated HTML is stale. Run node scripts/render-videos.cjs");
-  console.log("PASS: "+shorts.length+" Shorts and "+long.length+" full readings match the editorial homepage");
+  console.log("PASS: "+shorts.length+" Shorts, "+books.length+" complete books, "+passages.length+" longer passages match homepage");
 }else{
   if(html!==original)fs.writeFileSync(htmlPath,html);
-  console.log("Rendered "+videos.length+" videos to editorial homepage");
+  console.log("Rendered "+videos.length+" videos; "+books.length+" complete books and "+passages.length+" chapter readings");
 }

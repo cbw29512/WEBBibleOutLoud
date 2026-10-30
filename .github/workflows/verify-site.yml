@@ -29,6 +29,6 @@ jobs:
         with:
           chrome-version: stable
       - name: Install browser test dependency (CI only)
-        run: npm install --no-audit --no-fund --no-save playwright-core@1.56.1
+        run: npm install --no-audit --no-fund --no-save playwright-core@1.56.1 axe-core@4.10.3
       - name: Test mobile and desktop in real Chrome
         run: node scripts/verify-browser.cjs
