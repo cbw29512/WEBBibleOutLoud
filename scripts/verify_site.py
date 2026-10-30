@@ -47,7 +47,7 @@ def verify(condition, issue):
     if not condition:
         errors.append(issue)
 
-verify("<h1>WEB Bible Out Loud</h1>" in html, "missing site heading")
+verify('id="hero-title">Scripture,' in html and 'class="brand-title">Bible Out Loud' in html, "missing site heading or branding")
 verify(page.canonicals == [HOME], "incorrect canonical homepage")
 verify(len(page.videos) == len(data["videos"]) >= 1, "video cards do not match the JSON list")
 shorts = sorted([x for x in data["videos"] if x["type"] == "short"], key=lambda x: x["publishedAt"], reverse=True)
