@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""Verify what the *public* Netlify origin serves after GitHub is connected."""
-import re
+"""Verify the public Netlify website contains the deployed editorial redesign."""
 import time
 from urllib.request import Request, urlopen
 
@@ -8,24 +7,33 @@ ORIGIN = "https://webbibleoutloud.netlify.app"
 
 def fetch(path):
     last = None
-    for i in range(3):
+    for attempt in range(3):
         try:
-            with urlopen(Request(ORIGIN+path,headers={"User-Agent":"WEBBibleOutLoud GitHub production smoke check"}),timeout=25) as r:
-                if r.status != 200:
-                    raise RuntimeError(f"{path}: HTTP {r.status}")
-                return r.read().decode("utf-8"), {k.lower():v for k,v in r.headers.items()}
-        except Exception as e:
-            last=e
-            if i<2: time.sleep(3)
-    raise RuntimeError(f"Could not fetch {path}: {last}")
+            with urlopen(Request(ORIGIN + path, headers={
+                "User-Agent":"WEBBibleOutLoud production verification"
+            }), timeout=25) as response:
+                assert response.status == 200, f"{path}: HTTP {response.status}"
+                return response.read().decode("utf-8"), {k.lower():v for k,v in response.headers.items()}
+        except Exception as error:
+            last=error
+            if attempt<2: time.sleep(3)
+    raise RuntimeError(f"Unable to fetch {path}: {last}")
 
 home, headers=fetch("/")
-privacy,_=fetch("/privacy.html")
-assert home.count('class="vid"')==71, f"Expected 71 video cards, got {home.count(chr(34)+'vid'+chr(34))}"
-assert home.count("buymeacoffee.com/divclass016")==1, "Multiple/missing Buy Me a Coffee buttons"
-assert "g1uRInGRtSc" in home, "Newest October 29 Short is missing"
-assert 'class="older-videos"' in home and 'class="video-grid full-readings"' in home, "Older Shorts/full-length categories missing"
-assert "GoatCounter" in privacy, "Privacy page missing analytics disclosure"
-assert "content-security-policy" in headers and "frame-ancestors 'none'" in headers["content-security-policy"],"Netlify CSP missing"
-assert "X-Content-Type-Options".lower() in headers, "Netlify security header missing"
-print("PASS: Public production homepage serves 71 video cards, 1 support link, archives, privacy page, and security headers")
+privacy, _=fetch("/privacy.html")
+css,_=fetch("/styles.css")
+js,_=fetch("/library.js")
+assert home.count('class="vid"')==71, "Expected all 71 video cards on public website"
+assert home.count("buymeacoffee.com/divclass016")==1, "Expected exactly one donation link"
+assert "g1uRInGRtSc" in home, "Newest published Short missing"
+assert 'class="feature"' in home and 'class="path-grid"' in home, "Redesigned featured area missing"
+assert 'id="video-search"' in home and 'id="video-grid"' in home, "Searchable video library missing"
+assert 'id="load-more"' in home and 'data-filter="long"' in home, "Filters/pagination missing"
+assert 'href="styles.css"' in home and 'src="library.js"' in home, "UI assets not linked"
+assert len(css)>8000 and '.hero' in css and '.library-section' in css, "Editorial styles not published"
+assert 'search.addEventListener("input"' in js and 'more.addEventListener("click"' in js, "Working UI script not published"
+assert home.count("web-bible-out-loud.printify.me/product/")==4, "Product links missing"
+assert "GoatCounter" in privacy, "Privacy notice incomplete"
+assert "content-security-policy" in headers and "frame-ancestors 'none'" in headers["content-security-policy"], "Netlify CSP missing"
+assert "x-content-type-options" in headers, "Netlify security header missing"
+print("PASS: Public Netlify serves editorial homepage, 71 videos, 1 donation, search, filters, responsive CSS, privacy and CSP")
