@@ -40,6 +40,10 @@ jobs:
             if(a.score!==null&&a.score<0.9&&a.scoreDisplayMode!=='informative'&&['error','manual'].includes(a.scoreDisplayMode)===false)
               console.log('IMPROVE '+key+': '+a.title+' ('+(a.displayValue||'')+')');
           }
+          for(const id of ['errors-in-console','label-content-name-mismatch']) {
+            const audit=r.audits[id];
+            console.log('DETAIL '+id+': '+JSON.stringify((audit?.details?.items||[]).slice(0,12)).slice(0,8000));
+          }
           NODE
       - uses: actions/upload-artifact@v4
         if: always()
