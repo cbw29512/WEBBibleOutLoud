@@ -31,8 +31,12 @@ const videos=dataset.videos.map(v=>{
     throw Error("Only known short video story clips may enter the greatest-stories collection");
   return {...v,id,scriptureOrder:(bookIndex+1)*1000000+v.chapter*1000+v.verse};
 
-}).sort((a,b)=>b.publishedAt.localeCompare(a.publishedAt));
+}).sort((a,b)=>a.scriptureOrder-b.scriptureOrder ||
+  (a.scope==="book"?0:a.scope==="passage"?1:2) -
+  (b.scope==="book"?0:b.scope==="passage"?1:2) ||
+  a.publishedAt.localeCompare(b.publishedAt));
 const shorts=videos.filter(v=>v.type==="short"),long=videos.filter(v=>v.type==="long");
+const newestShort=shorts.reduce((latest,v)=>!latest || v.publishedAt>latest.publishedAt?v:latest,null);
 const books=long.filter(v=>v.scope==="book"),passages=long.filter(v=>v.scope==="passage");
 if(books.length+passages.length!==long.length)throw Error("Every long reading needs a book/passage scope");
 if(books.some(v=>!/Full Book/i.test(v.title)) || passages.some(v=>/Full Book/i.test(v.title)))throw Error("Inaccurate full-book label in video catalog");
@@ -81,7 +85,7 @@ const stats='<div class="metrics" aria-label="Video library overview"><div class
 const pathCard=(v,label,action)=>'<a class="path-card" href="'+escape(v.url)+'" target="_blank" rel="noopener noreferrer">\n'+
 '  <img class="path-thumb" src="'+thumb(v)+'" alt="" width="112" height="84" loading="lazy">\n'+
 '  <span><span class="path-eyebrow">'+label+'</span><span class="path-name">'+escape(title(v))+'</span><span class="path-action">'+action+' ↗</span></span>\n</a>';
-const paths=pathCard(shorts[0],"Latest short · Listen in minutes","Watch the latest Short")+
+const paths=pathCard(newestShort,"Latest short · Listen in minutes","Watch the latest Short")+
   pathCard(featured,"Featured complete book · Take your time","Start listening");
 const card=v=>'<a class="vid" data-type="'+v.type+'" data-scope="'+(v.scope||"")+'" data-book="'+escape(v.bibleBook)+'" data-scripture-order="'+v.scriptureOrder+'" data-published="'+Date.parse(v.publishedAt)+'" data-story="'+(v.story?"yes":"no")+'" data-search="'+escape((v.title+" "+(v.story||"")).toLocaleLowerCase())+'" href="'+escape(v.url)+'" target="_blank" rel="noopener noreferrer">\n'+
 '  <span class="thumb"><img src="'+thumb(v)+'" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">'+(v.type==="short"?"Short":v.scope==="book"?"Complete book":"Chapter reading")+'</span></span>\n'+
