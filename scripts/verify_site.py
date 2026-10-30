@@ -82,7 +82,7 @@ verify(all(page.links.count("?view=" + view + "#library") == 1
        "missing direct, shareable library collection links")
 verify('class="quick-browse"' in html and 'aria-label="Browse Bible recordings by collection"' in html,
        "accessible category navigation is missing")
-schema_match = re.search(r'<script type="application/ld\\+json" id="full-books-schema">([^<]+)</script>', html)
+schema_match = re.search(r'<script type="application/ld[+]json" id="full-books-schema">([^<]+)</script>', html)
 try:
     book_schema = json.loads(schema_match.group(1)) if schema_match else {}
 except (ValueError, AttributeError) as exc:
