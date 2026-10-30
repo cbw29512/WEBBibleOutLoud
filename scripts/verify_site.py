@@ -50,8 +50,17 @@ def verify(condition, issue):
 verify("<h1>WEB Bible Out Loud</h1>" in html, "missing site heading")
 verify(page.canonicals == [HOME], "incorrect canonical homepage")
 verify(len(page.videos) == len(data["videos"]) >= 1, "video cards do not match the JSON list")
-verify(page.videos == [x["url"] for x in data["videos"]], "video order or URLs differ from JSON")
+shorts = sorted([x for x in data["videos"] if x["type"] == "short"], key=lambda x: x["publishedAt"], reverse=True)
+readings = sorted([x for x in data["videos"] if x["type"] == "long"], key=lambda x: x["publishedAt"], reverse=True)
+featured_count = data.get("featuredShorts", 12)
+expected_order = shorts[:featured_count] + readings + shorts[featured_count:]
+verify(page.videos == [x["url"] for x in expected_order], "video order or URLs differ from JSON")
 verify(len(page.images) == len(data["videos"]), "missing or duplicate video thumbnails")
+verify(len(set(page.videos)) == len(page.videos), "duplicate video cards")
+verify(len(shorts) == 62 and len(readings) == 9 and len(page.videos) == 71,
+       "baseline public channel library should contain 62 Shorts and 9 full readings")
+verify('<details class="older-videos">' in html, "older Shorts archive missing")
+verify("https://www.youtube.com/@WEBBibleOutLoud/videos" in page.links, "full channel link missing")
 verify(all(x.startswith("https://i.ytimg.com/vi/") for x in page.images), "unexpected thumbnail source")
 verify(any("youtube.com/@WEBBibleOutLoud" in x for x in page.links), "YouTube channel missing")
 verify(any("tiktok.com/@webbibleoutloud" in x for x in page.links), "TikTok channel missing")
