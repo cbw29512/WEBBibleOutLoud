@@ -48,7 +48,7 @@ const pathCard=(v,label,action)=>'<a class="path-card" href="'+escape(v.url)+'" 
 '  <img class="path-thumb" src="'+thumb(v)+'" alt="" width="112" height="84" loading="lazy">\n'+
 '  <span><span class="path-eyebrow">'+label+'</span><span class="path-name">'+escape(title(v))+'</span><span class="path-action">'+action+' ↗</span></span>\n</a>';
 const paths=pathCard(shorts[0],"Latest short · Listen in minutes","Watch the latest Short")+
-  pathCard(featured,"Featured long reading · Take your time","Start listening");
+  pathCard(featured,"Featured complete book · Take your time","Start listening");
 const card=v=>'<a class="vid" data-type="'+v.type+'" data-scope="'+(v.scope||"")+'" data-search="'+escape(v.title.toLocaleLowerCase())+'" href="'+escape(v.url)+'" target="_blank" rel="noopener noreferrer">\n'+
 '  <span class="thumb"><img src="'+thumb(v)+'" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">'+(v.type==="short"?"Short":v.scope==="book"?"Complete book":"Chapter reading")+'</span></span>\n'+
 '  <span class="vid-content"><span class="vid-title">'+escape(title(v))+'</span><span class="vid-meta"><span>'+escape(date(v))+'</span><span class="vid-cta">Watch ↗</span></span></span>\n</a>';
