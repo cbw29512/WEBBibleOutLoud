@@ -59,8 +59,9 @@ verify(len(page.videos) == len(data["videos"]) >= 1, "video cards do not match t
 shorts = sorted([x for x in data["videos"] if x["type"] == "short"], key=lambda x: x["publishedAt"], reverse=True)
 readings = sorted([x for x in data["videos"] if x["type"] == "long"], key=lambda x: x["publishedAt"], reverse=True)
 featured_count = data.get("featuredShorts", 12)
-expected_order = sorted(data["videos"], key=lambda x: x["publishedAt"], reverse=True)
-verify(page.videos == [x["url"] for x in expected_order], "video order or URLs differ from JSON")
+verify(set(page.videos) == {x["url"] for x in data["videos"]}, "video URLs differ from JSON")
+ranks = [int(n) for n in re.findall(r'data-scripture-order="(\d+)"', html)]
+verify(len(ranks) == len(page.videos) and ranks == sorted(ranks), "All Videos must follow Bible order")
 verify(len(page.images) == len(data["videos"]) + 3, "missing library, hero or featured thumbnail")
 verify(len(set(page.videos)) == len(page.videos), "duplicate video cards")
 books=[x for x in readings if x.get("scope")=="book"]
