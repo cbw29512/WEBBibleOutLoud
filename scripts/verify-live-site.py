@@ -24,7 +24,7 @@ privacy,_=fetch("/privacy.html")
 assert home.count('class="vid"')==71, f"Expected 71 video cards, got {home.count(chr(34)+'vid'+chr(34))}"
 assert home.count("buymeacoffee.com/divclass016")==1, "Multiple/missing Buy Me a Coffee buttons"
 assert "g1uRInGRtSc" in home, "Newest October 29 Short is missing"
-assert 'class="older-videos"' in home and 'class="full-readings"' in home, "Older Shorts/full-length categories missing"
+assert 'class="older-videos"' in home and 'class="video-grid full-readings"' in home, "Older Shorts/full-length categories missing"
 assert "GoatCounter" in privacy, "Privacy page missing analytics disclosure"
 assert "content-security-policy" in headers and "frame-ancestors 'none'" in headers["content-security-policy"],"Netlify CSP missing"
 assert "X-Content-Type-Options".lower() in headers, "Netlify security header missing"
