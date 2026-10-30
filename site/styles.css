@@ -76,6 +76,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
 .path-eyebrow{display:block;font-size:12px;font-weight:850;color:var(--gold);letter-spacing:.12em;text-transform:uppercase}
 .path-name{display:block;font:400 20px/1.26 Georgia,serif;margin:7px 0}
 .path-action{display:block;color:#c2cac8;font-size:12px;font-weight:650}
+/* Direct, keyboard-accessible collection shortcuts below the featured videos. */
+.quick-browse{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-top:22px}
+.browse-link{display:flex;align-items:center;gap:13px;min-width:0;min-height:94px;padding:18px;border:1px solid #495b5e;border-radius:14px;background:#1c2b2f;text-decoration:none;transition:border-color .17s,background .17s}
+.browse-link:hover{border-color:var(--gold);background:#26383b}
+.browse-symbol{display:grid;place-items:center;flex:none;width:38px;height:38px;border-radius:10px;background:#334548;color:var(--gold);font-size:20px}
+.browse-label{display:flex;flex-direction:column;gap:3px;min-width:0;line-height:1.38}
+.browse-label strong{font-size:15px;color:#f8f5ec}
+.browse-label span{font-size:12px;color:#cbd5d2}
+.browse-arrow{margin-left:auto;color:var(--gold);font-size:17px}
 .library-section{background:var(--paper);color:var(--body)}
 .library-section .section-kicker{color:#866327}
 .library-section .section-desc{color:#526065}
@@ -143,6 +152,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
   .video-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:740px){
+  .quick-browse{grid-template-columns:1fr;gap:10px}
+  .browse-link{min-height:76px;padding:13px 16px}
+
   .wrap{width:min(100% - 32px,540px)}
   .site-nav{gap:14px}
   .site-nav a{font-size:12px}
