@@ -56,7 +56,7 @@ const axeScript = require.resolve("axe-core/axe.min.js");
       assert.equal(await page.locator(".story-clip-link:visible").count(), 32);
       assert.match(await page.locator(".story-collection:visible h3").first().innerText(), /Calling the first disciples/);
       const lazarusGroup = page.locator(".story-collection").filter({has: page.locator("h3:text-is('Jesus raises Lazarus')")});
-      assert.deepEqual(await lazarusGroup.locator(".story-part-label").allInnerTexts(), ["Part 1 of 4","Part 2 of 4","Part 3 of 4","Part 4 of 4"]);
+      assert.deepEqual(await lazarusGroup.locator(".story-part-label").allTextContents(), ["Part 1 of 4","Part 2 of 4","Part 3 of 4","Part 4 of 4"]);
       await page.locator("#video-search").fill("Lazarus");
       assert.equal(await page.locator(".story-collection:visible").count(), 1);
       assert.equal(await page.locator(".story-clip-link:visible").count(), 4);
