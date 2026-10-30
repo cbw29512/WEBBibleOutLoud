@@ -43,6 +43,30 @@ const escape=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&g
 const title=v=>v.title.split("|")[0].trim();
 const thumb=v=>"https://i.ytimg.com/vi/"+v.id+"/hqdefault.jpg";
 const date=v=>new Date(v.publishedAt).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric",timeZone:"UTC"});
+/* Story collections derive from the same published video records as regular cards.
+   Sorting uses the canonical book/chapter/verse key, never publication date. */
+const storyCollections=[...storyClips.reduce((map,video)=>{
+  if(!map.has(video.story))map.set(video.story,[]);
+  map.get(video.story).push(video);
+  return map;
+},new Map())].map(([name,clips])=>({
+  name,clips:clips.sort((a,b)=>a.scriptureOrder-b.scriptureOrder||a.publishedAt.localeCompare(b.publishedAt))
+})).sort((a,b)=>a.clips[0].scriptureOrder-b.clips[0].scriptureOrder);
+const storySection=(story,index)=>{
+  const first=story.clips[0];
+  const parts=story.clips.map((video,position)=>
+    '    <li><a class="story-clip-link" href="'+escape(video.url)+'" target="_blank" rel="noopener noreferrer">'+
+    '<span class="story-part-label">Part '+(position+1)+' of '+story.clips.length+'</span>'+
+    '<span class="story-part-title">'+escape(title(video))+'</span>'+
+    '<span class="story-part-action">Watch on YouTube ↗</span></a></li>').join("\n");
+  const search=(story.name+" "+story.clips.map(v=>v.title).join(" ")).toLocaleLowerCase();
+  return '<section class="story-collection" aria-labelledby="story-title-'+(index+1)+'" data-story-search="'+escape(search)+'">\n'+
+    '  <div class="story-collection-head"><span class="story-number">Story '+(index+1)+'</span>'+
+    '<h3 id="story-title-'+(index+1)+'">'+escape(story.name)+'</h3>'+
+    '<p class="story-reference">Starts at '+escape(first.bibleBook)+' '+first.chapter+':'+first.verse+
+    ' · '+story.clips.length+' '+(story.clips.length===1?'clip':'clips')+' available</p></div>\n'+
+    '  <ol class="story-clip-list">\n'+parts+'\n  </ol>\n</section>';
+};
 const hero='<article class="feature" aria-label="Featured full-length Bible reading">\n'+
 '  <a class="feature-media" href="'+escape(featured.url)+'" target="_blank" rel="noopener noreferrer" aria-label="Watch '+escape(title(featured))+' on YouTube">\n'+
 '    <img src="'+thumb(featured)+'" alt="'+escape(title(featured))+' video thumbnail" width="480" height="360" fetchpriority="high">\n'+
@@ -74,6 +98,7 @@ inject("HERO_VIDEO",hero);
 inject("VIDEO_STATS",stats);
 inject("START_PATHS",paths);
 inject("VIDEO_CARDS",videos.map(card).join("\n"));
+inject("STORY_COLLECTIONS",storyCollections.map(storySection).join("\n"));
 const original=fs.readFileSync(htmlPath,"utf8");
 if(process.argv.includes("--check")){
   if(original!==html)throw Error("Generated HTML is stale. Run node scripts/render-videos.cjs");
