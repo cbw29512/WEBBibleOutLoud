@@ -18,6 +18,7 @@
       !picker || !pickerWrap || !storiesHelp || !sortLabel) return;
 
   let type = "all";
+  let appliedOrder = "all";
   let limit = 9;
   const PAGE = 9;
   const normalize = text => String(text || "").toLocaleLowerCase().trim();
@@ -26,14 +27,20 @@
   function update() {
     const query = normalize(search.value);
     const bibleOrder = type !== "all";
-    const sorted = [...cards].sort((a, b) =>
-      bibleOrder
-        ? bibleRank(a) - bibleRank(b) || dateRank(a) - dateRank(b)
-        : dateRank(b) - dateRank(a)
-    );
-    // Reordering DOM nodes keeps cards and links accessible without duplicate content.
-    for (const card of sorted) grid.appendChild(card);
-    const matching = sorted.filter(card => {
+    // The static HTML is already newest-first. Avoid 71 unnecessary DOM moves on
+    // initial load, search keystrokes, and pagination to protect responsiveness.
+    if (type !== appliedOrder) {
+      const ordered = [...cards].sort((a, b) =>
+        bibleOrder
+          ? bibleRank(a) - bibleRank(b) || dateRank(a) - dateRank(b)
+          : dateRank(b) - dateRank(a)
+      );
+      const fragment = document.createDocumentFragment();
+      for (const card of ordered) fragment.appendChild(card);
+      grid.appendChild(fragment);
+      appliedOrder = type;
+    }
+    const matching = Array.from(grid.children).filter(card => {
       const category = type === "all" ||
         (type === "stories" ? card.dataset.story === "yes" :
           card.dataset.type === type || card.dataset.scope === type);
