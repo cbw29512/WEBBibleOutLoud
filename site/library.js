@@ -1,4 +1,4 @@
-/* Local-only video library: newest uploads default, canonical Bible order in topic tabs. */
+/* Local-only video library: all categories follow canonical Bible order. */
 (() => {
   "use strict";
   const library = document.getElementById("library");
@@ -27,6 +27,7 @@
   const normalize = text => String(text || "").toLocaleLowerCase().trim();
   const bibleRank = card => Number(card.dataset.scriptureOrder);
   const dateRank = card => Number(card.dataset.published);
+  const scopeRank = card => card.dataset.scope === "book" ? 0 : card.dataset.scope === "passage" ? 1 : 2;
 
   function readView() {
     try {
@@ -65,14 +66,14 @@
       }
       return;
     }
-    const bibleOrder = type !== "all";
-    // The static HTML is already newest-first. Avoid 71 unnecessary DOM moves on
-    // initial load, search keystrokes, and pagination to protect responsiveness.
+    // The build has already rendered all cards in Scripture order.
+    // Recheck this ordering only when switching tabs, not for every search
+    // keystroke or pagination event.
     if (type !== appliedOrder) {
       const ordered = [...cards].sort((a, b) =>
-        bibleOrder
-          ? bibleRank(a) - bibleRank(b) || dateRank(a) - dateRank(b)
-          : dateRank(b) - dateRank(a)
+        bibleRank(a) - bibleRank(b) ||
+        scopeRank(a) - scopeRank(b) ||
+        dateRank(a) - dateRank(b)
       );
       const fragment = document.createDocumentFragment();
       for (const card of ordered) fragment.appendChild(card);
@@ -93,7 +94,7 @@
     empty.hidden = matching.length > 0;
     more.hidden = matching.length <= limit;
     if (!more.hidden) more.textContent = "Show more videos (" + (matching.length - limit) + " remaining)";
-    sortLabel.textContent = bibleOrder ? "Bible order" : "Newest uploads first";
+    sortLabel.textContent = "Bible order";
     for (const button of tabs) {
       button.setAttribute("aria-pressed", String(button.dataset.filter === type));
     }
