@@ -21,6 +21,8 @@ jobs:
           node --check scripts/render-videos.cjs
           node scripts/render-videos.cjs
           node scripts/render-videos.cjs --check
+      - name: Ensure generated homepage is committed and reproducible
+        run: git diff --exit-code -- site/index.html
       - name: Verify reporting links, privacy, layout, and Netlify configuration
         run: python scripts/verify_site.py
       - uses: browser-actions/setup-chrome@v1

@@ -2,181 +2,437 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>WEB Bible Out Loud | Watch the World English Bible</title>
-  <meta name="description" content="Listen to the World English Bible read out loud in short, clear videos with big captions. Watch on YouTube and TikTok.">
-  <meta name="theme-color" content="#08090b">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10191d">
+  <title>WEB Bible Out Loud | Listen, Watch & Explore Scripture</title>
+  <meta name="description" content="Explore the World English Bible in readable, no-music audio videos. Find short passages, complete Bible readings, and read along with large captions.">
   <link rel="canonical" href="https://webbibleoutloud.netlify.app/">
+  <link rel="stylesheet" href="styles.css">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="WEB Bible Out Loud">
-  <meta property="og:description" content="The World English Bible read out loud in clear verse videos with big captions.">
+  <meta property="og:title" content="WEB Bible Out Loud — Scripture, clearly heard">
+  <meta property="og:description" content="Short Scripture videos and full-length Bible readings. The World English Bible with readable captions, no music.">
   <meta property="og:url" content="https://webbibleoutloud.netlify.app/">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"WEB Bible Out Loud","url":"https://webbibleoutloud.netlify.app/","description":"The World English Bible read out loud in short, clear verse videos with big captions.","sameAs":["https://www.youtube.com/@WEBBibleOutLoud","https://www.tiktok.com/@webbibleoutloud"]}</script>
-  <style>
-    :root{color-scheme:dark;--bg:#08090b;--panel:#181b21;--text:#f6f6f6;--muted:#d1d5db;--gold:#ffe05a;--border:#555b66}
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;background:var(--bg);color:var(--text);font:400 1.125rem/1.5 system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
-    a{color:inherit}
-    a:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
-    .skip{position:absolute;left:1rem;top:-8rem;background:var(--gold);color:#111;padding:.65rem 1rem;border-radius:.5rem;z-index:10}
-    .skip:focus{top:1rem}
-    main{max-width:1000px;margin:0 auto;padding:24px 18px 48px}
-    h1{font-size:clamp(2rem,6vw,3.25rem);line-height:1.13;margin:0 0 12px;font-weight:850;overflow-wrap:anywhere}
-    h2{font-size:clamp(1.55rem,4vw,2rem);line-height:1.2;margin:0 0 12px;color:var(--gold)}
-    p{margin:0 0 16px}
-    .intro{padding:18px 0 26px;text-align:center}
-    .intro p{max-width:660px;margin:0 auto 18px;color:var(--muted)}
-    .actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
-    .btn{display:flex;align-items:center;justify-content:center;min-height:60px;text-align:center;font-size:1.05rem;font-weight:800;line-height:1.2;padding:14px;border:2px solid #fff;border-radius:13px;text-decoration:none;background:#fff;color:#111;overflow-wrap:anywhere}
-    .btn:hover,.btn:focus-visible{background:var(--gold);border-color:var(--gold)}
-    .coffee{background:var(--gold);border-color:var(--gold)}
-    section{margin-top:30px}
-    .section-copy{color:var(--muted);font-size:1rem}
-    .video-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
-    .video-subheading{font-size:1.25rem;line-height:1.35;color:var(--text);margin:25px 0 12px}
-    .video-subheading small{font-size:.82rem;color:var(--muted);font-weight:500}
-    .older-videos{margin-top:25px}
-    .older-videos summary{cursor:pointer;color:#111;background:var(--gold);font-size:1.1rem;font-weight:800;padding:15px 18px;border-radius:12px;list-style-position:inside}
-    .older-videos summary:hover{background:#fff0ac}
-    .older-videos summary:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
-    .older-videos[open] summary{margin-bottom:15px}
-    .all-videos-link{display:inline-block;margin-top:18px;color:var(--gold);font-weight:700}
-    .vid{display:flex;flex-direction:column;gap:12px;min-width:0;background:var(--panel);border:2px solid var(--border);border-radius:14px;padding:12px;text-decoration:none;font-weight:700;font-size:1.05rem;line-height:1.35;overflow-wrap:anywhere}
-    .vid:hover,.vid:focus-visible,.product:hover,.product:focus-visible{border-color:var(--gold)}
-    .vid img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:8px;background:#242424}
-    .vid span{padding:0 4px 5px}
-    .product-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-    .product{display:flex;align-items:center;min-height:76px;padding:15px;border:2px solid var(--border);background:var(--panel);border-radius:12px;text-decoration:none;font-weight:700;overflow-wrap:anywhere}
-    .shop-link{max-width:400px;margin:14px 0 18px}
-    .about{border-top:1px solid var(--border);padding-top:28px}
-    footer{border-top:1px solid var(--border);margin-top:38px;padding-top:22px;color:var(--muted);font-size:.95rem}
-    footer a{color:var(--gold)}
-    @media(max-width:620px){main{padding:20px 14px 32px}.actions{grid-template-columns:1fr}.btn{min-height:54px}.video-grid,.product-grid{grid-template-columns:1fr}.product{min-height:66px}.intro{padding:12px 0 6px}.vid{font-size:1rem}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-  </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"WEB Bible Out Loud","url":"https://webbibleoutloud.netlify.app/","description":"The World English Bible read out loud with captions and no music.","sameAs":["https://www.youtube.com/@WEBBibleOutLoud","https://www.tiktok.com/@webbibleoutloud"]}</script>
+  <script src="library.js" defer></script>
   <script data-goatcounter="https://chrisgrowth-webbible.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<main id="main">
-  <header class="intro">
-    <h1>WEB Bible Out Loud</h1>
-    <p>The World English Bible, read out loud. Short, clear verse videos with big captions.</p>
-    <nav class="actions" aria-label="Watch and support">
-      <a class="btn" href="https://www.youtube.com/@WEBBibleOutLoud" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
-      <a class="btn" href="https://www.tiktok.com/@webbibleoutloud" target="_blank" rel="noopener noreferrer">Watch on TikTok</a>
-      <a class="btn coffee" href="https://buymeacoffee.com/divclass016" target="_blank" rel="noopener noreferrer">☕ Optional support</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/" aria-label="WEB Bible Out Loud homepage">
+      <span class="brand-mark" aria-hidden="true">W</span>
+      <span><span class="brand-title">Bible Out Loud</span><span class="brand-kicker">World English Bible</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="#library">Videos</a>
+      <a class="nav-shop" href="#shop">Shop</a>
+      <a class="support-link" href="https://buymeacoffee.com/divclass016" target="_blank" rel="noopener noreferrer">☕ Support</a>
     </nav>
-  </header>
-  <section aria-labelledby="latest">
-    <h2 id="latest">Latest videos</h2>
-    <p class="section-copy">Watch recent Shorts, complete Bible readings, or open the older Shorts archive. Videos open on YouTube.</p>
-    <div class="video-library" id="videos">
+  </div>
+</header>
+<main id="main">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Listen · Read along · Reflect</p>
+          <h1 id="hero-title">Scripture,<br><em>clearly heard.</em></h1>
+          <p class="hero-description">The World English Bible, spoken plainly and displayed in big, readable words. Short passages when you have a moment. Full readings when you have time to settle in.</p>
+          <div class="hero-actions">
+            <a class="primary-cta" href="#library">Explore the videos <span aria-hidden="true">↗</span></a>
+            <a class="secondary-cta" href="https://www.youtube.com/@WEBBibleOutLoud" target="_blank" rel="noopener noreferrer">Visit YouTube channel</a>
+          </div>
+          <p class="hero-note">Public-domain Bible · No background music · Free to watch</p>
+        </div>
+        <div class="hero-visual">
+<!-- HERO_VIDEO_START -->
+<article class="feature" aria-label="Featured full-length Bible reading">
+  <a class="feature-media" href="https://youtu.be/QHARnxtj87A" target="_blank" rel="noopener noreferrer" aria-label="Watch John 1–21 — The Book of John, Full Book on YouTube">
+    <img src="https://i.ytimg.com/vi/QHARnxtj87A/hqdefault.jpg" alt="John 1–21 — The Book of John, Full Book video thumbnail" width="480" height="360" fetchpriority="high">
+    <span class="play-circle" aria-hidden="true">▶</span>
+  </a>
+  <div class="feature-info">
+    <p class="feature-label">Featured · Full book reading</p>
+    <h2 class="feature-title"><a href="https://youtu.be/QHARnxtj87A" target="_blank" rel="noopener noreferrer">John 1–21 — The Book of John, Full Book</a></h2>
+    <p class="feature-sub">World English Bible · Captions · No music</p>
+  </div>
+</article>
+<!-- HERO_VIDEO_END -->
+        </div>
+      </div>
+<!-- VIDEO_STATS_START -->
+<div class="metrics" aria-label="Video library overview"><div class="metric"><strong>71</strong> videos</div><div class="metric"><strong>62</strong> Shorts</div><div class="metric"><strong>9</strong> longer readings</div></div>
+<!-- VIDEO_STATS_END -->
+    </div>
+  </section>
+
+  <section class="intro-paths section-pad" aria-labelledby="start-here">
+    <div class="wrap">
+      <div class="section-head">
+        <div><p class="section-kicker">A good place to begin</p><h2 id="start-here">Choose your listening pace.</h2>
+          <p class="section-desc">Go straight to a new passage or take in a full reading. Every video opens on YouTube.</p></div>
+      </div>
+      <div class="path-grid">
+<!-- START_PATHS_START -->
+<a class="path-card" href="https://youtube.com/shorts/g1uRInGRtSc" target="_blank" rel="noopener noreferrer">
+  <img class="path-thumb" src="https://i.ytimg.com/vi/g1uRInGRtSc/hqdefault.jpg" alt="" width="112" height="84" loading="lazy">
+  <span><span class="path-eyebrow">Latest short · Listen in minutes</span><span class="path-name">John 12:20–36 — The Hour Has Come: “Unless a Grain of Wheat Falls”</span><span class="path-action">Watch the latest Short ↗</span></span>
+</a><a class="path-card" href="https://youtu.be/QHARnxtj87A" target="_blank" rel="noopener noreferrer">
+  <img class="path-thumb" src="https://i.ytimg.com/vi/QHARnxtj87A/hqdefault.jpg" alt="" width="112" height="84" loading="lazy">
+  <span><span class="path-eyebrow">Featured long reading · Take your time</span><span class="path-name">John 1–21 — The Book of John, Full Book</span><span class="path-action">Start listening ↗</span></span>
+</a>
+<!-- START_PATHS_END -->
+      </div>
+    </div>
+  </section>
+
+  <section id="library" class="library-section section-pad" aria-labelledby="library-title">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">The video library</p>
+          <h2 id="library-title">Find a passage that speaks to you.</h2>
+          <p class="section-desc">Search Scripture titles, browse shorter passages, or settle in with a complete reading.</p>
+        </div>
+      </div>
+      <div class="library-panel">
+        <div class="library-controls">
+          <div class="filters" role="group" aria-label="Filter videos by length">
+            <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All videos</button>
+            <button class="filter-button" type="button" data-filter="short" aria-pressed="false">Shorts</button>
+            <button class="filter-button" type="button" data-filter="long" aria-pressed="false">Full readings</button>
+          </div>
+          <label class="search-wrap" for="video-search">
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <input id="video-search" type="search" placeholder="Search John, Psalms, Lazarus…" autocomplete="off" aria-label="Search the video library">
+          </label>
+        </div>
+        <div class="library-meta">
+          <span id="video-count" role="status" aria-live="polite">Browse all videos below</span>
+          <span>Newest first</span>
+        </div>
+      </div>
+      <div id="video-grid" class="video-grid" aria-label="Bible videos">
 <!-- VIDEO_CARDS_START -->
-<h3 class="video-subheading">Recent Shorts <small>(62 total)</small></h3>
-<div class="video-grid featured-shorts">
-<a class="vid" href="https://youtube.com/shorts/g1uRInGRtSc" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/g1uRInGRtSc/hqdefault.jpg" alt="John 12:20–36 — The Hour Has Come: “Unless a Grain of Wheat Falls” | WEB Audio Bible, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 12:20–36 — The Hour Has Come: “Unless a Grain of Wheat Falls” | WEB Audio Bible, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/bA5WudVv6HM" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/bA5WudVv6HM/hqdefault.jpg" alt="John 12:12–19 — The King Comes to Jerusalem: “Hosanna!” | WEB Audio Bible, Large Text, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 12:12–19 — The King Comes to Jerusalem: “Hosanna!” | WEB Audio Bible, Large Text, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/0ZcRHOsugXs" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/0ZcRHOsugXs/hqdefault.jpg" alt="John 12:1–11 — Mary Anoints Jesus: “Leave Her Alone” | WEB Audio Bible, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 12:1–11 — Mary Anoints Jesus: “Leave Her Alone” | WEB Audio Bible, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/sTd8s9ohQ_A" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/sTd8s9ohQ_A/hqdefault.jpg" alt="John 11:45–57 — Lazarus (4 of 4): “One Man Should Die” | WEB Audio Bible, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 11:45–57 — Lazarus (4 of 4): “One Man Should Die” | WEB Audio Bible, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/e0kH9szxERQ" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/e0kH9szxERQ/hqdefault.jpg" alt="John 10:22–42 — Feast of the Dedication: “I and the Father Are One” | WEB Audio Bible, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 10:22–42 — Feast of the Dedication: “I and the Father Are One” | WEB Audio Bible, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/wDPoVG_Ho3k" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/wDPoVG_Ho3k/hqdefault.jpg" alt="John 11:28–44 — Lazarus (3 of 4): “Lazarus, Come Out!” | WEB Audio Bible, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 11:28–44 — Lazarus (3 of 4): “Lazarus, Come Out!” | WEB Audio Bible, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/10G0ldoFLgQ" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/10G0ldoFLgQ/hqdefault.jpg" alt="John 11:17–27 — Lazarus (2 of 4): “I Am the Resurrection” | WEB Audio Bible, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 11:17–27 — Lazarus (2 of 4): “I Am the Resurrection” | WEB Audio Bible, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/0ri2Q71cb6I" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/0ri2Q71cb6I/hqdefault.jpg" alt="John 11:1–16 — Lazarus (1 of 4): “This Sickness Is Not to Death” | WEB Audio Bible, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 11:1–16 — Lazarus (1 of 4): “This Sickness Is Not to Death” | WEB Audio Bible, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/EaRX9gOQVJ0" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/EaRX9gOQVJ0/hqdefault.jpg" alt="John 10:11–21 — Good Shepherd (2 of 2): “I Am the Good Shepherd” | WEB Audio Bible, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 10:11–21 — Good Shepherd (2 of 2): “I Am the Good Shepherd” | WEB Audio Bible, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/fAtq3mhOn1o" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/fAtq3mhOn1o/hqdefault.jpg" alt="John 10:1–10 — Good Shepherd (1 of 2): “I Am the Sheep&#39;s Door” | WEB Audio Bible, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 10:1–10 — Good Shepherd (1 of 2): “I Am the Sheep&#39;s Door” | WEB Audio Bible, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/gq2Bx__mpPA" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/gq2Bx__mpPA/hqdefault.jpg" alt="John 9:35–41 — Man Born Blind (4 of 4): “Lord, I Believe!” | WEB Audio Bible, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 9:35–41 — Man Born Blind (4 of 4): “Lord, I Believe!” | WEB Audio Bible, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/XfirKrVfu5M" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/XfirKrVfu5M/hqdefault.jpg" alt="John 9:24–34 — Man Born Blind (3 of 4): “I Was Blind, Now I See” | WEB Audio Bible, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 9:24–34 — Man Born Blind (3 of 4): “I Was Blind, Now I See” | WEB Audio Bible, No Music</span></a>
-</div>
-<h3 class="video-subheading">Full-length Bible readings <small>(9)</small></h3>
-<div class="video-grid full-readings">
-<a class="vid" href="https://youtu.be/QHARnxtj87A" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/QHARnxtj87A/hqdefault.jpg" alt="John 1–21 — The Book of John, Full Book | Audio Bible With Text, Every Verse (WEB, No Music) video thumbnail" loading="lazy" width="480" height="360"><span>John 1–21 — The Book of John, Full Book | Audio Bible With Text, Every Verse (WEB, No Music)</span></a>
-<a class="vid" href="https://youtu.be/4ZzEnZ5hEX0" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/4ZzEnZ5hEX0/hqdefault.jpg" alt="John 9–10 — The Man Born Blind &amp; the Good Shepherd | Audio Bible With Text (WEB, No Music) video thumbnail" loading="lazy" width="480" height="360"><span>John 9–10 — The Man Born Blind &amp; the Good Shepherd | Audio Bible With Text (WEB, No Music)</span></a>
-<a class="vid" href="https://youtu.be/Xgd8a_CjHqs" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/Xgd8a_CjHqs/hqdefault.jpg" alt="Psalms 1–150 — The Book of Psalms, Full Book | Audio Bible With Text, Every Verse (WEB, No Music) video thumbnail" loading="lazy" width="480" height="360"><span>Psalms 1–150 — The Book of Psalms, Full Book | Audio Bible With Text, Every Verse (WEB, No Music)</span></a>
-<a class="vid" href="https://youtu.be/pLGMTfwilh0" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/pLGMTfwilh0/hqdefault.jpg" alt="Revelation 1–22 — Book of Revelation, Full Book | Audio Bible With Text, Every Verse (WEB, No Music) video thumbnail" loading="lazy" width="480" height="360"><span>Revelation 1–22 — Book of Revelation, Full Book | Audio Bible With Text, Every Verse (WEB, No Music)</span></a>
-<a class="vid" href="https://youtu.be/cL9P1mUIBsw" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/cL9P1mUIBsw/hqdefault.jpg" alt="Obadiah — The Book of Obadiah, Full Book | Audio Bible With Text, Every Verse (WEB, No Music) video thumbnail" loading="lazy" width="480" height="360"><span>Obadiah — The Book of Obadiah, Full Book | Audio Bible With Text, Every Verse (WEB, No Music)</span></a>
-<a class="vid" href="https://youtu.be/zcLH4KSf1BM" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/zcLH4KSf1BM/hqdefault.jpg" alt="Genesis 1–50 — The Book of Genesis, Full Book | Audio Bible With Text, Every Verse (WEB, No Music) video thumbnail" loading="lazy" width="480" height="360"><span>Genesis 1–50 — The Book of Genesis, Full Book | Audio Bible With Text, Every Verse (WEB, No Music)</span></a>
-<a class="vid" href="https://youtu.be/lGZXkQxFP9k" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/lGZXkQxFP9k/hqdefault.jpg" alt="John 7–8 — The Woman Caught in Adultery &amp; Light of the World | Audio Bible With Text (WEB, No Music) video thumbnail" loading="lazy" width="480" height="360"><span>John 7–8 — The Woman Caught in Adultery &amp; Light of the World | Audio Bible With Text (WEB, No Music)</span></a>
-<a class="vid" href="https://youtu.be/jzem45DF7BY" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/jzem45DF7BY/hqdefault.jpg" alt="John 6 — Feeding the Five Thousand &amp; Jesus Walks on Water | Audio Bible With Text (WEB, No Music) video thumbnail" loading="lazy" width="480" height="360"><span>John 6 — Feeding the Five Thousand &amp; Jesus Walks on Water | Audio Bible With Text (WEB, No Music)</span></a>
-<a class="vid" href="https://youtu.be/IFusoymD8TE" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/IFusoymD8TE/hqdefault.jpg" alt="John 1 — The Word Became Flesh | Audio Bible With Text, Every Verse (WEB, No Music) video thumbnail" loading="lazy" width="480" height="360"><span>John 1 — The Word Became Flesh | Audio Bible With Text, Every Verse (WEB, No Music)</span></a>
-</div>
-<details class="older-videos"><summary>Browse 50 more Shorts</summary>
-<div class="video-grid older-shorts">
-<a class="vid" href="https://youtube.com/shorts/cOkXLujNbOE" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/cOkXLujNbOE/hqdefault.jpg" alt="John 9:13–23 — Man Born Blind (2 of 4): “He Is a Prophet” | WEB Audio Bible, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 9:13–23 — Man Born Blind (2 of 4): “He Is a Prophet” | WEB Audio Bible, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/nQyVuFPfEuM" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/nQyVuFPfEuM/hqdefault.jpg" alt="John 3:9–15 — Nicodemus Comes at Night: “How Can These Things Be?” | WEB Audio Bible, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 3:9–15 — Nicodemus Comes at Night: “How Can These Things Be?” | WEB Audio Bible, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/Ai28p-0ZJew" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/Ai28p-0ZJew/hqdefault.jpg" alt="John 3:1–8 — Nicodemus Comes at Night: “Unless One Is Born Anew” | WEB Audio Bible, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 3:1–8 — Nicodemus Comes at Night: “Unless One Is Born Anew” | WEB Audio Bible, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/G65-joYNiLQ" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/G65-joYNiLQ/hqdefault.jpg" alt="John 2:1–11 — Water Into Wine at Cana | WEB Read-Along, Large Text, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 2:1–11 — Water Into Wine at Cana | WEB Read-Along, Large Text, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/twsUXSKwAQU" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/twsUXSKwAQU/hqdefault.jpg" alt="John 2:23–25 — Jesus Clears the Temple: “He Himself Knew What Was in Man” | WEB, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 2:23–25 — Jesus Clears the Temple: “He Himself Knew What Was in Man” | WEB, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/5XjvaQ3GHxo" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/5XjvaQ3GHxo/hqdefault.jpg" alt="John 2:18–22 — Jesus Clears the Temple: “Destroy This Temple” | WEB Audio Bible, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 2:18–22 — Jesus Clears the Temple: “Destroy This Temple” | WEB Audio Bible, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/h0FqYjr2goQ" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/h0FqYjr2goQ/hqdefault.jpg" alt="John 8:31–47 — The Light of the World: “The Truth Will Make You Free” | WEB, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 8:31–47 — The Light of the World: “The Truth Will Make You Free” | WEB, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/g71HhL9qEN4" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/g71HhL9qEN4/hqdefault.jpg" alt="John 9:1–12 — The Man Born Blind: “Go, Wash in the Pool of Siloam” | WEB Audio Bible, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 9:1–12 — The Man Born Blind: “Go, Wash in the Pool of Siloam” | WEB Audio Bible, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/lq2TTtwAoCU" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/lq2TTtwAoCU/hqdefault.jpg" alt="John 2:12–17 — Jesus Clears the Temple | WEB Read-Along, Large Text, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 2:12–17 — Jesus Clears the Temple | WEB Read-Along, Large Text, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/B5-crZuBkFg" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/B5-crZuBkFg/hqdefault.jpg" alt="John 1:43–51 — “Follow Me” — Philip and Nathanael | WEB Read-Along, Large Text, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 1:43–51 — “Follow Me” — Philip and Nathanael | WEB Read-Along, Large Text, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/a2tATsOtlZA" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/a2tATsOtlZA/hqdefault.jpg" alt="John 1:35–42 — “Come and See” — The First Disciples | WEB Read-Along, Large Text, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 1:35–42 — “Come and See” — The First Disciples | WEB Read-Along, Large Text, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/p4rzf1OMV8Y" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/p4rzf1OMV8Y/hqdefault.jpg" alt="John 1:29–34 — “Behold, the Lamb of God” | WEB Read-Along, Large Text, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 1:29–34 — “Behold, the Lamb of God” | WEB Read-Along, Large Text, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/avPUiIjowXA" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/avPUiIjowXA/hqdefault.jpg" alt="John 1:19–28 — “Who Are You?” John the Baptist Answers | WEB Read-Along, Large Text, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 1:19–28 — “Who Are You?” John the Baptist Answers | WEB Read-Along, Large Text, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/wa5LBL91KvY" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/wa5LBL91KvY/hqdefault.jpg" alt="John 1:14–18 — “The Word Became Flesh” | WEB Read-Along, Large Text, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 1:14–18 — “The Word Became Flesh” | WEB Read-Along, Large Text, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/2SUXDr07UFY" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/2SUXDr07UFY/hqdefault.jpg" alt="John 1:6–13 — “The True Light” Comes Into the World | WEB Read-Along, Large Text, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 1:6–13 — “The True Light” Comes Into the World | WEB Read-Along, Large Text, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/EPrtVZOEGdI" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/EPrtVZOEGdI/hqdefault.jpg" alt="John 1:1–5 — “In the Beginning Was the Word” | WEB Read-Along, Large Text, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 1:1–5 — “In the Beginning Was the Word” | WEB Read-Along, Large Text, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/KKBqdvQ_LSA" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/KKBqdvQ_LSA/hqdefault.jpg" alt="John 8:12–20 — The Light of the World: “I Am the Light of the World” | WEB Audio Bible, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 8:12–20 — The Light of the World: “I Am the Light of the World” | WEB Audio Bible, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/pEQiiHwWE8Q" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/pEQiiHwWE8Q/hqdefault.jpg" alt="John 8:48–59 — “Before Abraham Came Into Existence, I AM” | WEB Audio Bible, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 8:48–59 — “Before Abraham Came Into Existence, I AM” | WEB Audio Bible, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/cN1UYwf025s" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/cN1UYwf025s/hqdefault.jpg" alt="John 4:11–18 — The Woman at the Well (2 of 5) | WEB Audio Bible, Large Text, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 4:11–18 — The Woman at the Well (2 of 5) | WEB Audio Bible, Large Text, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/gVXAzWPuiDQ" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/gVXAzWPuiDQ/hqdefault.jpg" alt="John 4:1–10 — The Woman at the Well (1 of 5): “Give Me a Drink” | WEB Audio Bible, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 4:1–10 — The Woman at the Well (1 of 5): “Give Me a Drink” | WEB Audio Bible, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/y_LdUteFCa0" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/y_LdUteFCa0/hqdefault.jpg" alt="John 3:31–36 — He Must Increase: “He Who Comes From Above Is Above All” | WEB, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 3:31–36 — He Must Increase: “He Who Comes From Above Is Above All” | WEB, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/BTzkbcKtjl0" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/BTzkbcKtjl0/hqdefault.jpg" alt="John 8:21–30 — The Light of the World: “Where I Am Going, You Can&#39;t Come” | WEB, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 8:21–30 — The Light of the World: “Where I Am Going, You Can&#39;t Come” | WEB, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/W21wxH1ZIwI" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/W21wxH1ZIwI/hqdefault.jpg" alt="John 3:22–30 — He Must Increase: “He Must Increase, but I Must Decrease” | WEB, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 3:22–30 — He Must Increase: “He Must Increase, but I Must Decrease” | WEB, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/nKXmL4S-C7E" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/nKXmL4S-C7E/hqdefault.jpg" alt="John 3:16–21 — Nicodemus Comes at Night: “For God So Loved the World” | WEB, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 3:16–21 — Nicodemus Comes at Night: “For God So Loved the World” | WEB, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/RB1seSmQVWM" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/RB1seSmQVWM/hqdefault.jpg" alt="John 7:53–8:11 — The Woman Caught in Adultery: “Neither Do I Condemn You” | WEB, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 7:53–8:11 — The Woman Caught in Adultery: “Neither Do I Condemn You” | WEB, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/0EhamBGTcbw" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/0EhamBGTcbw/hqdefault.jpg" alt="John 7:37–52 — Rivers of Living Water: “If Anyone Is Thirsty” | WEB Audio Bible, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 7:37–52 — Rivers of Living Water: “If Anyone Is Thirsty” | WEB Audio Bible, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/ih-xDlcoHNY" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/ih-xDlcoHNY/hqdefault.jpg" alt="John 7:25–36 — Who Is This Man?: “I Know Him, Because I Am From Him” | WEB, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 7:25–36 — Who Is This Man?: “I Know Him, Because I Am From Him” | WEB, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/ePqfSV1X3EE" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/ePqfSV1X3EE/hqdefault.jpg" alt="John 7:14–24 — Teaching at the Feast: “My Teaching Is Not Mine” | WEB Audio Bible, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 7:14–24 — Teaching at the Feast: “My Teaching Is Not Mine” | WEB Audio Bible, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/v97UZCdN-28" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/v97UZCdN-28/hqdefault.jpg" alt="John 7:1–13 — Jesus Goes Up to the Feast: “My Time Has Not Yet Come” | WEB, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 7:1–13 — Jesus Goes Up to the Feast: “My Time Has Not Yet Come” | WEB, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/dQvLqwGqlU4" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/dQvLqwGqlU4/hqdefault.jpg" alt="John 6:67–71 — “Lord, to Whom Would We Go?” | WEB Read-Along, Large Text, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 6:67–71 — “Lord, to Whom Would We Go?” | WEB Read-Along, Large Text, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/qNPMearbCeg" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/qNPMearbCeg/hqdefault.jpg" alt="John 6:60–66 — “This Is a Hard Saying” | WEB Read-Along, Large Text, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 6:60–66 — “This Is a Hard Saying” | WEB Read-Along, Large Text, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/woJsNBDiNdk" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/woJsNBDiNdk/hqdefault.jpg" alt="John 6:52–59 — “My Flesh Is Food Indeed” | WEB Read-Along, Large Text, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 6:52–59 — “My Flesh Is Food Indeed” | WEB Read-Along, Large Text, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/rD3kEz2Lpg8" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/rD3kEz2Lpg8/hqdefault.jpg" alt="John 6:43–51 — “I Am the Living Bread” | WEB Read-Along, Large Text, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 6:43–51 — “I Am the Living Bread” | WEB Read-Along, Large Text, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/2PW5qD1V_uQ" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/2PW5qD1V_uQ/hqdefault.jpg" alt="John 6:37–42 — “He Who Comes to Me I Will in No Way Throw Out” | WEB, Large Text, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 6:37–42 — “He Who Comes to Me I Will in No Way Throw Out” | WEB, Large Text, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/LrbNfkM-uOI" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/LrbNfkM-uOI/hqdefault.jpg" alt="John 6:30–36 — “I Am the Bread of Life” | WEB Read-Along, Large Text, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 6:30–36 — “I Am the Bread of Life” | WEB Read-Along, Large Text, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/1ugr_6Qk3jc" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/1ugr_6Qk3jc/hqdefault.jpg" alt="John 6:23–29 — “This Is the Work of God” | WEB Read-Along, Large Text, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 6:23–29 — “This Is the Work of God” | WEB Read-Along, Large Text, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/rcuDLTwDJXk" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/rcuDLTwDJXk/hqdefault.jpg" alt="John 6:16–22 — “It Is I. Don&#39;t Be Afraid.” | WEB Read-Along, Large Text, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 6:16–22 — “It Is I. Don&#39;t Be Afraid.” | WEB Read-Along, Large Text, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/bMEQbyYHlYQ" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/bMEQbyYHlYQ/hqdefault.jpg" alt="John 6:10–15 — Feeding the Five Thousand | WEB Read-Along, Large Text, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 6:10–15 — Feeding the Five Thousand | WEB Read-Along, Large Text, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/MFCk5PuOoM4" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/MFCk5PuOoM4/hqdefault.jpg" alt="John 6:1–9 — “Five Barley Loaves and Two Fish” | WEB Read-Along, Large Text, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 6:1–9 — “Five Barley Loaves and Two Fish” | WEB Read-Along, Large Text, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/jbHYgUzKXrA" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/jbHYgUzKXrA/hqdefault.jpg" alt="John 5:39–47 — The Son and the Father: “You Search the Scriptures” | WEB Audio Bible, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 5:39–47 — The Son and the Father: “You Search the Scriptures” | WEB Audio Bible, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/dgHwwvc_pEg" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/dgHwwvc_pEg/hqdefault.jpg" alt="John 5:31–38 — The Son and the Father: “He Was the Burning and Shining Lamp” | WEB, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 5:31–38 — The Son and the Father: “He Was the Burning and Shining Lamp” | WEB, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/91Z92hnZxB0" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/91Z92hnZxB0/hqdefault.jpg" alt="John 5:24–30 — The Son and the Father: “Out of Death Into Life” | WEB Audio Bible, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 5:24–30 — The Son and the Father: “Out of Death Into Life” | WEB Audio Bible, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/ch2ETAVUUtY" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/ch2ETAVUUtY/hqdefault.jpg" alt="John 5:17–23 — The Son and the Father: “My Father Is Still Working” | WEB Audio Bible, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 5:17–23 — The Son and the Father: “My Father Is Still Working” | WEB Audio Bible, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/Rbwg2DegE-k" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/Rbwg2DegE-k/hqdefault.jpg" alt="John 5:10–16 — Healing at the Pool of Bethesda: “Sin No More” | WEB Audio Bible, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 5:10–16 — Healing at the Pool of Bethesda: “Sin No More” | WEB Audio Bible, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/I8o4amy1ark" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/I8o4amy1ark/hqdefault.jpg" alt="John 5:1–9 — Healing at the Pool of Bethesda: “Arise, Take Up Your Mat” | WEB, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 5:1–9 — Healing at the Pool of Bethesda: “Arise, Take Up Your Mat” | WEB, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/hXmpdFxMZzQ" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/hXmpdFxMZzQ/hqdefault.jpg" alt="John 4:49–54 — The Official&#39;s Son Is Healed: “Go Your Way. Your Son Lives.” | WEB, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 4:49–54 — The Official&#39;s Son Is Healed: “Go Your Way. Your Son Lives.” | WEB, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/_bihbDoRV6A" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/_bihbDoRV6A/hqdefault.jpg" alt="John 4:43–48 — The Official&#39;s Son Is Healed: “A Prophet Has No Honor” | WEB, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 4:43–48 — The Official&#39;s Son Is Healed: “A Prophet Has No Honor” | WEB, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/TO5p2ny9Ay4" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/TO5p2ny9Ay4/hqdefault.jpg" alt="John 4:35–42 — The Woman at the Well: “The Savior of the World” | WEB Audio Bible, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 4:35–42 — The Woman at the Well: “The Savior of the World” | WEB Audio Bible, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/M0FCzkYSmF0" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/M0FCzkYSmF0/hqdefault.jpg" alt="John 4:27–34 — The Woman at the Well: “Come, See a Man Who Told Me Everything” | WEB, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 4:27–34 — The Woman at the Well: “Come, See a Man Who Told Me Everything” | WEB, No Music</span></a>
-<a class="vid" href="https://youtube.com/shorts/jVd5hOSSyX0" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/jVd5hOSSyX0/hqdefault.jpg" alt="John 4:19–26 — The Woman at the Well: “I Am He” | WEB Audio Bible, Large Text, No Music video thumbnail" loading="lazy" width="480" height="360"><span>John 4:19–26 — The Woman at the Well: “I Am He” | WEB Audio Bible, Large Text, No Music</span></a>
-</div>
-</details>
+<a class="vid" data-type="short" data-search="john 12:20–36 — the hour has come: “unless a grain of wheat falls” | web audio bible, no music" href="https://youtube.com/shorts/g1uRInGRtSc" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/g1uRInGRtSc/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 12:20–36 — The Hour Has Come: “Unless a Grain of Wheat Falls”</span><span class="vid-meta"><span>Oct 29, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="long" data-search="john 1–21 — the book of john, full book | audio bible with text, every verse (web, no music)" href="https://youtu.be/QHARnxtj87A" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/QHARnxtj87A/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Full reading</span></span>
+  <span class="vid-content"><span class="vid-title">John 1–21 — The Book of John, Full Book</span><span class="vid-meta"><span>Oct 28, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 12:12–19 — the king comes to jerusalem: “hosanna!” | web audio bible, large text, no music" href="https://youtube.com/shorts/bA5WudVv6HM" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/bA5WudVv6HM/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 12:12–19 — The King Comes to Jerusalem: “Hosanna!”</span><span class="vid-meta"><span>Oct 28, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 12:1–11 — mary anoints jesus: “leave her alone” | web audio bible, no music" href="https://youtube.com/shorts/0ZcRHOsugXs" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/0ZcRHOsugXs/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 12:1–11 — Mary Anoints Jesus: “Leave Her Alone”</span><span class="vid-meta"><span>Oct 27, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 11:45–57 — lazarus (4 of 4): “one man should die” | web audio bible, no music" href="https://youtube.com/shorts/sTd8s9ohQ_A" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/sTd8s9ohQ_A/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 11:45–57 — Lazarus (4 of 4): “One Man Should Die”</span><span class="vid-meta"><span>Oct 26, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="long" data-search="john 9–10 — the man born blind &amp; the good shepherd | audio bible with text (web, no music)" href="https://youtu.be/4ZzEnZ5hEX0" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/4ZzEnZ5hEX0/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Full reading</span></span>
+  <span class="vid-content"><span class="vid-title">John 9–10 — The Man Born Blind &amp; the Good Shepherd</span><span class="vid-meta"><span>Oct 25, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 10:22–42 — feast of the dedication: “i and the father are one” | web audio bible, no music" href="https://youtube.com/shorts/e0kH9szxERQ" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/e0kH9szxERQ/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 10:22–42 — Feast of the Dedication: “I and the Father Are One”</span><span class="vid-meta"><span>Oct 25, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 11:28–44 — lazarus (3 of 4): “lazarus, come out!” | web audio bible, no music" href="https://youtube.com/shorts/wDPoVG_Ho3k" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/wDPoVG_Ho3k/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 11:28–44 — Lazarus (3 of 4): “Lazarus, Come Out!”</span><span class="vid-meta"><span>Oct 25, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="long" data-search="psalms 1–150 — the book of psalms, full book | audio bible with text, every verse (web, no music)" href="https://youtu.be/Xgd8a_CjHqs" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/Xgd8a_CjHqs/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Full reading</span></span>
+  <span class="vid-content"><span class="vid-title">Psalms 1–150 — The Book of Psalms, Full Book</span><span class="vid-meta"><span>Oct 25, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 11:17–27 — lazarus (2 of 4): “i am the resurrection” | web audio bible, no music" href="https://youtube.com/shorts/10G0ldoFLgQ" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/10G0ldoFLgQ/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 11:17–27 — Lazarus (2 of 4): “I Am the Resurrection”</span><span class="vid-meta"><span>Oct 24, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="long" data-search="revelation 1–22 — book of revelation, full book | audio bible with text, every verse (web, no music)" href="https://youtu.be/pLGMTfwilh0" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/pLGMTfwilh0/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Full reading</span></span>
+  <span class="vid-content"><span class="vid-title">Revelation 1–22 — Book of Revelation, Full Book</span><span class="vid-meta"><span>Oct 23, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 11:1–16 — lazarus (1 of 4): “this sickness is not to death” | web audio bible, no music" href="https://youtube.com/shorts/0ri2Q71cb6I" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/0ri2Q71cb6I/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 11:1–16 — Lazarus (1 of 4): “This Sickness Is Not to Death”</span><span class="vid-meta"><span>Oct 23, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 10:11–21 — good shepherd (2 of 2): “i am the good shepherd” | web audio bible, no music" href="https://youtube.com/shorts/EaRX9gOQVJ0" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/EaRX9gOQVJ0/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 10:11–21 — Good Shepherd (2 of 2): “I Am the Good Shepherd”</span><span class="vid-meta"><span>Oct 21, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="long" data-search="obadiah — the book of obadiah, full book | audio bible with text, every verse (web, no music)" href="https://youtu.be/cL9P1mUIBsw" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/cL9P1mUIBsw/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Full reading</span></span>
+  <span class="vid-content"><span class="vid-title">Obadiah — The Book of Obadiah, Full Book</span><span class="vid-meta"><span>Oct 20, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 10:1–10 — good shepherd (1 of 2): “i am the sheep&#39;s door” | web audio bible, no music" href="https://youtube.com/shorts/fAtq3mhOn1o" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/fAtq3mhOn1o/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 10:1–10 — Good Shepherd (1 of 2): “I Am the Sheep&#39;s Door”</span><span class="vid-meta"><span>Oct 20, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="long" data-search="genesis 1–50 — the book of genesis, full book | audio bible with text, every verse (web, no music)" href="https://youtu.be/zcLH4KSf1BM" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/zcLH4KSf1BM/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Full reading</span></span>
+  <span class="vid-content"><span class="vid-title">Genesis 1–50 — The Book of Genesis, Full Book</span><span class="vid-meta"><span>Oct 20, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 9:35–41 — man born blind (4 of 4): “lord, i believe!” | web audio bible, no music" href="https://youtube.com/shorts/gq2Bx__mpPA" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/gq2Bx__mpPA/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 9:35–41 — Man Born Blind (4 of 4): “Lord, I Believe!”</span><span class="vid-meta"><span>Oct 19, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 9:24–34 — man born blind (3 of 4): “i was blind, now i see” | web audio bible, no music" href="https://youtube.com/shorts/XfirKrVfu5M" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/XfirKrVfu5M/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 9:24–34 — Man Born Blind (3 of 4): “I Was Blind, Now I See”</span><span class="vid-meta"><span>Oct 18, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="long" data-search="john 7–8 — the woman caught in adultery &amp; light of the world | audio bible with text (web, no music)" href="https://youtu.be/lGZXkQxFP9k" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/lGZXkQxFP9k/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Full reading</span></span>
+  <span class="vid-content"><span class="vid-title">John 7–8 — The Woman Caught in Adultery &amp; Light of the World</span><span class="vid-meta"><span>Oct 18, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 9:13–23 — man born blind (2 of 4): “he is a prophet” | web audio bible, no music" href="https://youtube.com/shorts/cOkXLujNbOE" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/cOkXLujNbOE/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 9:13–23 — Man Born Blind (2 of 4): “He Is a Prophet”</span><span class="vid-meta"><span>Oct 17, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 3:9–15 — nicodemus comes at night: “how can these things be?” | web audio bible, no music" href="https://youtube.com/shorts/nQyVuFPfEuM" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/nQyVuFPfEuM/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 3:9–15 — Nicodemus Comes at Night: “How Can These Things Be?”</span><span class="vid-meta"><span>Oct 16, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 3:1–8 — nicodemus comes at night: “unless one is born anew” | web audio bible, no music" href="https://youtube.com/shorts/Ai28p-0ZJew" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/Ai28p-0ZJew/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 3:1–8 — Nicodemus Comes at Night: “Unless One Is Born Anew”</span><span class="vid-meta"><span>Oct 16, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 2:1–11 — water into wine at cana | web read-along, large text, no music" href="https://youtube.com/shorts/G65-joYNiLQ" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/G65-joYNiLQ/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 2:1–11 — Water Into Wine at Cana</span><span class="vid-meta"><span>Oct 16, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 2:23–25 — jesus clears the temple: “he himself knew what was in man” | web, no music" href="https://youtube.com/shorts/twsUXSKwAQU" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/twsUXSKwAQU/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 2:23–25 — Jesus Clears the Temple: “He Himself Knew What Was in Man”</span><span class="vid-meta"><span>Oct 16, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 2:18–22 — jesus clears the temple: “destroy this temple” | web audio bible, no music" href="https://youtube.com/shorts/5XjvaQ3GHxo" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/5XjvaQ3GHxo/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 2:18–22 — Jesus Clears the Temple: “Destroy This Temple”</span><span class="vid-meta"><span>Oct 16, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 8:31–47 — the light of the world: “the truth will make you free” | web, no music" href="https://youtube.com/shorts/h0FqYjr2goQ" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/h0FqYjr2goQ/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 8:31–47 — The Light of the World: “The Truth Will Make You Free”</span><span class="vid-meta"><span>Oct 16, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="long" data-search="john 6 — feeding the five thousand &amp; jesus walks on water | audio bible with text (web, no music)" href="https://youtu.be/jzem45DF7BY" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/jzem45DF7BY/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Full reading</span></span>
+  <span class="vid-content"><span class="vid-title">John 6 — Feeding the Five Thousand &amp; Jesus Walks on Water</span><span class="vid-meta"><span>Oct 16, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 9:1–12 — the man born blind: “go, wash in the pool of siloam” | web audio bible, no music" href="https://youtube.com/shorts/g71HhL9qEN4" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/g71HhL9qEN4/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 9:1–12 — The Man Born Blind: “Go, Wash in the Pool of Siloam”</span><span class="vid-meta"><span>Oct 16, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 2:12–17 — jesus clears the temple | web read-along, large text, no music" href="https://youtube.com/shorts/lq2TTtwAoCU" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/lq2TTtwAoCU/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 2:12–17 — Jesus Clears the Temple</span><span class="vid-meta"><span>Oct 15, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 1:43–51 — “follow me” — philip and nathanael | web read-along, large text, no music" href="https://youtube.com/shorts/B5-crZuBkFg" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/B5-crZuBkFg/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 1:43–51 — “Follow Me” — Philip and Nathanael</span><span class="vid-meta"><span>Oct 15, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 1:35–42 — “come and see” — the first disciples | web read-along, large text, no music" href="https://youtube.com/shorts/a2tATsOtlZA" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/a2tATsOtlZA/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 1:35–42 — “Come and See” — The First Disciples</span><span class="vid-meta"><span>Oct 15, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 1:29–34 — “behold, the lamb of god” | web read-along, large text, no music" href="https://youtube.com/shorts/p4rzf1OMV8Y" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/p4rzf1OMV8Y/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 1:29–34 — “Behold, the Lamb of God”</span><span class="vid-meta"><span>Oct 15, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 1:19–28 — “who are you?” john the baptist answers | web read-along, large text, no music" href="https://youtube.com/shorts/avPUiIjowXA" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/avPUiIjowXA/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 1:19–28 — “Who Are You?” John the Baptist Answers</span><span class="vid-meta"><span>Oct 15, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 1:14–18 — “the word became flesh” | web read-along, large text, no music" href="https://youtube.com/shorts/wa5LBL91KvY" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/wa5LBL91KvY/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 1:14–18 — “The Word Became Flesh”</span><span class="vid-meta"><span>Oct 15, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 1:6–13 — “the true light” comes into the world | web read-along, large text, no music" href="https://youtube.com/shorts/2SUXDr07UFY" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/2SUXDr07UFY/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 1:6–13 — “The True Light” Comes Into the World</span><span class="vid-meta"><span>Oct 15, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 1:1–5 — “in the beginning was the word” | web read-along, large text, no music" href="https://youtube.com/shorts/EPrtVZOEGdI" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/EPrtVZOEGdI/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 1:1–5 — “In the Beginning Was the Word”</span><span class="vid-meta"><span>Oct 15, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 8:12–20 — the light of the world: “i am the light of the world” | web audio bible, no music" href="https://youtube.com/shorts/KKBqdvQ_LSA" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/KKBqdvQ_LSA/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 8:12–20 — The Light of the World: “I Am the Light of the World”</span><span class="vid-meta"><span>Oct 15, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 8:48–59 — “before abraham came into existence, i am” | web audio bible, no music" href="https://youtube.com/shorts/pEQiiHwWE8Q" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/pEQiiHwWE8Q/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 8:48–59 — “Before Abraham Came Into Existence, I AM”</span><span class="vid-meta"><span>Oct 15, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 4:11–18 — the woman at the well (2 of 5) | web audio bible, large text, no music" href="https://youtube.com/shorts/cN1UYwf025s" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/cN1UYwf025s/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 4:11–18 — The Woman at the Well (2 of 5)</span><span class="vid-meta"><span>Oct 14, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 4:1–10 — the woman at the well (1 of 5): “give me a drink” | web audio bible, no music" href="https://youtube.com/shorts/gVXAzWPuiDQ" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/gVXAzWPuiDQ/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 4:1–10 — The Woman at the Well (1 of 5): “Give Me a Drink”</span><span class="vid-meta"><span>Oct 14, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 3:31–36 — he must increase: “he who comes from above is above all” | web, no music" href="https://youtube.com/shorts/y_LdUteFCa0" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/y_LdUteFCa0/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 3:31–36 — He Must Increase: “He Who Comes From Above Is Above All”</span><span class="vid-meta"><span>Oct 14, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 8:21–30 — the light of the world: “where i am going, you can&#39;t come” | web, no music" href="https://youtube.com/shorts/BTzkbcKtjl0" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/BTzkbcKtjl0/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 8:21–30 — The Light of the World: “Where I Am Going, You Can&#39;t Come”</span><span class="vid-meta"><span>Oct 13, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 3:22–30 — he must increase: “he must increase, but i must decrease” | web, no music" href="https://youtube.com/shorts/W21wxH1ZIwI" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/W21wxH1ZIwI/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 3:22–30 — He Must Increase: “He Must Increase, but I Must Decrease”</span><span class="vid-meta"><span>Oct 12, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 3:16–21 — nicodemus comes at night: “for god so loved the world” | web, no music" href="https://youtube.com/shorts/nKXmL4S-C7E" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/nKXmL4S-C7E/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 3:16–21 — Nicodemus Comes at Night: “For God So Loved the World”</span><span class="vid-meta"><span>Oct 12, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 7:53–8:11 — the woman caught in adultery: “neither do i condemn you” | web, no music" href="https://youtube.com/shorts/RB1seSmQVWM" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/RB1seSmQVWM/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 7:53–8:11 — The Woman Caught in Adultery: “Neither Do I Condemn You”</span><span class="vid-meta"><span>Oct 11, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 7:37–52 — rivers of living water: “if anyone is thirsty” | web audio bible, no music" href="https://youtube.com/shorts/0EhamBGTcbw" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/0EhamBGTcbw/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 7:37–52 — Rivers of Living Water: “If Anyone Is Thirsty”</span><span class="vid-meta"><span>Oct 10, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 7:25–36 — who is this man?: “i know him, because i am from him” | web, no music" href="https://youtube.com/shorts/ih-xDlcoHNY" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/ih-xDlcoHNY/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 7:25–36 — Who Is This Man?: “I Know Him, Because I Am From Him”</span><span class="vid-meta"><span>Oct 9, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 7:14–24 — teaching at the feast: “my teaching is not mine” | web audio bible, no music" href="https://youtube.com/shorts/ePqfSV1X3EE" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/ePqfSV1X3EE/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 7:14–24 — Teaching at the Feast: “My Teaching Is Not Mine”</span><span class="vid-meta"><span>Oct 8, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 7:1–13 — jesus goes up to the feast: “my time has not yet come” | web, no music" href="https://youtube.com/shorts/v97UZCdN-28" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/v97UZCdN-28/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 7:1–13 — Jesus Goes Up to the Feast: “My Time Has Not Yet Come”</span><span class="vid-meta"><span>Oct 7, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 6:67–71 — “lord, to whom would we go?” | web read-along, large text, no music" href="https://youtube.com/shorts/dQvLqwGqlU4" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/dQvLqwGqlU4/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 6:67–71 — “Lord, to Whom Would We Go?”</span><span class="vid-meta"><span>Oct 6, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 6:60–66 — “this is a hard saying” | web read-along, large text, no music" href="https://youtube.com/shorts/qNPMearbCeg" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/qNPMearbCeg/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 6:60–66 — “This Is a Hard Saying”</span><span class="vid-meta"><span>Oct 5, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 6:52–59 — “my flesh is food indeed” | web read-along, large text, no music" href="https://youtube.com/shorts/woJsNBDiNdk" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/woJsNBDiNdk/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 6:52–59 — “My Flesh Is Food Indeed”</span><span class="vid-meta"><span>Oct 5, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 6:43–51 — “i am the living bread” | web read-along, large text, no music" href="https://youtube.com/shorts/rD3kEz2Lpg8" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/rD3kEz2Lpg8/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 6:43–51 — “I Am the Living Bread”</span><span class="vid-meta"><span>Oct 5, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 6:37–42 — “he who comes to me i will in no way throw out” | web, large text, no music" href="https://youtube.com/shorts/2PW5qD1V_uQ" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/2PW5qD1V_uQ/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 6:37–42 — “He Who Comes to Me I Will in No Way Throw Out”</span><span class="vid-meta"><span>Oct 4, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 6:30–36 — “i am the bread of life” | web read-along, large text, no music" href="https://youtube.com/shorts/LrbNfkM-uOI" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/LrbNfkM-uOI/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 6:30–36 — “I Am the Bread of Life”</span><span class="vid-meta"><span>Oct 4, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 6:23–29 — “this is the work of god” | web read-along, large text, no music" href="https://youtube.com/shorts/1ugr_6Qk3jc" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/1ugr_6Qk3jc/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 6:23–29 — “This Is the Work of God”</span><span class="vid-meta"><span>Oct 4, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 6:16–22 — “it is i. don&#39;t be afraid.” | web read-along, large text, no music" href="https://youtube.com/shorts/rcuDLTwDJXk" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/rcuDLTwDJXk/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 6:16–22 — “It Is I. Don&#39;t Be Afraid.”</span><span class="vid-meta"><span>Oct 3, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 6:10–15 — feeding the five thousand | web read-along, large text, no music" href="https://youtube.com/shorts/bMEQbyYHlYQ" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/bMEQbyYHlYQ/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 6:10–15 — Feeding the Five Thousand</span><span class="vid-meta"><span>Oct 3, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 6:1–9 — “five barley loaves and two fish” | web read-along, large text, no music" href="https://youtube.com/shorts/MFCk5PuOoM4" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/MFCk5PuOoM4/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 6:1–9 — “Five Barley Loaves and Two Fish”</span><span class="vid-meta"><span>Oct 3, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 5:39–47 — the son and the father: “you search the scriptures” | web audio bible, no music" href="https://youtube.com/shorts/jbHYgUzKXrA" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/jbHYgUzKXrA/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 5:39–47 — The Son and the Father: “You Search the Scriptures”</span><span class="vid-meta"><span>Oct 2, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 5:31–38 — the son and the father: “he was the burning and shining lamp” | web, no music" href="https://youtube.com/shorts/dgHwwvc_pEg" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/dgHwwvc_pEg/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 5:31–38 — The Son and the Father: “He Was the Burning and Shining Lamp”</span><span class="vid-meta"><span>Oct 2, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 5:24–30 — the son and the father: “out of death into life” | web audio bible, no music" href="https://youtube.com/shorts/91Z92hnZxB0" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/91Z92hnZxB0/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 5:24–30 — The Son and the Father: “Out of Death Into Life”</span><span class="vid-meta"><span>Oct 2, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 5:17–23 — the son and the father: “my father is still working” | web audio bible, no music" href="https://youtube.com/shorts/ch2ETAVUUtY" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/ch2ETAVUUtY/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 5:17–23 — The Son and the Father: “My Father Is Still Working”</span><span class="vid-meta"><span>Oct 2, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 5:10–16 — healing at the pool of bethesda: “sin no more” | web audio bible, no music" href="https://youtube.com/shorts/Rbwg2DegE-k" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/Rbwg2DegE-k/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 5:10–16 — Healing at the Pool of Bethesda: “Sin No More”</span><span class="vid-meta"><span>Oct 2, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 5:1–9 — healing at the pool of bethesda: “arise, take up your mat” | web, no music" href="https://youtube.com/shorts/I8o4amy1ark" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/I8o4amy1ark/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 5:1–9 — Healing at the Pool of Bethesda: “Arise, Take Up Your Mat”</span><span class="vid-meta"><span>Oct 2, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 4:49–54 — the official&#39;s son is healed: “go your way. your son lives.” | web, no music" href="https://youtube.com/shorts/hXmpdFxMZzQ" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/hXmpdFxMZzQ/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 4:49–54 — The Official&#39;s Son Is Healed: “Go Your Way. Your Son Lives.”</span><span class="vid-meta"><span>Oct 1, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 4:43–48 — the official&#39;s son is healed: “a prophet has no honor” | web, no music" href="https://youtube.com/shorts/_bihbDoRV6A" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/_bihbDoRV6A/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 4:43–48 — The Official&#39;s Son Is Healed: “A Prophet Has No Honor”</span><span class="vid-meta"><span>Oct 1, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 4:35–42 — the woman at the well: “the savior of the world” | web audio bible, no music" href="https://youtube.com/shorts/TO5p2ny9Ay4" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/TO5p2ny9Ay4/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 4:35–42 — The Woman at the Well: “The Savior of the World”</span><span class="vid-meta"><span>Oct 1, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 4:27–34 — the woman at the well: “come, see a man who told me everything” | web, no music" href="https://youtube.com/shorts/M0FCzkYSmF0" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/M0FCzkYSmF0/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 4:27–34 — The Woman at the Well: “Come, See a Man Who Told Me Everything”</span><span class="vid-meta"><span>Oct 1, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="short" data-search="john 4:19–26 — the woman at the well: “i am he” | web audio bible, large text, no music" href="https://youtube.com/shorts/jVd5hOSSyX0" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/jVd5hOSSyX0/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Short</span></span>
+  <span class="vid-content"><span class="vid-title">John 4:19–26 — The Woman at the Well: “I Am He”</span><span class="vid-meta"><span>Oct 1, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
+<a class="vid" data-type="long" data-search="john 1 — the word became flesh | audio bible with text, every verse (web, no music)" href="https://youtu.be/IFusoymD8TE" target="_blank" rel="noopener noreferrer">
+  <span class="thumb"><img src="https://i.ytimg.com/vi/IFusoymD8TE/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">Full reading</span></span>
+  <span class="vid-content"><span class="vid-title">John 1 — The Word Became Flesh</span><span class="vid-meta"><span>Sep 24, 2026</span><span class="vid-cta">Watch ↗</span></span></span>
+</a>
 <!-- VIDEO_CARDS_END -->
-    </div>
-    <a class="all-videos-link" href="https://www.youtube.com/@WEBBibleOutLoud/videos" target="_blank" rel="noopener noreferrer">View the full channel on YouTube</a>
-  </section>
-  <section aria-labelledby="shop">
-    <h2 id="shop">Shop</h2>
-    <p class="section-copy">Scripture from the World English Bible, printed big and clear on shirts and hoodies.</p>
-    <a class="btn shop-link" href="https://web-bible-out-loud.printify.me" target="_blank" rel="noopener noreferrer">Shop shirts and hoodies</a>
-    <div class="product-grid">
-      <a class="product" href="https://web-bible-out-loud.printify.me/product/33068041" target="_blank" rel="noopener noreferrer">I Am the Light of the World Shirt</a>
-      <a class="product" href="https://web-bible-out-loud.printify.me/product/33068049" target="_blank" rel="noopener noreferrer">I Am the Bread of Life Shirt</a>
-      <a class="product" href="https://web-bible-out-loud.printify.me/product/33068054" target="_blank" rel="noopener noreferrer">Come and See Shirt</a>
-      <a class="product" href="https://web-bible-out-loud.printify.me/product/33068061" target="_blank" rel="noopener noreferrer">The Truth Will Make You Free Shirt</a>
+      </div>
+      <div id="empty-state" class="empty-state" role="status" hidden><strong>No matching videos</strong>Try a different word or choose another filter.</div>
+      <button id="load-more" class="load-more" type="button" hidden>Show more videos</button>
+      <div class="library-foot"><a href="https://www.youtube.com/@WEBBibleOutLoud/videos" target="_blank" rel="noopener noreferrer">Browse every upload on YouTube ↗</a></div>
     </div>
   </section>
-  <section class="about" aria-labelledby="about">
-    <h2 id="about">About</h2>
-    <p>Every video reads the World English Bible, a public domain translation, word for word. No music. Big white words on a black screen so anyone can follow along.</p>
+
+  <section id="shop" class="shop section-pad" aria-labelledby="shop-title">
+    <div class="wrap">
+      <div class="shop-head"><p class="section-kicker">Beyond the screen</p>
+        <h2 id="shop-title">Wear the words.</h2>
+        <p class="section-desc">Scripture-inspired shirts from our Printify shop. Purchases take place on Printify, not on this website.</p>
+      </div>
+      <div class="shop-grid">
+        <a class="product" href="https://web-bible-out-loud.printify.me/product/33068041" target="_blank" rel="noopener noreferrer"><span class="product-mark" aria-hidden="true">✦</span><span class="product-name">I Am the Light of the World</span><span class="product-action">View shirt ↗</span></a>
+        <a class="product" href="https://web-bible-out-loud.printify.me/product/33068049" target="_blank" rel="noopener noreferrer"><span class="product-mark" aria-hidden="true">✦</span><span class="product-name">I Am the Bread of Life</span><span class="product-action">View shirt ↗</span></a>
+        <a class="product" href="https://web-bible-out-loud.printify.me/product/33068054" target="_blank" rel="noopener noreferrer"><span class="product-mark" aria-hidden="true">✦</span><span class="product-name">Come and See</span><span class="product-action">View shirt ↗</span></a>
+        <a class="product" href="https://web-bible-out-loud.printify.me/product/33068061" target="_blank" rel="noopener noreferrer"><span class="product-mark" aria-hidden="true">✦</span><span class="product-name">The Truth Will Make You Free</span><span class="product-action">View shirt ↗</span></a>
+      </div>
+      <div class="shop-footer"><p>Four designs. Each product opens its own Printify page.</p>
+        <a href="https://web-bible-out-loud.printify.me" target="_blank" rel="noopener noreferrer">Visit the full shop ↗</a></div>
+    </div>
   </section>
-  <footer>
-    <a href="/privacy.html">Privacy</a> · &copy; 2026 WEB Bible Out Loud
-  </footer>
 </main>
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div><p class="footer-name">WEB Bible Out Loud</p><p class="footer-copy">The World English Bible, read with clarity. © 2026.</p></div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="https://www.youtube.com/@WEBBibleOutLoud" target="_blank" rel="noopener noreferrer">YouTube</a>
+      <a href="https://www.tiktok.com/@webbibleoutloud" target="_blank" rel="noopener noreferrer">TikTok</a>
+      <a href="/privacy.html">Privacy</a>
+    </nav>
+  </div>
+</footer>
 </body>
 </html>
