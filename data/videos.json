@@ -1,5 +1,5 @@
 {
-  "description": "Full WEB Bible Out Loud catalog: 62 Shorts, 5 complete Bible books, and 4 longer chapter passages. Newest first within each filter.",
+  "description": "All public uploads with Bible-reference metadata. Complete books, Shorts, longer passages, and curated Greatest Bible Stories are shown in canonical scripture order when selected; All videos remains newest-first.",
   "sourceChannel": "https://www.youtube.com/@WEBBibleOutLoud",
   "lastSynced": "2026-10-29",
   "featuredShorts": 12,
@@ -8,436 +8,682 @@
       "title": "John 12:20–36 — The Hour Has Come: “Unless a Grain of Wheat Falls” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/g1uRInGRtSc",
       "type": "short",
-      "publishedAt": "2026-10-29T20:26:40Z"
+      "publishedAt": "2026-10-29T20:26:40Z",
+      "bibleBook": "John",
+      "chapter": 12,
+      "verse": 20
     },
     {
       "title": "John 12:12–19 — The King Comes to Jerusalem: “Hosanna!” | WEB Audio Bible, Large Text, No Music",
       "url": "https://youtube.com/shorts/bA5WudVv6HM",
       "type": "short",
-      "publishedAt": "2026-10-28T14:47:18Z"
+      "publishedAt": "2026-10-28T14:47:18Z",
+      "story": "Jesus enters Jerusalem",
+      "bibleBook": "John",
+      "chapter": 12,
+      "verse": 12
     },
     {
       "title": "John 12:1–11 — Mary Anoints Jesus: “Leave Her Alone” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/0ZcRHOsugXs",
       "type": "short",
-      "publishedAt": "2026-10-27T14:49:58Z"
+      "publishedAt": "2026-10-27T14:49:58Z",
+      "story": "Mary anoints Jesus",
+      "bibleBook": "John",
+      "chapter": 12,
+      "verse": 1
     },
     {
       "title": "John 11:45–57 — Lazarus (4 of 4): “One Man Should Die” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/sTd8s9ohQ_A",
       "type": "short",
-      "publishedAt": "2026-10-26T14:14:12Z"
+      "publishedAt": "2026-10-26T14:14:12Z",
+      "story": "Jesus raises Lazarus",
+      "bibleBook": "John",
+      "chapter": 11,
+      "verse": 45
     },
     {
       "title": "John 10:22–42 — Feast of the Dedication: “I and the Father Are One” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/e0kH9szxERQ",
       "type": "short",
-      "publishedAt": "2026-10-25T19:26:46Z"
+      "publishedAt": "2026-10-25T19:26:46Z",
+      "bibleBook": "John",
+      "chapter": 10,
+      "verse": 22
     },
     {
       "title": "John 11:28–44 — Lazarus (3 of 4): “Lazarus, Come Out!” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/wDPoVG_Ho3k",
       "type": "short",
-      "publishedAt": "2026-10-25T18:12:49Z"
+      "publishedAt": "2026-10-25T18:12:49Z",
+      "story": "Jesus raises Lazarus",
+      "bibleBook": "John",
+      "chapter": 11,
+      "verse": 28
     },
     {
       "title": "John 11:17–27 — Lazarus (2 of 4): “I Am the Resurrection” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/10G0ldoFLgQ",
       "type": "short",
-      "publishedAt": "2026-10-24T14:40:05Z"
+      "publishedAt": "2026-10-24T14:40:05Z",
+      "story": "Jesus raises Lazarus",
+      "bibleBook": "John",
+      "chapter": 11,
+      "verse": 17
     },
     {
       "title": "John 11:1–16 — Lazarus (1 of 4): “This Sickness Is Not to Death” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/0ri2Q71cb6I",
       "type": "short",
-      "publishedAt": "2026-10-23T17:17:16Z"
+      "publishedAt": "2026-10-23T17:17:16Z",
+      "story": "Jesus raises Lazarus",
+      "bibleBook": "John",
+      "chapter": 11,
+      "verse": 1
     },
     {
       "title": "John 10:11–21 — Good Shepherd (2 of 2): “I Am the Good Shepherd” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/EaRX9gOQVJ0",
       "type": "short",
-      "publishedAt": "2026-10-21T14:53:56Z"
+      "publishedAt": "2026-10-21T14:53:56Z",
+      "bibleBook": "John",
+      "chapter": 10,
+      "verse": 11
     },
     {
       "title": "John 10:1–10 — Good Shepherd (1 of 2): “I Am the Sheep's Door” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/fAtq3mhOn1o",
       "type": "short",
-      "publishedAt": "2026-10-20T14:09:47Z"
+      "publishedAt": "2026-10-20T14:09:47Z",
+      "bibleBook": "John",
+      "chapter": 10,
+      "verse": 1
     },
     {
       "title": "John 9:35–41 — Man Born Blind (4 of 4): “Lord, I Believe!” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/gq2Bx__mpPA",
       "type": "short",
-      "publishedAt": "2026-10-19T14:19:20Z"
+      "publishedAt": "2026-10-19T14:19:20Z",
+      "story": "Jesus heals a man born blind",
+      "bibleBook": "John",
+      "chapter": 9,
+      "verse": 35
     },
     {
       "title": "John 9:24–34 — Man Born Blind (3 of 4): “I Was Blind, Now I See” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/XfirKrVfu5M",
       "type": "short",
-      "publishedAt": "2026-10-18T17:23:14Z"
+      "publishedAt": "2026-10-18T17:23:14Z",
+      "story": "Jesus heals a man born blind",
+      "bibleBook": "John",
+      "chapter": 9,
+      "verse": 24
     },
     {
       "title": "John 9:13–23 — Man Born Blind (2 of 4): “He Is a Prophet” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/cOkXLujNbOE",
       "type": "short",
-      "publishedAt": "2026-10-17T13:55:13Z"
+      "publishedAt": "2026-10-17T13:55:13Z",
+      "story": "Jesus heals a man born blind",
+      "bibleBook": "John",
+      "chapter": 9,
+      "verse": 13
     },
     {
       "title": "John 3:9–15 — Nicodemus Comes at Night: “How Can These Things Be?” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/nQyVuFPfEuM",
       "type": "short",
-      "publishedAt": "2026-10-16T17:58:15Z"
+      "publishedAt": "2026-10-16T17:58:15Z",
+      "story": "Nicodemus meets Jesus",
+      "bibleBook": "John",
+      "chapter": 3,
+      "verse": 9
     },
     {
       "title": "John 3:1–8 — Nicodemus Comes at Night: “Unless One Is Born Anew” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/Ai28p-0ZJew",
       "type": "short",
-      "publishedAt": "2026-10-16T17:57:13Z"
+      "publishedAt": "2026-10-16T17:57:13Z",
+      "story": "Nicodemus meets Jesus",
+      "bibleBook": "John",
+      "chapter": 3,
+      "verse": 1
     },
     {
       "title": "John 2:1–11 — Water Into Wine at Cana | WEB Read-Along, Large Text, No Music",
       "url": "https://youtube.com/shorts/G65-joYNiLQ",
       "type": "short",
-      "publishedAt": "2026-10-16T17:56:11Z"
+      "publishedAt": "2026-10-16T17:56:11Z",
+      "story": "The wedding at Cana",
+      "bibleBook": "John",
+      "chapter": 2,
+      "verse": 1
     },
     {
       "title": "John 2:23–25 — Jesus Clears the Temple: “He Himself Knew What Was in Man” | WEB, No Music",
       "url": "https://youtube.com/shorts/twsUXSKwAQU",
       "type": "short",
-      "publishedAt": "2026-10-16T17:55:18Z"
+      "publishedAt": "2026-10-16T17:55:18Z",
+      "story": "Jesus clears the temple",
+      "bibleBook": "John",
+      "chapter": 2,
+      "verse": 23
     },
     {
       "title": "John 2:18–22 — Jesus Clears the Temple: “Destroy This Temple” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/5XjvaQ3GHxo",
       "type": "short",
-      "publishedAt": "2026-10-16T17:54:10Z"
+      "publishedAt": "2026-10-16T17:54:10Z",
+      "story": "Jesus clears the temple",
+      "bibleBook": "John",
+      "chapter": 2,
+      "verse": 18
     },
     {
       "title": "John 8:31–47 — The Light of the World: “The Truth Will Make You Free” | WEB, No Music",
       "url": "https://youtube.com/shorts/h0FqYjr2goQ",
       "type": "short",
-      "publishedAt": "2026-10-16T17:52:59Z"
+      "publishedAt": "2026-10-16T17:52:59Z",
+      "bibleBook": "John",
+      "chapter": 8,
+      "verse": 31
     },
     {
       "title": "John 9:1–12 — The Man Born Blind: “Go, Wash in the Pool of Siloam” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/g71HhL9qEN4",
       "type": "short",
-      "publishedAt": "2026-10-16T14:08:15Z"
+      "publishedAt": "2026-10-16T14:08:15Z",
+      "story": "Jesus heals a man born blind",
+      "bibleBook": "John",
+      "chapter": 9,
+      "verse": 1
     },
     {
       "title": "John 2:12–17 — Jesus Clears the Temple | WEB Read-Along, Large Text, No Music",
       "url": "https://youtube.com/shorts/lq2TTtwAoCU",
       "type": "short",
-      "publishedAt": "2026-10-15T21:32:09Z"
+      "publishedAt": "2026-10-15T21:32:09Z",
+      "story": "Jesus clears the temple",
+      "bibleBook": "John",
+      "chapter": 2,
+      "verse": 12
     },
     {
       "title": "John 1:43–51 — “Follow Me” — Philip and Nathanael | WEB Read-Along, Large Text, No Music",
       "url": "https://youtube.com/shorts/B5-crZuBkFg",
       "type": "short",
-      "publishedAt": "2026-10-15T21:30:39Z"
+      "publishedAt": "2026-10-15T21:30:39Z",
+      "story": "Calling the first disciples",
+      "bibleBook": "John",
+      "chapter": 1,
+      "verse": 43
     },
     {
       "title": "John 1:35–42 — “Come and See” — The First Disciples | WEB Read-Along, Large Text, No Music",
       "url": "https://youtube.com/shorts/a2tATsOtlZA",
       "type": "short",
-      "publishedAt": "2026-10-15T21:27:00Z"
+      "publishedAt": "2026-10-15T21:27:00Z",
+      "story": "Calling the first disciples",
+      "bibleBook": "John",
+      "chapter": 1,
+      "verse": 35
     },
     {
       "title": "John 1:29–34 — “Behold, the Lamb of God” | WEB Read-Along, Large Text, No Music",
       "url": "https://youtube.com/shorts/p4rzf1OMV8Y",
       "type": "short",
-      "publishedAt": "2026-10-15T21:20:38Z"
+      "publishedAt": "2026-10-15T21:20:38Z",
+      "bibleBook": "John",
+      "chapter": 1,
+      "verse": 29
     },
     {
       "title": "John 1:19–28 — “Who Are You?” John the Baptist Answers | WEB Read-Along, Large Text, No Music",
       "url": "https://youtube.com/shorts/avPUiIjowXA",
       "type": "short",
-      "publishedAt": "2026-10-15T21:11:03Z"
+      "publishedAt": "2026-10-15T21:11:03Z",
+      "bibleBook": "John",
+      "chapter": 1,
+      "verse": 19
     },
     {
       "title": "John 1:14–18 — “The Word Became Flesh” | WEB Read-Along, Large Text, No Music",
       "url": "https://youtube.com/shorts/wa5LBL91KvY",
       "type": "short",
-      "publishedAt": "2026-10-15T21:07:54Z"
+      "publishedAt": "2026-10-15T21:07:54Z",
+      "bibleBook": "John",
+      "chapter": 1,
+      "verse": 14
     },
     {
       "title": "John 1:6–13 — “The True Light” Comes Into the World | WEB Read-Along, Large Text, No Music",
       "url": "https://youtube.com/shorts/2SUXDr07UFY",
       "type": "short",
-      "publishedAt": "2026-10-15T21:07:13Z"
+      "publishedAt": "2026-10-15T21:07:13Z",
+      "bibleBook": "John",
+      "chapter": 1,
+      "verse": 6
     },
     {
       "title": "John 1:1–5 — “In the Beginning Was the Word” | WEB Read-Along, Large Text, No Music",
       "url": "https://youtube.com/shorts/EPrtVZOEGdI",
       "type": "short",
-      "publishedAt": "2026-10-15T21:06:07Z"
+      "publishedAt": "2026-10-15T21:06:07Z",
+      "bibleBook": "John",
+      "chapter": 1,
+      "verse": 1
     },
     {
       "title": "John 8:12–20 — The Light of the World: “I Am the Light of the World” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/KKBqdvQ_LSA",
       "type": "short",
-      "publishedAt": "2026-10-15T20:17:10Z"
+      "publishedAt": "2026-10-15T20:17:10Z",
+      "bibleBook": "John",
+      "chapter": 8,
+      "verse": 12
     },
     {
       "title": "John 8:48–59 — “Before Abraham Came Into Existence, I AM” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/pEQiiHwWE8Q",
       "type": "short",
-      "publishedAt": "2026-10-15T14:01:25Z"
+      "publishedAt": "2026-10-15T14:01:25Z",
+      "bibleBook": "John",
+      "chapter": 8,
+      "verse": 48
     },
     {
       "title": "John 4:11–18 — The Woman at the Well (2 of 5) | WEB Audio Bible, Large Text, No Music",
       "url": "https://youtube.com/shorts/cN1UYwf025s",
       "type": "short",
-      "publishedAt": "2026-10-14T00:36:56Z"
+      "publishedAt": "2026-10-14T00:36:56Z",
+      "story": "The woman at the well",
+      "bibleBook": "John",
+      "chapter": 4,
+      "verse": 11
     },
     {
       "title": "John 4:1–10 — The Woman at the Well (1 of 5): “Give Me a Drink” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/gVXAzWPuiDQ",
       "type": "short",
-      "publishedAt": "2026-10-14T00:35:55Z"
+      "publishedAt": "2026-10-14T00:35:55Z",
+      "story": "The woman at the well",
+      "bibleBook": "John",
+      "chapter": 4,
+      "verse": 1
     },
     {
       "title": "John 3:31–36 — He Must Increase: “He Who Comes From Above Is Above All” | WEB, No Music",
       "url": "https://youtube.com/shorts/y_LdUteFCa0",
       "type": "short",
-      "publishedAt": "2026-10-14T00:34:41Z"
+      "publishedAt": "2026-10-14T00:34:41Z",
+      "bibleBook": "John",
+      "chapter": 3,
+      "verse": 31
     },
     {
       "title": "John 8:21–30 — The Light of the World: “Where I Am Going, You Can't Come” | WEB, No Music",
       "url": "https://youtube.com/shorts/BTzkbcKtjl0",
       "type": "short",
-      "publishedAt": "2026-10-13T14:07:02Z"
+      "publishedAt": "2026-10-13T14:07:02Z",
+      "bibleBook": "John",
+      "chapter": 8,
+      "verse": 21
     },
     {
       "title": "John 3:22–30 — He Must Increase: “He Must Increase, but I Must Decrease” | WEB, No Music",
       "url": "https://youtube.com/shorts/W21wxH1ZIwI",
       "type": "short",
-      "publishedAt": "2026-10-12T00:39:19Z"
+      "publishedAt": "2026-10-12T00:39:19Z",
+      "bibleBook": "John",
+      "chapter": 3,
+      "verse": 22
     },
     {
       "title": "John 3:16–21 — Nicodemus Comes at Night: “For God So Loved the World” | WEB, No Music",
       "url": "https://youtube.com/shorts/nKXmL4S-C7E",
       "type": "short",
-      "publishedAt": "2026-10-12T00:36:37Z"
+      "publishedAt": "2026-10-12T00:36:37Z",
+      "story": "Nicodemus meets Jesus",
+      "bibleBook": "John",
+      "chapter": 3,
+      "verse": 16
     },
     {
       "title": "John 7:53–8:11 — The Woman Caught in Adultery: “Neither Do I Condemn You” | WEB, No Music",
       "url": "https://youtube.com/shorts/RB1seSmQVWM",
       "type": "short",
-      "publishedAt": "2026-10-11T13:53:15Z"
+      "publishedAt": "2026-10-11T13:53:15Z",
+      "story": "The woman brought before Jesus",
+      "bibleBook": "John",
+      "chapter": 7,
+      "verse": 53
     },
     {
       "title": "John 7:37–52 — Rivers of Living Water: “If Anyone Is Thirsty” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/0EhamBGTcbw",
       "type": "short",
-      "publishedAt": "2026-10-10T14:01:30Z"
+      "publishedAt": "2026-10-10T14:01:30Z",
+      "bibleBook": "John",
+      "chapter": 7,
+      "verse": 37
     },
     {
       "title": "John 7:25–36 — Who Is This Man?: “I Know Him, Because I Am From Him” | WEB, No Music",
       "url": "https://youtube.com/shorts/ih-xDlcoHNY",
       "type": "short",
-      "publishedAt": "2026-10-09T14:20:02Z"
+      "publishedAt": "2026-10-09T14:20:02Z",
+      "bibleBook": "John",
+      "chapter": 7,
+      "verse": 25
     },
     {
       "title": "John 7:14–24 — Teaching at the Feast: “My Teaching Is Not Mine” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/ePqfSV1X3EE",
       "type": "short",
-      "publishedAt": "2026-10-08T14:32:26Z"
+      "publishedAt": "2026-10-08T14:32:26Z",
+      "bibleBook": "John",
+      "chapter": 7,
+      "verse": 14
     },
     {
       "title": "John 7:1–13 — Jesus Goes Up to the Feast: “My Time Has Not Yet Come” | WEB, No Music",
       "url": "https://youtube.com/shorts/v97UZCdN-28",
       "type": "short",
-      "publishedAt": "2026-10-07T14:08:42Z"
+      "publishedAt": "2026-10-07T14:08:42Z",
+      "bibleBook": "John",
+      "chapter": 7,
+      "verse": 1
     },
     {
       "title": "John 6:67–71 — “Lord, to Whom Would We Go?” | WEB Read-Along, Large Text, No Music",
       "url": "https://youtube.com/shorts/dQvLqwGqlU4",
       "type": "short",
-      "publishedAt": "2026-10-06T14:03:51Z"
+      "publishedAt": "2026-10-06T14:03:51Z",
+      "bibleBook": "John",
+      "chapter": 6,
+      "verse": 67
     },
     {
       "title": "John 6:60–66 — “This Is a Hard Saying” | WEB Read-Along, Large Text, No Music",
       "url": "https://youtube.com/shorts/qNPMearbCeg",
       "type": "short",
-      "publishedAt": "2026-10-05T14:05:49Z"
+      "publishedAt": "2026-10-05T14:05:49Z",
+      "bibleBook": "John",
+      "chapter": 6,
+      "verse": 60
     },
     {
       "title": "John 6:52–59 — “My Flesh Is Food Indeed” | WEB Read-Along, Large Text, No Music",
       "url": "https://youtube.com/shorts/woJsNBDiNdk",
       "type": "short",
-      "publishedAt": "2026-10-05T14:03:42Z"
+      "publishedAt": "2026-10-05T14:03:42Z",
+      "bibleBook": "John",
+      "chapter": 6,
+      "verse": 52
     },
     {
       "title": "John 6:43–51 — “I Am the Living Bread” | WEB Read-Along, Large Text, No Music",
       "url": "https://youtube.com/shorts/rD3kEz2Lpg8",
       "type": "short",
-      "publishedAt": "2026-10-05T14:00:36Z"
+      "publishedAt": "2026-10-05T14:00:36Z",
+      "bibleBook": "John",
+      "chapter": 6,
+      "verse": 43
     },
     {
       "title": "John 6:37–42 — “He Who Comes to Me I Will in No Way Throw Out” | WEB, Large Text, No Music",
       "url": "https://youtube.com/shorts/2PW5qD1V_uQ",
       "type": "short",
-      "publishedAt": "2026-10-04T14:02:05Z"
+      "publishedAt": "2026-10-04T14:02:05Z",
+      "bibleBook": "John",
+      "chapter": 6,
+      "verse": 37
     },
     {
       "title": "John 6:30–36 — “I Am the Bread of Life” | WEB Read-Along, Large Text, No Music",
       "url": "https://youtube.com/shorts/LrbNfkM-uOI",
       "type": "short",
-      "publishedAt": "2026-10-04T14:00:08Z"
+      "publishedAt": "2026-10-04T14:00:08Z",
+      "bibleBook": "John",
+      "chapter": 6,
+      "verse": 30
     },
     {
       "title": "John 6:23–29 — “This Is the Work of God” | WEB Read-Along, Large Text, No Music",
       "url": "https://youtube.com/shorts/1ugr_6Qk3jc",
       "type": "short",
-      "publishedAt": "2026-10-04T13:58:38Z"
+      "publishedAt": "2026-10-04T13:58:38Z",
+      "bibleBook": "John",
+      "chapter": 6,
+      "verse": 23
     },
     {
       "title": "John 6:16–22 — “It Is I. Don't Be Afraid.” | WEB Read-Along, Large Text, No Music",
       "url": "https://youtube.com/shorts/rcuDLTwDJXk",
       "type": "short",
-      "publishedAt": "2026-10-03T19:16:23Z"
+      "publishedAt": "2026-10-03T19:16:23Z",
+      "story": "Jesus walks on the water",
+      "bibleBook": "John",
+      "chapter": 6,
+      "verse": 16
     },
     {
       "title": "John 6:10–15 — Feeding the Five Thousand | WEB Read-Along, Large Text, No Music",
       "url": "https://youtube.com/shorts/bMEQbyYHlYQ",
       "type": "short",
-      "publishedAt": "2026-10-03T19:14:10Z"
+      "publishedAt": "2026-10-03T19:14:10Z",
+      "story": "Feeding the five thousand",
+      "bibleBook": "John",
+      "chapter": 6,
+      "verse": 10
     },
     {
       "title": "John 6:1–9 — “Five Barley Loaves and Two Fish” | WEB Read-Along, Large Text, No Music",
       "url": "https://youtube.com/shorts/MFCk5PuOoM4",
       "type": "short",
-      "publishedAt": "2026-10-03T19:12:51Z"
+      "publishedAt": "2026-10-03T19:12:51Z",
+      "story": "Feeding the five thousand",
+      "bibleBook": "John",
+      "chapter": 6,
+      "verse": 1
     },
     {
       "title": "John 5:39–47 — The Son and the Father: “You Search the Scriptures” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/jbHYgUzKXrA",
       "type": "short",
-      "publishedAt": "2026-10-02T21:57:46Z"
+      "publishedAt": "2026-10-02T21:57:46Z",
+      "bibleBook": "John",
+      "chapter": 5,
+      "verse": 39
     },
     {
       "title": "John 5:31–38 — The Son and the Father: “He Was the Burning and Shining Lamp” | WEB, No Music",
       "url": "https://youtube.com/shorts/dgHwwvc_pEg",
       "type": "short",
-      "publishedAt": "2026-10-02T21:56:36Z"
+      "publishedAt": "2026-10-02T21:56:36Z",
+      "bibleBook": "John",
+      "chapter": 5,
+      "verse": 31
     },
     {
       "title": "John 5:24–30 — The Son and the Father: “Out of Death Into Life” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/91Z92hnZxB0",
       "type": "short",
-      "publishedAt": "2026-10-02T21:54:24Z"
+      "publishedAt": "2026-10-02T21:54:24Z",
+      "bibleBook": "John",
+      "chapter": 5,
+      "verse": 24
     },
     {
       "title": "John 5:17–23 — The Son and the Father: “My Father Is Still Working” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/ch2ETAVUUtY",
       "type": "short",
-      "publishedAt": "2026-10-02T21:48:48Z"
+      "publishedAt": "2026-10-02T21:48:48Z",
+      "bibleBook": "John",
+      "chapter": 5,
+      "verse": 17
     },
     {
       "title": "John 5:10–16 — Healing at the Pool of Bethesda: “Sin No More” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/Rbwg2DegE-k",
       "type": "short",
-      "publishedAt": "2026-10-02T01:18:39Z"
+      "publishedAt": "2026-10-02T01:18:39Z",
+      "story": "Healing at Bethesda",
+      "bibleBook": "John",
+      "chapter": 5,
+      "verse": 10
     },
     {
       "title": "John 5:1–9 — Healing at the Pool of Bethesda: “Arise, Take Up Your Mat” | WEB, No Music",
       "url": "https://youtube.com/shorts/I8o4amy1ark",
       "type": "short",
-      "publishedAt": "2026-10-02T01:15:57Z"
+      "publishedAt": "2026-10-02T01:15:57Z",
+      "story": "Healing at Bethesda",
+      "bibleBook": "John",
+      "chapter": 5,
+      "verse": 1
     },
     {
       "title": "John 4:49–54 — The Official's Son Is Healed: “Go Your Way. Your Son Lives.” | WEB, No Music",
       "url": "https://youtube.com/shorts/hXmpdFxMZzQ",
       "type": "short",
-      "publishedAt": "2026-10-01T21:47:36Z"
+      "publishedAt": "2026-10-01T21:47:36Z",
+      "story": "Jesus heals an official’s son",
+      "bibleBook": "John",
+      "chapter": 4,
+      "verse": 49
     },
     {
       "title": "John 4:43–48 — The Official's Son Is Healed: “A Prophet Has No Honor” | WEB, No Music",
       "url": "https://youtube.com/shorts/_bihbDoRV6A",
       "type": "short",
-      "publishedAt": "2026-10-01T21:31:06Z"
+      "publishedAt": "2026-10-01T21:31:06Z",
+      "story": "Jesus heals an official’s son",
+      "bibleBook": "John",
+      "chapter": 4,
+      "verse": 43
     },
     {
       "title": "John 4:35–42 — The Woman at the Well: “The Savior of the World” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/TO5p2ny9Ay4",
       "type": "short",
-      "publishedAt": "2026-10-01T21:27:34Z"
+      "publishedAt": "2026-10-01T21:27:34Z",
+      "story": "The woman at the well",
+      "bibleBook": "John",
+      "chapter": 4,
+      "verse": 35
     },
     {
       "title": "John 4:27–34 — The Woman at the Well: “Come, See a Man Who Told Me Everything” | WEB, No Music",
       "url": "https://youtube.com/shorts/M0FCzkYSmF0",
       "type": "short",
-      "publishedAt": "2026-10-01T21:25:06Z"
+      "publishedAt": "2026-10-01T21:25:06Z",
+      "story": "The woman at the well",
+      "bibleBook": "John",
+      "chapter": 4,
+      "verse": 27
     },
     {
       "title": "John 4:19–26 — The Woman at the Well: “I Am He” | WEB Audio Bible, Large Text, No Music",
       "url": "https://youtube.com/shorts/jVd5hOSSyX0",
       "type": "short",
-      "publishedAt": "2026-10-01T21:14:09Z"
+      "publishedAt": "2026-10-01T21:14:09Z",
+      "story": "The woman at the well",
+      "bibleBook": "John",
+      "chapter": 4,
+      "verse": 19
     },
     {
       "title": "John 1–21 — The Book of John, Full Book | Audio Bible With Text, Every Verse (WEB, No Music)",
       "url": "https://youtu.be/QHARnxtj87A",
       "type": "long",
       "publishedAt": "2026-10-28T19:52:51Z",
-      "scope": "book"
+      "scope": "book",
+      "bibleBook": "John",
+      "chapter": 1,
+      "verse": 1
     },
     {
       "title": "John 9–10 — The Man Born Blind & the Good Shepherd | Audio Bible With Text (WEB, No Music)",
       "url": "https://youtu.be/4ZzEnZ5hEX0",
       "type": "long",
       "publishedAt": "2026-10-25T22:34:23Z",
-      "scope": "passage"
+      "scope": "passage",
+      "bibleBook": "John",
+      "chapter": 9,
+      "verse": 1
     },
     {
       "title": "Psalms 1–150 — The Book of Psalms, Full Book | Audio Bible With Text, Every Verse (WEB, No Music)",
       "url": "https://youtu.be/Xgd8a_CjHqs",
       "type": "long",
       "publishedAt": "2026-10-25T17:28:59Z",
-      "scope": "book"
+      "scope": "book",
+      "bibleBook": "Psalms",
+      "chapter": 1,
+      "verse": 1
     },
     {
       "title": "Revelation 1–22 — Book of Revelation, Full Book | Audio Bible With Text, Every Verse (WEB, No Music)",
       "url": "https://youtu.be/pLGMTfwilh0",
       "type": "long",
       "publishedAt": "2026-10-23T17:17:46Z",
-      "scope": "book"
+      "scope": "book",
+      "bibleBook": "Revelation",
+      "chapter": 1,
+      "verse": 1
     },
     {
       "title": "Obadiah — The Book of Obadiah, Full Book | Audio Bible With Text, Every Verse (WEB, No Music)",
       "url": "https://youtu.be/cL9P1mUIBsw",
       "type": "long",
       "publishedAt": "2026-10-20T23:18:17Z",
-      "scope": "book"
+      "scope": "book",
+      "bibleBook": "Obadiah",
+      "chapter": 1,
+      "verse": 1
     },
     {
       "title": "Genesis 1–50 — The Book of Genesis, Full Book | Audio Bible With Text, Every Verse (WEB, No Music)",
       "url": "https://youtu.be/zcLH4KSf1BM",
       "type": "long",
       "publishedAt": "2026-10-20T00:39:27Z",
-      "scope": "book"
+      "scope": "book",
+      "bibleBook": "Genesis",
+      "chapter": 1,
+      "verse": 1
     },
     {
       "title": "John 7–8 — The Woman Caught in Adultery & Light of the World | Audio Bible With Text (WEB, No Music)",
       "url": "https://youtu.be/lGZXkQxFP9k",
       "type": "long",
       "publishedAt": "2026-10-18T14:00:27Z",
-      "scope": "passage"
+      "scope": "passage",
+      "bibleBook": "John",
+      "chapter": 7,
+      "verse": 1
     },
     {
       "title": "John 6 — Feeding the Five Thousand & Jesus Walks on Water | Audio Bible With Text (WEB, No Music)",
       "url": "https://youtu.be/jzem45DF7BY",
       "type": "long",
       "publishedAt": "2026-10-16T17:42:40Z",
-      "scope": "passage"
+      "scope": "passage",
+      "bibleBook": "John",
+      "chapter": 6,
+      "verse": 1
     },
     {
       "title": "John 1 — The Word Became Flesh | Audio Bible With Text, Every Verse (WEB, No Music)",
       "url": "https://youtu.be/IFusoymD8TE",
       "type": "long",
       "publishedAt": "2026-09-24T18:50:18Z",
-      "scope": "passage"
+      "scope": "passage",
+      "bibleBook": "John",
+      "chapter": 1,
+      "verse": 1
     }
-  ]
+  ],
+  "storyCollectionNote": "The curated stories currently have video coverage from the Gospel of John only. This is not a claim that other biblical stories have no available text."
 }

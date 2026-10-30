@@ -92,6 +92,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
 .search-wrap input{width:100%;border:0;outline:0;background:transparent;min-height:45px;font-size:14px;color:#233134}
 .search-wrap input:focus-visible{outline:0}
 .search-wrap input::placeholder{color:#747c7a}
+.library-additional{margin-top:14px}
+.book-picker{display:flex;align-items:center;gap:14px;flex-wrap:wrap;color:#384b48;font-size:14px;font-weight:750}
+.book-picker select{width:min(100%,310px);min-height:46px;padding:9px 34px 9px 14px;border:1px solid #9aafa8;border-radius:9px;background:#fff;color:#1c2a2c;font-weight:650;cursor:pointer}
+.book-picker select:focus-visible{outline:3px solid #72511f;outline-offset:2px}
+.stories-help{margin:0;padding:11px 14px;border-left:3px solid #927037;background:#f5f0e4;color:#384b48;border-radius:6px;font-size:14px}
+.vid-story{display:block;margin-top:8px;color:#475f56;font-size:12px;font-weight:750}
 .library-meta{display:flex;justify-content:space-between;gap:14px;margin:14px 2px 0;color:#65706f;font-size:12px}
 .library-meta a{color:#38504e}
 .video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:21px}
