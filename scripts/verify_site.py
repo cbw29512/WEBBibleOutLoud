@@ -111,6 +111,8 @@ verify(all(x.startswith("https://i.ytimg.com/vi/") for x in page.images), "unexp
 verify(any("youtube.com/@WEBBibleOutLoud" in x for x in page.links), "YouTube channel missing")
 verify(any("tiktok.com/@webbibleoutloud" in x for x in page.links), "TikTok channel missing")
 verify(len([x for x in page.links if "printify.me" in x]) == 5, "shop or product links missing")
+verify("https://web-bible-out-loud.printify.me/product/33297655" in page.links
+       and not any("/product/33068061" in x for x in page.links), "outdated Printify truth shirt link")
 verify(page.links.count(SUPPORT) == 1, "there must be exactly one optional support link")
 verify(page.links.count("/privacy.html") == 1, "privacy link missing")
 verify(any("gc.zgo.at/count.js" in x for x in page.scripts), "existing GoatCounter analytics missing")
