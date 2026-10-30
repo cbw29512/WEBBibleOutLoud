@@ -28,7 +28,13 @@ assert home.count("buymeacoffee.com/divclass016")==1, "Expected exactly one dona
 assert "g1uRInGRtSc" in home, "Newest published Short missing"
 assert 'class="feature"' in home and 'class="path-grid"' in home, "Redesigned featured area missing"
 assert 'id="video-search"' in home and 'id="video-grid"' in home, "Searchable video library missing"
-assert 'id="load-more"' in home and 'data-filter="long"' in home, "Filters/pagination missing"
+assert 'id="load-more"' in home and 'data-filter="book"' in home and 'data-filter="passage"' in home, "Correct book/passage filters missing"
+assert home.count('data-scope="book"')==5, "Expected five complete books"
+assert home.count('data-scope="passage"')==4, "Expected four longer chapter readings"
+assert 'property="og:image"' in home and 'name="twitter:card"' in home, "Social sharing metadata missing"
+assert 'id="full-books-schema"' in home, "Book collection structured data missing"
+favicon,_=fetch("/favicon.svg")
+assert '<svg' in favicon, "Favicon missing"
 assert 'href="styles.css"' in home and 'src="library.js"' in home, "UI assets not linked"
 assert len(css)>8000 and '.hero' in css and '.library-section' in css, "Editorial styles not published"
 assert 'search.addEventListener("input"' in js and 'more.addEventListener("click"' in js, "Working UI script not published"
@@ -36,4 +42,4 @@ assert home.count("web-bible-out-loud.printify.me/product/")==4, "Product links 
 assert "GoatCounter" in privacy, "Privacy notice incomplete"
 assert "content-security-policy" in headers and "frame-ancestors 'none'" in headers["content-security-policy"], "Netlify CSP missing"
 assert "x-content-type-options" in headers, "Netlify security header missing"
-print("PASS: Public Netlify serves editorial homepage, 71 videos, 1 donation, search, filters, responsive CSS, privacy and CSP")
+print("PASS: Live Netlify serves 71 videos, five complete books, four longer readings, one donation, SEO tags, privacy, favicon and CSP")
