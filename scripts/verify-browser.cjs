@@ -19,6 +19,9 @@ const axeScript = require.resolve("axe-core/axe.min.js");
       assert.equal(await page.locator(".site-header .brand-title").innerText(), "Bible Out Loud");
       assert.equal(await page.locator(".feature-media").count(), 1);
       assert.equal(await page.locator(".path-card").count(), 2);
+      assert.equal(await page.locator(".quick-browse a").count(), 3, "Three direct collection links");
+      const destinations = await page.locator(".quick-browse a").evaluateAll(nodes => nodes.map(a => a.getAttribute("href")));
+      assert.deepEqual(destinations, ["?view=book#library", "?view=short#library", "?view=stories#library"]);
       assert.equal(await page.locator("#video-grid .vid").count(), 71);
       assert.equal(await page.locator("#video-grid .vid:visible").count(), 9, "default view displays nine cards");
       assert.match(await page.locator("#video-count").innerText(), /9 of 71/);
@@ -98,6 +101,23 @@ const axeScript = require.resolve("axe-core/axe.min.js");
       }));
       assert.deepEqual(issues, [], "axe-core accessibility violations at " + width + "px: " + JSON.stringify(issues));
       assert.deepEqual(failures, [], "No uncaught client errors");
+
+      // Query-string links must open the correct category directly without
+      // an extra dropdown, including on narrow mobile screens.
+      for (const [view, expectedCount, expectedTitle] of [
+        ["book", 5, "Genesis"],
+        ["short", 62, "John 1:1–5"],
+        ["stories", 32, "John 1:35–42"],
+      ]) {
+        await page.goto(url + "?view=" + view + "#library", { waitUntil: "domcontentloaded" });
+        await page.waitForFunction(n => document.getElementById("video-count")?.textContent.includes("of " + n), expectedCount);
+        assert.equal(await page.locator('[data-filter="' + view + '"]').getAttribute("aria-pressed"), "true");
+        assert.match(await page.locator("#video-grid .vid:visible").first().innerText(), new RegExp(expectedTitle));
+      }
+      await page.goto(url + "?view=not-a-category#library", { waitUntil: "domcontentloaded" });
+      await page.waitForFunction(() => document.getElementById("video-count")?.textContent.includes("9 of 71"));
+      assert.equal(await page.locator('[data-filter="all"]').getAttribute("aria-pressed"), "true");
+      assert.deepEqual(failures, [], "Deep-link routes must not trigger browser errors");
       await page.close();
     }
     const privacy=await browser.newPage();
