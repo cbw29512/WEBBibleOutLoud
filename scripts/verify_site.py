@@ -53,6 +53,8 @@ verify('name="description"' in html and 'property="og:image"' in html and 'name=
        "SEO metadata or social preview missing")
 verify('id="full-books-schema"' in html and '"numberOfItems":5' in html,
        "full-book structured data missing")
+verify('href="favicon.svg"' in html and (SITE/"favicon.svg").exists(), "favicon missing")
+verify('<a class="brand" href="/">' in html, "brand link should use its visible text for accessibility")
 verify(len(page.videos) == len(data["videos"]) >= 1, "video cards do not match the JSON list")
 shorts = sorted([x for x in data["videos"] if x["type"] == "short"], key=lambda x: x["publishedAt"], reverse=True)
 readings = sorted([x for x in data["videos"] if x["type"] == "long"], key=lambda x: x["publishedAt"], reverse=True)
