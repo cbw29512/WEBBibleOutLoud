@@ -1,5 +1,5 @@
 {
-  "description": "Full WEB Bible Out Loud catalog: 62 Shorts, 5 complete Bible books, and 4 longer chapter passages. Newest first within each filter.",
+  "description": "Full WEB Bible Out Loud catalog: 62 Shorts, five complete books and four longer passages. Curated Greatest Bible Stories clips are selected from available John recordings, sorted by their Scripture references.",
   "sourceChannel": "https://www.youtube.com/@WEBBibleOutLoud",
   "lastSynced": "2026-10-29",
   "featuredShorts": 12,
@@ -14,19 +14,22 @@
       "title": "John 12:12–19 — The King Comes to Jerusalem: “Hosanna!” | WEB Audio Bible, Large Text, No Music",
       "url": "https://youtube.com/shorts/bA5WudVv6HM",
       "type": "short",
-      "publishedAt": "2026-10-28T14:47:18Z"
+      "publishedAt": "2026-10-28T14:47:18Z",
+      "story": "Jesus enters Jerusalem"
     },
     {
       "title": "John 12:1–11 — Mary Anoints Jesus: “Leave Her Alone” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/0ZcRHOsugXs",
       "type": "short",
-      "publishedAt": "2026-10-27T14:49:58Z"
+      "publishedAt": "2026-10-27T14:49:58Z",
+      "story": "Mary anoints Jesus"
     },
     {
       "title": "John 11:45–57 — Lazarus (4 of 4): “One Man Should Die” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/sTd8s9ohQ_A",
       "type": "short",
-      "publishedAt": "2026-10-26T14:14:12Z"
+      "publishedAt": "2026-10-26T14:14:12Z",
+      "story": "Jesus raises Lazarus"
     },
     {
       "title": "John 10:22–42 — Feast of the Dedication: “I and the Father Are One” | WEB Audio Bible, No Music",
@@ -38,19 +41,22 @@
       "title": "John 11:28–44 — Lazarus (3 of 4): “Lazarus, Come Out!” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/wDPoVG_Ho3k",
       "type": "short",
-      "publishedAt": "2026-10-25T18:12:49Z"
+      "publishedAt": "2026-10-25T18:12:49Z",
+      "story": "Jesus raises Lazarus"
     },
     {
       "title": "John 11:17–27 — Lazarus (2 of 4): “I Am the Resurrection” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/10G0ldoFLgQ",
       "type": "short",
-      "publishedAt": "2026-10-24T14:40:05Z"
+      "publishedAt": "2026-10-24T14:40:05Z",
+      "story": "Jesus raises Lazarus"
     },
     {
       "title": "John 11:1–16 — Lazarus (1 of 4): “This Sickness Is Not to Death” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/0ri2Q71cb6I",
       "type": "short",
-      "publishedAt": "2026-10-23T17:17:16Z"
+      "publishedAt": "2026-10-23T17:17:16Z",
+      "story": "Jesus raises Lazarus"
     },
     {
       "title": "John 10:11–21 — Good Shepherd (2 of 2): “I Am the Good Shepherd” | WEB Audio Bible, No Music",
@@ -68,49 +74,57 @@
       "title": "John 9:35–41 — Man Born Blind (4 of 4): “Lord, I Believe!” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/gq2Bx__mpPA",
       "type": "short",
-      "publishedAt": "2026-10-19T14:19:20Z"
+      "publishedAt": "2026-10-19T14:19:20Z",
+      "story": "Jesus heals a man born blind"
     },
     {
       "title": "John 9:24–34 — Man Born Blind (3 of 4): “I Was Blind, Now I See” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/XfirKrVfu5M",
       "type": "short",
-      "publishedAt": "2026-10-18T17:23:14Z"
+      "publishedAt": "2026-10-18T17:23:14Z",
+      "story": "Jesus heals a man born blind"
     },
     {
       "title": "John 9:13–23 — Man Born Blind (2 of 4): “He Is a Prophet” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/cOkXLujNbOE",
       "type": "short",
-      "publishedAt": "2026-10-17T13:55:13Z"
+      "publishedAt": "2026-10-17T13:55:13Z",
+      "story": "Jesus heals a man born blind"
     },
     {
       "title": "John 3:9–15 — Nicodemus Comes at Night: “How Can These Things Be?” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/nQyVuFPfEuM",
       "type": "short",
-      "publishedAt": "2026-10-16T17:58:15Z"
+      "publishedAt": "2026-10-16T17:58:15Z",
+      "story": "Nicodemus meets Jesus"
     },
     {
       "title": "John 3:1–8 — Nicodemus Comes at Night: “Unless One Is Born Anew” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/Ai28p-0ZJew",
       "type": "short",
-      "publishedAt": "2026-10-16T17:57:13Z"
+      "publishedAt": "2026-10-16T17:57:13Z",
+      "story": "Nicodemus meets Jesus"
     },
     {
       "title": "John 2:1–11 — Water Into Wine at Cana | WEB Read-Along, Large Text, No Music",
       "url": "https://youtube.com/shorts/G65-joYNiLQ",
       "type": "short",
-      "publishedAt": "2026-10-16T17:56:11Z"
+      "publishedAt": "2026-10-16T17:56:11Z",
+      "story": "The wedding at Cana"
     },
     {
       "title": "John 2:23–25 — Jesus Clears the Temple: “He Himself Knew What Was in Man” | WEB, No Music",
       "url": "https://youtube.com/shorts/twsUXSKwAQU",
       "type": "short",
-      "publishedAt": "2026-10-16T17:55:18Z"
+      "publishedAt": "2026-10-16T17:55:18Z",
+      "story": "Jesus clears the temple"
     },
     {
       "title": "John 2:18–22 — Jesus Clears the Temple: “Destroy This Temple” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/5XjvaQ3GHxo",
       "type": "short",
-      "publishedAt": "2026-10-16T17:54:10Z"
+      "publishedAt": "2026-10-16T17:54:10Z",
+      "story": "Jesus clears the temple"
     },
     {
       "title": "John 8:31–47 — The Light of the World: “The Truth Will Make You Free” | WEB, No Music",
@@ -122,25 +136,29 @@
       "title": "John 9:1–12 — The Man Born Blind: “Go, Wash in the Pool of Siloam” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/g71HhL9qEN4",
       "type": "short",
-      "publishedAt": "2026-10-16T14:08:15Z"
+      "publishedAt": "2026-10-16T14:08:15Z",
+      "story": "Jesus heals a man born blind"
     },
     {
       "title": "John 2:12–17 — Jesus Clears the Temple | WEB Read-Along, Large Text, No Music",
       "url": "https://youtube.com/shorts/lq2TTtwAoCU",
       "type": "short",
-      "publishedAt": "2026-10-15T21:32:09Z"
+      "publishedAt": "2026-10-15T21:32:09Z",
+      "story": "Jesus clears the temple"
     },
     {
       "title": "John 1:43–51 — “Follow Me” — Philip and Nathanael | WEB Read-Along, Large Text, No Music",
       "url": "https://youtube.com/shorts/B5-crZuBkFg",
       "type": "short",
-      "publishedAt": "2026-10-15T21:30:39Z"
+      "publishedAt": "2026-10-15T21:30:39Z",
+      "story": "Calling the first disciples"
     },
     {
       "title": "John 1:35–42 — “Come and See” — The First Disciples | WEB Read-Along, Large Text, No Music",
       "url": "https://youtube.com/shorts/a2tATsOtlZA",
       "type": "short",
-      "publishedAt": "2026-10-15T21:27:00Z"
+      "publishedAt": "2026-10-15T21:27:00Z",
+      "story": "Calling the first disciples"
     },
     {
       "title": "John 1:29–34 — “Behold, the Lamb of God” | WEB Read-Along, Large Text, No Music",
@@ -188,13 +206,15 @@
       "title": "John 4:11–18 — The Woman at the Well (2 of 5) | WEB Audio Bible, Large Text, No Music",
       "url": "https://youtube.com/shorts/cN1UYwf025s",
       "type": "short",
-      "publishedAt": "2026-10-14T00:36:56Z"
+      "publishedAt": "2026-10-14T00:36:56Z",
+      "story": "The woman at the well"
     },
     {
       "title": "John 4:1–10 — The Woman at the Well (1 of 5): “Give Me a Drink” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/gVXAzWPuiDQ",
       "type": "short",
-      "publishedAt": "2026-10-14T00:35:55Z"
+      "publishedAt": "2026-10-14T00:35:55Z",
+      "story": "The woman at the well"
     },
     {
       "title": "John 3:31–36 — He Must Increase: “He Who Comes From Above Is Above All” | WEB, No Music",
@@ -218,13 +238,15 @@
       "title": "John 3:16–21 — Nicodemus Comes at Night: “For God So Loved the World” | WEB, No Music",
       "url": "https://youtube.com/shorts/nKXmL4S-C7E",
       "type": "short",
-      "publishedAt": "2026-10-12T00:36:37Z"
+      "publishedAt": "2026-10-12T00:36:37Z",
+      "story": "Nicodemus meets Jesus"
     },
     {
       "title": "John 7:53–8:11 — The Woman Caught in Adultery: “Neither Do I Condemn You” | WEB, No Music",
       "url": "https://youtube.com/shorts/RB1seSmQVWM",
       "type": "short",
-      "publishedAt": "2026-10-11T13:53:15Z"
+      "publishedAt": "2026-10-11T13:53:15Z",
+      "story": "The woman brought before Jesus"
     },
     {
       "title": "John 7:37–52 — Rivers of Living Water: “If Anyone Is Thirsty” | WEB Audio Bible, No Music",
@@ -296,19 +318,22 @@
       "title": "John 6:16–22 — “It Is I. Don't Be Afraid.” | WEB Read-Along, Large Text, No Music",
       "url": "https://youtube.com/shorts/rcuDLTwDJXk",
       "type": "short",
-      "publishedAt": "2026-10-03T19:16:23Z"
+      "publishedAt": "2026-10-03T19:16:23Z",
+      "story": "Jesus walks on the water"
     },
     {
       "title": "John 6:10–15 — Feeding the Five Thousand | WEB Read-Along, Large Text, No Music",
       "url": "https://youtube.com/shorts/bMEQbyYHlYQ",
       "type": "short",
-      "publishedAt": "2026-10-03T19:14:10Z"
+      "publishedAt": "2026-10-03T19:14:10Z",
+      "story": "Feeding the five thousand"
     },
     {
       "title": "John 6:1–9 — “Five Barley Loaves and Two Fish” | WEB Read-Along, Large Text, No Music",
       "url": "https://youtube.com/shorts/MFCk5PuOoM4",
       "type": "short",
-      "publishedAt": "2026-10-03T19:12:51Z"
+      "publishedAt": "2026-10-03T19:12:51Z",
+      "story": "Feeding the five thousand"
     },
     {
       "title": "John 5:39–47 — The Son and the Father: “You Search the Scriptures” | WEB Audio Bible, No Music",
@@ -338,43 +363,50 @@
       "title": "John 5:10–16 — Healing at the Pool of Bethesda: “Sin No More” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/Rbwg2DegE-k",
       "type": "short",
-      "publishedAt": "2026-10-02T01:18:39Z"
+      "publishedAt": "2026-10-02T01:18:39Z",
+      "story": "Healing at Bethesda"
     },
     {
       "title": "John 5:1–9 — Healing at the Pool of Bethesda: “Arise, Take Up Your Mat” | WEB, No Music",
       "url": "https://youtube.com/shorts/I8o4amy1ark",
       "type": "short",
-      "publishedAt": "2026-10-02T01:15:57Z"
+      "publishedAt": "2026-10-02T01:15:57Z",
+      "story": "Healing at Bethesda"
     },
     {
       "title": "John 4:49–54 — The Official's Son Is Healed: “Go Your Way. Your Son Lives.” | WEB, No Music",
       "url": "https://youtube.com/shorts/hXmpdFxMZzQ",
       "type": "short",
-      "publishedAt": "2026-10-01T21:47:36Z"
+      "publishedAt": "2026-10-01T21:47:36Z",
+      "story": "Jesus heals an official’s son"
     },
     {
       "title": "John 4:43–48 — The Official's Son Is Healed: “A Prophet Has No Honor” | WEB, No Music",
       "url": "https://youtube.com/shorts/_bihbDoRV6A",
       "type": "short",
-      "publishedAt": "2026-10-01T21:31:06Z"
+      "publishedAt": "2026-10-01T21:31:06Z",
+      "story": "Jesus heals an official’s son"
     },
     {
       "title": "John 4:35–42 — The Woman at the Well: “The Savior of the World” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/TO5p2ny9Ay4",
       "type": "short",
-      "publishedAt": "2026-10-01T21:27:34Z"
+      "publishedAt": "2026-10-01T21:27:34Z",
+      "story": "The woman at the well"
     },
     {
       "title": "John 4:27–34 — The Woman at the Well: “Come, See a Man Who Told Me Everything” | WEB, No Music",
       "url": "https://youtube.com/shorts/M0FCzkYSmF0",
       "type": "short",
-      "publishedAt": "2026-10-01T21:25:06Z"
+      "publishedAt": "2026-10-01T21:25:06Z",
+      "story": "The woman at the well"
     },
     {
       "title": "John 4:19–26 — The Woman at the Well: “I Am He” | WEB Audio Bible, Large Text, No Music",
       "url": "https://youtube.com/shorts/jVd5hOSSyX0",
       "type": "short",
-      "publishedAt": "2026-10-01T21:14:09Z"
+      "publishedAt": "2026-10-01T21:14:09Z",
+      "story": "The woman at the well"
     },
     {
       "title": "John 1–21 — The Book of John, Full Book | Audio Bible With Text, Every Verse (WEB, No Music)",
@@ -439,5 +471,6 @@
       "publishedAt": "2026-09-24T18:50:18Z",
       "scope": "passage"
     }
-  ]
+  ],
+  "storyCollectionNote": "The curated stories currently have video coverage from the Gospel of John only. This is not a claim that other biblical stories have no available text."
 }
