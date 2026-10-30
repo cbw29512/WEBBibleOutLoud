@@ -74,10 +74,8 @@ verify('id="video-search"' in html and 'id="video-grid"' in html, "searchable li
 verify('id="load-more"' in html and 'data-filter="book"' in html and 'data-filter="passage"' in html,
        "separate full-book and longer-passage filters missing")
 verify('data-filter="stories"' in html and 'id="stories-help"' in html, "Bible stories tab or description missing")
-verify('id="book-picker"' in html and 'id="book-picker-wrap"' in html, "pickable full Bible books missing")
+verify('id="book-picker"' not in html and 'BOOK_OPTIONS_START' not in html, "redundant full-book dropdown must stay removed")
 verify('id="sort-label"' in html, "sorting status text missing")
-available_books = re.findall(r'<option value="(Genesis|Psalms|Obadiah|John|Revelation)">', html)
-verify(available_books == ["Genesis","Psalms","Obadiah","John","Revelation"], "complete Bible books are not selectable in canonical order")
 story_clips=[v for v in data["videos"] if v.get("story")]
 verify(len(story_clips)==32 and len(set(v["story"] for v in story_clips))==14, "greatest stories curated catalog changed")
 verify(html.count('data-story="yes"')==len(story_clips), "curated story clips not rendered")
@@ -102,8 +100,9 @@ verify(re.search(r"@media\s*\(max-width:480px\)", css) is not None, "phone layou
 verify("prefers-reduced-motion" in css and 'class="skip"' in html, "accessibility affordances missing")
 verify('aria-pressed="true"' in html and 'aria-live="polite"' in html, "accessible search state missing")
 verify('button.dataset.filter' in js and 'search.addEventListener("input"' in js, "interactive video filters or search missing")
-verify('card.dataset.scriptureOrder' in js and 'card.dataset.story === "yes"' in js and 'picker.addEventListener("change"' in js,
-       "Bible-order filtering, Greatest Stories or the book picker is not functional")
+verify('card.dataset.scriptureOrder' in js and 'card.dataset.story === "yes"' in js,
+       "Bible-order filtering or Greatest Stories is not functional")
+verify('book-picker' not in js, "unused book picker JavaScript remains")
 verify("Content-Security-Policy:" in headers and "frame-ancestors 'none'" in headers,
        "baseline security policy missing")
 verify("X-Content-Type-Options: nosniff" in headers, "sniffing protection missing")
