@@ -78,7 +78,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
 .path-action{display:block;color:#c2cac8;font-size:12px;font-weight:650}
 .library-section{background:var(--paper);color:var(--body)}
 .library-section .section-kicker{color:#866327}
-.library-section .section-desc{color:#697378}
+.library-section .section-desc{color:#526065}
 .library-section .section-head h2{color:#192429}
 .library-panel{background:#fffdfa;border:1px solid #e4dfd3;border-radius:18px;box-shadow:0 8px 30px rgba(35,42,36,.035);padding:21px;margin-bottom:26px}
 .library-controls{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
