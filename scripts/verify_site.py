@@ -40,6 +40,7 @@ robots = (SITE / "robots.txt").read_text(encoding="utf-8")
 sitemap = (SITE / "sitemap.xml").read_text(encoding="utf-8")
 config = (ROOT / "netlify.toml").read_text(encoding="utf-8")
 data = json.loads((ROOT / "data/videos.json").read_text(encoding="utf-8"))
+merch = json.loads((ROOT / "data/merch.json").read_text(encoding="utf-8"))
 page = Page()
 page.feed(html)
 errors = []
@@ -51,8 +52,7 @@ verify('id="hero-title">Scripture,' in html and 'class="brand-title">Bible Out L
 verify(page.canonicals == [HOME], "incorrect canonical homepage")
 verify('name="description"' in html and 'property="og:image"' in html and 'name="twitter:card"' in html,
        "SEO metadata or social preview missing")
-verify('id="full-books-schema"' in html and '"numberOfItems":5' in html,
-       "full-book structured data missing")
+verify('id="full-books-schema"' in html, "full-book structured data missing")
 verify('href="favicon.svg"' in html and (SITE/"favicon.svg").exists(), "favicon missing")
 verify('<a class="brand" href="/">' in html, "brand link should use its visible text for accessibility")
 verify(len(page.videos) == len(data["videos"]) >= 1, "video cards do not match the JSON list")
@@ -66,11 +66,11 @@ verify(len(page.images) == len(data["videos"]) + 3, "missing library, hero or fe
 verify(len(set(page.videos)) == len(page.videos), "duplicate video cards")
 books=[x for x in readings if x.get("scope")=="book"]
 passages=[x for x in readings if x.get("scope")=="passage"]
-verify(len(books)==5 and all("Full Book" in x["title"] for x in books), "full books must have all chapters")
-verify(len(passages)==4 and all("Full Book" not in x["title"] for x in passages), "chapter readings mislabeled as books")
-verify(html.count('data-scope="book"')==5 and html.count('data-scope="passage"')==4, "wrong on-page category labels")
-verify(len(shorts) == 62 and len(readings) == 9 and len(page.videos) == 71,
-       "baseline public channel library should contain 62 Shorts and 9 full readings")
+verify(len(books)>=1 and all("Full Book" in x["title"] for x in books), "full books must have all chapters")
+verify(len(passages)>=1 and all("Full Book" not in x["title"] for x in passages), "chapter readings mislabeled as books")
+verify(html.count('data-scope="book"')==len(books) and html.count('data-scope="passage"')==len(passages), "wrong on-page category labels")
+verify(len(shorts)+len(readings)==len(data["videos"])==len(page.videos),
+       "video cards must match the published catalog")
 verify('id="video-search"' in html and 'id="video-grid"' in html, "searchable library markup missing")
 verify('id="load-more"' in html and 'data-filter="book"' in html and 'data-filter="passage"' in html,
        "separate full-book and longer-passage filters missing")
@@ -90,16 +90,19 @@ except (ValueError, AttributeError) as exc:
     print(f"Full-book JSON-LD could not be parsed: {exc}", file=sys.stderr)
     book_schema = {}
 schema_entries = book_schema.get("itemListElement", [])
-verify([x.get("name", "").split(" ", 1)[0] for x in schema_entries] ==
-       ["Genesis", "Psalms", "Obadiah", "John", "Revelation"],
+canonical_book_order=["Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi","Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"]
+verify([x.get("name") for x in schema_entries] ==
+       [x["title"].split("|")[0].strip() for x in sorted(books, key=lambda b: canonical_book_order.index(b["bibleBook"]))],
        "SEO full-book list must be in canonical Bible order")
+verify(book_schema.get("numberOfItems")==len(books)==len(schema_entries), "SEO book count must match the catalog")
 verify([x.get("position") for x in schema_entries] == list(range(1, len(schema_entries) + 1)),
        "SEO book list positions must be consecutive")
 
 story_clips=[v for v in data["videos"] if v.get("story")]
-verify(len(story_clips)==32 and len(set(v["story"] for v in story_clips))==14, "greatest stories curated catalog changed")
+story_names=set(v["story"] for v in story_clips)
+verify(len(story_clips)>=1 and len(story_names)>=1, "greatest stories curated catalog is empty")
 verify(html.count('data-story="yes"')==len(story_clips), "curated story clips not rendered")
-verify(html.count('class="story-collection"')==14 and html.count('class="story-clip-link"')==len(story_clips), "incorrect story/clip collection totals")
+verify(html.count('class="story-collection"')==len(story_names) and html.count('class="story-clip-link"')==len(story_clips), "incorrect story/clip collection totals")
 verify('<!-- STORY_COLLECTIONS_START -->' in html and '<!-- STORY_COLLECTIONS_END -->' in html, "story markers missing")
 verify(html.count('data-book="John"')>=62, "missing canonical book attributes on Shorts")
 verify(html.count('data-scripture-order="')==len(data["videos"]), "missing Bible reference ordering for videos")
@@ -111,9 +114,12 @@ verify("https://www.youtube.com/@WEBBibleOutLoud/videos" in page.links, "full ch
 verify(all(x.startswith("https://i.ytimg.com/vi/") for x in page.images), "unexpected thumbnail source")
 verify(any("youtube.com/@WEBBibleOutLoud" in x for x in page.links), "YouTube channel missing")
 verify(any("tiktok.com/@webbibleoutloud" in x for x in page.links), "TikTok channel missing")
-verify(len([x for x in page.links if "printify.me" in x]) == 5, "shop or product links missing")
-verify("https://web-bible-out-loud.printify.me/product/33297655" in page.links
-       and not any("/product/33068061" in x for x in page.links), "outdated Printify truth shirt link")
+product_urls=[p["url"] for p in merch["products"]]
+verify(all(url in page.links for url in product_urls), "published merch product missing from the shop section")
+verify(len([x for x in page.links if "printify.me/product/" in x]) == len(product_urls), "shop product links do not match merch.json")
+verify(any(x.rstrip("/") == merch["shopUrl"].rstrip("/") for x in page.links), "full shop link missing")
+verify(any("instagram.com/webbibleoutloud" in x for x in page.links), "Instagram profile missing")
+verify(any("facebook.com/people/WEB-Bible-Out-Loud/61595111923682" in x for x in page.links), "Facebook page missing")
 verify(page.links.count(SUPPORT) == 1, "there must be exactly one optional support link")
 verify(page.links.count("/privacy.html") == 1, "privacy link missing")
 verify(any("gc.zgo.at/count.js" in x for x in page.scripts), "existing GoatCounter analytics missing")

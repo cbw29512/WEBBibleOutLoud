@@ -7,6 +7,14 @@ const path = require("node:path");
 const root = path.resolve(__dirname, "..");
 const htmlPath = path.join(root, "site/index.html");
 const dataset = JSON.parse(fs.readFileSync(path.join(root, "data/videos.json"),"utf8"));
+const merch = JSON.parse(fs.readFileSync(path.join(root, "data/merch.json"),"utf8"));
+if(!Array.isArray(merch.products) || merch.products.length<1 || merch.products.length>80) throw Error("Expected 1-80 published merch products");
+for(const product of merch.products){
+  if(typeof product.name!=="string" || !product.name.trim() || product.name.length>180) throw Error("Invalid merch name");
+  const shopUrl=new URL(product.url);
+  if(shopUrl.protocol!=="https:" || shopUrl.hostname!=="web-bible-out-loud.printify.me" || !/^\/product\/\d+$/.test(shopUrl.pathname))
+    throw Error("Invalid Printify product URL: "+product.url);
+}
 if(!Array.isArray(dataset.videos) || dataset.videos.length<1 || dataset.videos.length>400) throw Error("Expected 1-400 published videos");
 const canonicalBooks=["Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi","Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"];
 const seen=new Set();
@@ -26,7 +34,10 @@ const videos=dataset.videos.map(v=>{
   if(bookIndex<0 || !Number.isInteger(v.chapter)||v.chapter<1||v.chapter>150 ||
      !Number.isInteger(v.verse)||v.verse<1||v.verse>176)
     throw Error("Invalid Bible reference metadata for "+v.title);
-  if(!v.title.startsWith(v.bibleBook))throw Error("Bible book metadata does not match title: "+v.title);
+  const titleMatchesBook = v.bibleBook === "Psalms"
+    ? (v.title.startsWith("Psalms") || v.title.startsWith("Psalm "))
+    : v.title.startsWith(v.bibleBook);
+  if(!titleMatchesBook)throw Error("Bible book metadata does not match title: "+v.title);
   if(v.story && (v.type!=="short" || typeof v.story!=="string" || !v.story.trim()))
     throw Error("Only known short video story clips may enter the greatest-stories collection");
   return {...v,id,scriptureOrder:(bookIndex+1)*1000000+v.chapter*1000+v.verse};
@@ -98,11 +109,28 @@ function inject(name,body){
   if(end<start)throw Error(name+" markers out of order");
   html=html.slice(0,start)+"\n"+body+"\n"+html.slice(end);
 }
+const bookSchema={
+  "@context":"https://schema.org",
+  "@type":"ItemList",
+  "name":"Complete World English Bible books available on WEB Bible Out Loud",
+  "numberOfItems":books.length,
+  "itemListElement":books.map((v,i)=>({"@type":"ListItem","position":i+1,"name":title(v),"url":v.url}))
+};
+const shopCards=merch.products.map(product=>
+  '<a class="product" href="'+escape(product.url)+'" target="_blank" rel="noopener noreferrer">'+
+  '<span class="product-mark" aria-hidden="true">✦</span>'+
+  '<span class="product-name">'+escape(product.name)+'</span>'+
+  '<span class="product-action">View product ↗</span></a>'
+).join("\n        ");
+const shopFooter='<p>'+merch.products.length+' '+(merch.products.length===1?"item":"items")+' from the Printify shop. Each product opens its own Printify page.</p>\n        <a href="'+escape(merch.shopUrl)+'" target="_blank" rel="noopener noreferrer">Visit the full shop ↗</a>';
 inject("HERO_VIDEO",hero);
 inject("VIDEO_STATS",stats);
 inject("START_PATHS",paths);
 inject("VIDEO_CARDS",videos.map(card).join("\n"));
 inject("STORY_COLLECTIONS",storyCollections.map(storySection).join("\n"));
+inject("FULL_BOOKS_SCHEMA",'<script type="application/ld+json" id="full-books-schema">'+JSON.stringify(bookSchema)+"</script>");
+inject("SHOP_PRODUCTS",shopCards);
+inject("SHOP_FOOTER",shopFooter);
 const original=fs.readFileSync(htmlPath,"utf8");
 if(process.argv.includes("--check")){
   if(original!==html)throw Error("Generated HTML is stale. Run node scripts/render-videos.cjs");
