@@ -1,7 +1,7 @@
 {
-  "description": "All public uploads with Bible-reference metadata. Complete books, Shorts, longer passages, and curated Greatest Bible Stories are shown in canonical scripture order when selected; All videos remains newest-first.",
+  "description": "All currently public uploads with Bible-reference metadata. Complete books, Shorts, longer passages, and curated Greatest Bible Stories are shown in canonical scripture order.",
   "sourceChannel": "https://www.youtube.com/@WEBBibleOutLoud",
-  "lastSynced": "2026-10-29",
+  "lastSynced": "2026-11-10",
   "featuredShorts": 12,
   "videos": [
     {
@@ -683,6 +683,237 @@
       "bibleBook": "John",
       "chapter": 1,
       "verse": 1
+    },
+    {
+      "title": "Genesis 1:1–5 — World English Bible | Black Screen Large Text Read Along (No Music) #Shorts",
+      "url": "https://youtube.com/shorts/uS8kjlgdc50",
+      "type": "short",
+      "publishedAt": "2026-11-03T23:00:21Z",
+      "bibleBook": "Genesis",
+      "chapter": 1,
+      "verse": 1
+    },
+    {
+      "title": "Exodus 3:1–4 — World English Bible | Black Screen Large Text Read Along (No Music) #Shorts",
+      "url": "https://youtube.com/shorts/rgQCL39cJxU",
+      "type": "short",
+      "publishedAt": "2026-11-09T15:00:18Z",
+      "bibleBook": "Exodus",
+      "chapter": 3,
+      "verse": 1
+    },
+    {
+      "title": "Exodus 14:13–16 — World English Bible | Black Screen Large Text Read Along (No Music) #Shorts",
+      "url": "https://youtube.com/shorts/xS9nhGuX1z4",
+      "type": "short",
+      "publishedAt": "2026-11-07T15:17:08Z",
+      "bibleBook": "Exodus",
+      "chapter": 14,
+      "verse": 13
+    },
+    {
+      "title": "Exodus 14:21–23 — World English Bible | Black Screen Large Text Read Along (No Music) #Shorts",
+      "url": "https://youtube.com/shorts/GyNDYEdg3Gk",
+      "type": "short",
+      "publishedAt": "2026-11-07T23:00:11Z",
+      "bibleBook": "Exodus",
+      "chapter": 14,
+      "verse": 21
+    },
+    {
+      "title": "Exodus 20:1–6 — World English Bible | Black Screen Large Text Read Along (No Music) #Shorts",
+      "url": "https://youtube.com/shorts/dMzANa7r5M4",
+      "type": "short",
+      "publishedAt": "2026-11-05T23:00:21Z",
+      "bibleBook": "Exodus",
+      "chapter": 20,
+      "verse": 1
+    },
+    {
+      "title": "Exodus 20:8–11 — World English Bible | Black Screen Large Text Read Along (No Music) #Shorts",
+      "url": "https://youtube.com/shorts/wYDP4WWLspQ",
+      "type": "short",
+      "publishedAt": "2026-11-10T15:00:22Z",
+      "bibleBook": "Exodus",
+      "chapter": 20,
+      "verse": 8
+    },
+    {
+      "title": "Psalm 1:1–6 — World English Bible | Black Screen Large Text Read Along (No Music) #Shorts",
+      "url": "https://youtube.com/shorts/hWuX4TK7gcc",
+      "type": "short",
+      "publishedAt": "2026-11-03T15:00:06Z",
+      "bibleBook": "Psalms",
+      "chapter": 1,
+      "verse": 1
+    },
+    {
+      "title": "Psalm 23:1–6 — World English Bible | Black Screen Large Text Read Along (No Music) #Shorts",
+      "url": "https://youtube.com/shorts/rIZIa-aOM6Q",
+      "type": "short",
+      "publishedAt": "2026-11-02T15:00:30Z",
+      "bibleBook": "Psalms",
+      "chapter": 23,
+      "verse": 1
+    },
+    {
+      "title": "Psalm 91:1–6 — World English Bible | Black Screen Large Text Read Along (No Music) #Shorts",
+      "url": "https://youtube.com/shorts/UJ0hzcykTrA",
+      "type": "short",
+      "publishedAt": "2026-11-05T15:00:09Z",
+      "bibleBook": "Psalms",
+      "chapter": 91,
+      "verse": 1
+    },
+    {
+      "title": "Psalm 121:1–8 — World English Bible | Black Screen Large Text Read Along (No Music) #Shorts",
+      "url": "https://youtube.com/shorts/bPBxz-ixT-0",
+      "type": "short",
+      "publishedAt": "2026-11-07T17:42:10Z",
+      "bibleBook": "Psalms",
+      "chapter": 121,
+      "verse": 1
+    },
+    {
+      "title": "Psalm 139:1–6 — World English Bible | Black Screen Large Text Read Along (No Music) #Shorts",
+      "url": "https://youtube.com/shorts/B90qZmUOEO4",
+      "type": "short",
+      "publishedAt": "2026-11-08T23:00:04Z",
+      "bibleBook": "Psalms",
+      "chapter": 139,
+      "verse": 1
+    },
+    {
+      "title": "Psalm 139:7–12 — World English Bible | Black Screen Large Text Read Along (No Music) #Shorts",
+      "url": "https://youtube.com/shorts/0b9vzp9sC_s",
+      "type": "short",
+      "publishedAt": "2026-11-09T23:00:04Z",
+      "bibleBook": "Psalms",
+      "chapter": 139,
+      "verse": 7
+    },
+    {
+      "title": "John 12:37–50 — The Hour Has Come: “I Have Come as a Light Into the World” | WEB, No Music",
+      "url": "https://youtube.com/shorts/b2mB6bzOrvY",
+      "type": "short",
+      "publishedAt": "2026-10-31T13:23:21Z",
+      "bibleBook": "John",
+      "chapter": 12,
+      "verse": 37
+    },
+    {
+      "title": "John 13:1–17 — The Last Supper: “Lord, Do You Wash My Feet?” | WEB Audio Bible, No Music",
+      "url": "https://youtube.com/shorts/If-SqFQSbnk",
+      "type": "short",
+      "publishedAt": "2026-10-31T13:32:40Z",
+      "bibleBook": "John",
+      "chapter": 13,
+      "verse": 1,
+      "story": "The Last Supper"
+    },
+    {
+      "title": "John 13:18–30 — The Last Supper: “One of You Will Betray Me” | WEB Audio Bible, No Music",
+      "url": "https://youtube.com/shorts/615U6edvtg8",
+      "type": "short",
+      "publishedAt": "2026-11-01T16:46:44Z",
+      "bibleBook": "John",
+      "chapter": 13,
+      "verse": 18,
+      "story": "The Last Supper"
+    },
+    {
+      "title": "John 14:1–14 — World English Bible | Black Screen Large Text Read Along (No Music) #Shorts",
+      "url": "https://youtube.com/shorts/GgmXWo-UbTQ",
+      "type": "short",
+      "publishedAt": "2026-11-02T23:00:25Z",
+      "bibleBook": "John",
+      "chapter": 14,
+      "verse": 1
+    },
+    {
+      "title": "John 14:15–18 — World English Bible | Black Screen Large Text Read Along (No Music) #Shorts",
+      "url": "https://youtube.com/shorts/G6k6wE-g-gA",
+      "type": "short",
+      "publishedAt": "2026-11-04T15:00:02Z",
+      "bibleBook": "John",
+      "chapter": 14,
+      "verse": 15
+    },
+    {
+      "title": "John 15:1–5 — World English Bible | Black Screen Large Text Read Along (No Music) #Shorts",
+      "url": "https://youtube.com/shorts/DMjbSMAGHSk",
+      "type": "short",
+      "publishedAt": "2026-11-04T23:00:03Z",
+      "bibleBook": "John",
+      "chapter": 15,
+      "verse": 1
+    },
+    {
+      "title": "John 15:9–13 — World English Bible | Black Screen Large Text Read Along (No Music) #Shorts",
+      "url": "https://youtube.com/shorts/HrJ2if5vwGM",
+      "type": "short",
+      "publishedAt": "2026-11-07T14:30:46Z",
+      "bibleBook": "John",
+      "chapter": 15,
+      "verse": 9
+    },
+    {
+      "title": "John 17:1–5 — World English Bible | Black Screen Large Text Read Along (No Music) #Shorts",
+      "url": "https://youtube.com/shorts/0u-GRXCbfA8",
+      "type": "short",
+      "publishedAt": "2026-11-08T15:00:30Z",
+      "bibleBook": "John",
+      "chapter": 17,
+      "verse": 1
+    },
+    {
+      "title": "Revelation 21:1–4 — World English Bible | Black Screen Large Text Read Along (No Music) #Shorts",
+      "url": "https://youtube.com/shorts/HaT9rmAhG5k",
+      "type": "short",
+      "publishedAt": "2026-11-10T23:00:17Z",
+      "bibleBook": "Revelation",
+      "chapter": 21,
+      "verse": 1
+    },
+    {
+      "title": "Exodus 1–40 — The Book of Exodus, Full Book | Audio Bible With Text, Every Verse (WEB, No Music)",
+      "url": "https://youtu.be/BE00pyx62HI",
+      "type": "long",
+      "publishedAt": "2026-11-02T01:23:39Z",
+      "bibleBook": "Exodus",
+      "chapter": 1,
+      "verse": 1,
+      "scope": "book"
+    },
+    {
+      "title": "Ruth 1–4 — The Book of Ruth, Full Book | Audio Bible With Text, Every Verse (WEB, No Music)",
+      "url": "https://youtu.be/Y-4b_Hm4wgQ",
+      "type": "long",
+      "publishedAt": "2026-11-04T17:00:32Z",
+      "bibleBook": "Ruth",
+      "chapter": 1,
+      "verse": 1,
+      "scope": "book"
+    },
+    {
+      "title": "John 14–17 — Upper Room: “Don't Let Your Heart Be Troubled” | WEB Audio Bible With Text, No Music",
+      "url": "https://youtu.be/1gpOkZPKgT8",
+      "type": "long",
+      "publishedAt": "2026-11-04T20:00:36Z",
+      "bibleBook": "John",
+      "chapter": 14,
+      "verse": 1,
+      "scope": "passage"
+    },
+    {
+      "title": "Psalm 23 + Psalms 1–8 — World English Bible | Audio Bible With Text (No Music)",
+      "url": "https://youtu.be/K6G9vViZCzs",
+      "type": "long",
+      "publishedAt": "2026-11-08T20:00:05Z",
+      "bibleBook": "Psalms",
+      "chapter": 23,
+      "verse": 1,
+      "scope": "passage"
     }
   ],
   "storyCollectionNote": "The curated stories currently have video coverage from the Gospel of John only. This is not a claim that other biblical stories have no available text."

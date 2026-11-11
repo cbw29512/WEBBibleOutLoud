@@ -1,9 +1,26 @@
 "use strict";
 const assert = require("node:assert/strict");
+const fs = require("node:fs");
 const path = require("node:path");
 const { pathToFileURL } = require("node:url");
 const { chromium } = require("playwright-core");
 const axeScript = require.resolve("axe-core/axe.min.js");
+const root = path.resolve(__dirname, "..");
+const catalog = JSON.parse(fs.readFileSync(path.join(root, "data/videos.json"), "utf8"));
+const merch = JSON.parse(fs.readFileSync(path.join(root, "data/merch.json"), "utf8"));
+const shorts = catalog.videos.filter(v => v.type === "short");
+const books = catalog.videos.filter(v => v.scope === "book");
+const passages = catalog.videos.filter(v => v.scope === "passage");
+const storyClips = catalog.videos.filter(v => v.story);
+const storyNames = [...new Set(storyClips.map(v => v.story))];
+const total = catalog.videos.length;
+const bookOrder = ["Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi","Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"];
+const expectedBookNames = books.slice().sort((a,b)=>bookOrder.indexOf(a.bibleBook)-bookOrder.indexOf(b.bibleBook)).map(v=>v.bibleBook);
+const firstShortTitle = shorts.slice().sort((a,b)=>{
+  const oa = (bookOrder.indexOf(a.bibleBook)+1)*1000000+a.chapter*1000+a.verse;
+  const ob = (bookOrder.indexOf(b.bibleBook)+1)*1000000+b.chapter*1000+b.verse;
+  return oa-ob || a.publishedAt.localeCompare(b.publishedAt);
+})[0].title.split("|")[0].trim();
 
 (async () => {
   const browser = await chromium.launch({ channel: "chrome", headless: true, args: ["--no-sandbox"] });
@@ -22,41 +39,41 @@ const axeScript = require.resolve("axe-core/axe.min.js");
       assert.equal(await page.locator(".quick-browse a").count(), 3, "Three direct collection links");
       const destinations = await page.locator(".quick-browse a").evaluateAll(nodes => nodes.map(a => a.getAttribute("href")));
       assert.deepEqual(destinations, ["?view=book#library", "?view=short#library", "?view=stories#library"]);
-      assert.equal(await page.locator("#video-grid .vid").count(), 71);
+      assert.equal(await page.locator("#video-grid .vid").count(), total);
       assert.equal(await page.locator("#video-grid .vid:visible").count(), 9, "default view displays nine cards");
-      assert.match(await page.locator("#video-count").innerText(), /9 of 71/);
+      assert.match(await page.locator("#video-count").innerText(), new RegExp("9 of " + total));
       const defaultRanks = await page.locator("#video-grid .vid").evaluateAll(nodes=>nodes.map(n=>Number(n.dataset.scriptureOrder)));
       assert.deepEqual(defaultRanks,[...defaultRanks].sort((a,b)=>a-b), "All Videos must follow Scripture order across every card");
       assert.match(await page.locator("#video-grid .vid:visible").first().innerText(), /Genesis/);
       assert.equal(await page.locator("a[href='https://buymeacoffee.com/divclass016']").count(), 1);
-      assert.equal(await page.locator("#shop .product").count(), 4);
+      assert.equal(await page.locator("#shop .product").count(), merch.products.length);
       assert.equal(await page.locator("a[href='/privacy.html']").count(), 1);
       assert.equal(await page.locator("link[href='styles.css']").count(), 1);
 
       await page.locator('[data-filter="book"]').click();
-      assert.equal(await page.locator('#video-grid .vid:visible').count(), 5);
-      assert.match(await page.locator("#video-count").innerText(), /5 of 5/);
+      assert.equal(await page.locator('#video-grid .vid:visible').count(), books.length);
+      assert.match(await page.locator("#video-count").innerText(), new RegExp(books.length + " of " + books.length));
       assert.equal(await page.locator('[data-filter="book"]').getAttribute("aria-pressed"), "true");
       assert.equal(await page.locator('#book-picker').count(), 0, "No unnecessary book dropdown");
       const bookTitles = await page.locator('#video-grid .vid:visible .vid-title').allInnerTexts();
       assert.ok(bookTitles.every(t => /Full Book/i.test(t)), "Complete Books tab must contain complete books only");
       const bibleBooks = await page.locator('#video-grid .vid:visible').evaluateAll(nodes => nodes.map(n => n.dataset.book));
-      assert.deepEqual(bibleBooks, ["Genesis","Psalms","Obadiah","John","Revelation"], "Books must appear in canonical Bible order");
+      assert.deepEqual(bibleBooks, expectedBookNames, "Books must appear in canonical Bible order");
       // All five complete books are directly clickable; no additional selector.
       const bookLinks = await page.locator('#video-grid .vid:visible').evaluateAll(nodes => nodes.map(n => n.href));
-      assert.equal(new Set(bookLinks).size, 5, "Each book card links to a unique video");
+      assert.equal(new Set(bookLinks).size, books.length, "Each book card links to a unique video");
       assert.ok(bookLinks.every(link => link.startsWith("https://youtu.be/")), "Full books must open YouTube");
       await page.locator('[data-filter="passage"]').click();
-      assert.equal(await page.locator('#video-grid .vid:visible').count(), 4);
-      assert.match(await page.locator("#video-count").innerText(), /4 of 4/);
+      assert.equal(await page.locator('#video-grid .vid:visible').count(), passages.length);
+      assert.match(await page.locator("#video-count").innerText(), new RegExp(passages.length + " of " + passages.length));
       const chapterTitles = await page.locator('#video-grid .vid:visible .vid-title').allInnerTexts();
       assert.ok(chapterTitles.every(t => !/Full Book/i.test(t)), "Longer passages tab must not claim to be complete books");
       await page.locator('[data-filter="stories"]').click();
       assert.equal(await page.locator('#stories-help').isVisible(), true);
-      assert.match(await page.locator("#video-count").innerText(), /14 of 14 stories · 32 clips/);
+      assert.match(await page.locator("#video-count").innerText(), new RegExp(storyNames.length + " of " + storyNames.length + " stories · " + storyClips.length + " clips"));
       assert.equal(await page.locator("#video-grid").isHidden(), true);
-      assert.equal(await page.locator(".story-collection:visible").count(), 14);
-      assert.equal(await page.locator(".story-clip-link:visible").count(), 32);
+      assert.equal(await page.locator(".story-collection:visible").count(), storyNames.length);
+      assert.equal(await page.locator(".story-clip-link:visible").count(), storyClips.length);
       await page.addScriptTag({path:axeScript});
       const storyAudit = await page.evaluate(async () => window.axe.run(document, {runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21a","wcag21aa","wcag22aa"]}}));
       assert.deepEqual(storyAudit.violations.map(v=>v.id), [], "Grouped story accessibility violations");
@@ -69,23 +86,23 @@ const axeScript = require.resolve("axe-core/axe.min.js");
       await page.locator("#video-search").fill("");
       await page.locator('[data-filter="short"]').click();
       assert.equal(await page.locator('#book-picker').count(), 0);
-      assert.match(await page.locator("#video-count").innerText(), /9 of 62/);
-      assert.match(await page.locator('#video-grid .vid:visible').first().innerText(), /John 1:1–5/);
+      assert.match(await page.locator("#video-count").innerText(), new RegExp("9 of " + shorts.length));
+      assert.match(await page.locator('#video-grid .vid:visible').first().innerText(), new RegExp(firstShortTitle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
       assert.equal(await page.locator('#sort-label').innerText(), "Bible order");
       assert.equal(await page.locator('#video-grid .vid:visible').count(), 9);
       await page.locator('#load-more').click();
       assert.equal(await page.locator('#video-grid .vid:visible').count(), 18);
-      assert.match(await page.locator("#video-count").innerText(), /18 of 62/);
+      assert.match(await page.locator("#video-count").innerText(), new RegExp("18 of " + shorts.length));
       await page.locator('#video-search').fill("Lazarus");
       const lazarus = await page.locator('#video-grid .vid:visible').count();
       assert.ok(lazarus >= 3 && lazarus <= 9, "Lazarus search filtered the Shorts");
       await page.locator('#video-search').fill("not-a-real-passage-zz");
       assert.equal(await page.locator('#video-grid .vid:visible').count(), 0);
       assert.equal(await page.locator('#empty-state').isVisible(), true);
-      await page.locator('#video-search').fill("Psalms");
+      await page.locator('#video-search').fill("Obadiah");
       await page.locator('[data-filter="all"]').click();
       assert.equal(await page.locator('#video-grid .vid:visible').count(), 1);
-      assert.match(await page.locator('#video-grid .vid:visible').first().innerText(), /Psalms/);
+      assert.match(await page.locator('#video-grid .vid:visible').first().innerText(), /Obadiah/);
       await page.locator('#video-search').fill("");
       assert.equal(await page.locator('#video-grid .vid:visible').count(), 9);
       assert.match(await page.locator('#video-grid .vid:visible').first().innerText(), /Genesis/);
@@ -118,18 +135,19 @@ const axeScript = require.resolve("axe-core/axe.min.js");
       // Query-string links must open the correct category directly without
       // an extra dropdown, including on narrow mobile screens.
       for (const [view, expectedCount, expectedTitle] of [
-        ["book", 5, "Genesis"],
-        ["short", 62, "John 1:1–5"],
-        ["stories", 14, "Calling the first disciples"],
+        ["book", books.length, "Genesis"],
+        ["short", shorts.length, firstShortTitle],
+        ["stories", storyNames.length, "Calling the first disciples"],
       ]) {
         await page.goto(url + "?view=" + view + "#library", { waitUntil: "domcontentloaded" });
         await page.waitForFunction(n => document.getElementById("video-count")?.textContent.includes("of " + n), expectedCount);
         assert.equal(await page.locator('[data-filter="' + view + '"]').getAttribute("aria-pressed"), "true");
         const first = view === "stories" ? page.locator(".story-collection:visible h3").first() : page.locator("#video-grid .vid:visible").first();
-        assert.match(await first.innerText(), new RegExp(expectedTitle));
+        const titlePattern = expectedTitle.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        assert.match(await first.innerText(), new RegExp(titlePattern));
       }
       await page.goto(url + "?view=not-a-category#library", { waitUntil: "domcontentloaded" });
-      await page.waitForFunction(() => document.getElementById("video-count")?.textContent.includes("9 of 71"));
+      await page.waitForFunction(n => document.getElementById("video-count")?.textContent.includes("9 of " + n), total);
       assert.equal(await page.locator('[data-filter="all"]').getAttribute("aria-pressed"), "true");
       assert.deepEqual(failures, [], "Deep-link routes must not trigger browser errors");
       await page.close();
@@ -142,7 +160,7 @@ const axeScript = require.resolve("axe-core/axe.min.js");
       runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21a","wcag21aa","wcag22aa"]}
     }));
     assert.deepEqual(privacyAudit.violations.map(v=>v.id),[],"Privacy page accessibility failures");
-    console.log("PASS: Bible-order book picker, 62 canonical Shorts, 32 curated story clips, chronological filters, 71 videos and axe WCAG across 4 viewports");
+    console.log("PASS: Bible-order library, " + shorts.length + " Shorts, " + storyClips.length + " story clips, " + total + " videos and axe WCAG across 4 viewports");
   } finally {
     await browser.close();
   }

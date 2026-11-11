@@ -18,7 +18,7 @@ After linking, every merge or push to `main` should build and deploy automatical
 
 ## Update the public video catalog
 
-The channel snapshot contains **71 public videos**: 62 Shorts, 5 complete Bible books (Genesis, Psalms, Obadiah, John, Revelation), and 4 longer chapter readings.
+The public catalog lives in `data/videos.json`. Homepage counts are generated from that file at build time: Shorts, complete Bible books, and longer chapter readings currently published on the YouTube channel. Do not list unpublished, Unlisted, or scheduled videos.
 
 Homepage collection shortcuts link directly to `?view=book#library`, `?view=short#library`, and `?view=stories#library`. Each is bookmarkable, and the category filter supports browser Back/Forward navigation. The links do not introduce another dropdown or another support CTA.
 
@@ -26,7 +26,7 @@ The website's **All videos**, **Complete books**, **Shorts**, and **Longer passa
 
 The **Greatest Bible stories** tab shows 14 named story collections containing 32 published Short clips from the Gospel of John. Each collection has a heading, its first Scripture reference, a count of available clips, and a visible **Part 1 of N → Part N of N** list with direct YouTube links in Scripture order. Search matches a complete story collection so no part disappears unexpectedly. This presentation is generated from the existing optional `story` field—no duplicate video data and no manually maintained story pages. Other Old or New Testament stories should be added *only after actual matching videos have been published*. This collection is not presented as a complete list of every major story in the Bible.
 
-Edit **`data/videos.json`** whenever new videos go public. Entries require `title`, `url`, `type` (`short` or `long`), `publishedAt` (ISO YouTube timestamp), **`bibleBook`** (canonical Bible book name), **`chapter`**, and **`verse`** (the starting reference). Longer readings additionally require `scope`: `book` only for recordings of an entire Bible book, or `passage` for chapters and other sections. A Short may optionally have `story` with a meaningful name, placing that *existing video* in the Greatest Bible Stories tab. All videos are validated for URL uniqueness and Scripture metadata.
+Edit **`data/videos.json`** whenever new videos go public. Edit **`data/merch.json`** when the live Printify shop changes, so the Wear the words section stays current. Entries require `title`, `url`, `type` (`short` or `long`), `publishedAt` (ISO YouTube timestamp), **`bibleBook`** (canonical Bible book name), **`chapter`**, and **`verse`** (the starting reference). Longer readings additionally require `scope`: `book` only for recordings of an entire Bible book, or `passage` for chapters and other sections. A Short may optionally have `story` with a meaningful name, placing that *existing video* in the Greatest Bible Stories tab. All videos are validated for URL uniqueness and Scripture metadata.
 
 The Git-driven Netlify build runs `node scripts/render-videos.cjs` to generate all cards and thumbnails in `site/index.html` from the JSON catalog. Run locally to keep the HTML source synchronized:
 
