@@ -92,8 +92,15 @@ except (ValueError, AttributeError) as exc:
 schema_entries = book_schema.get("itemListElement", [])
 canonical_book_order=["Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi","Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"]
 verify([x.get("name") for x in schema_entries] ==
-       [x["title"].split("|")[0].strip() for x in sorted(books, key=lambda b: canonical_book_order.index(b["bibleBook"]))],
-       "SEO full-book list must be in canonical Bible order")
+       [x["title"].split("|")[0].strip() for x in sorted(
+           books,
+           key=lambda b: (
+               canonical_book_order.index(b["bibleBook"]),
+               b["chapter"],
+               b["verse"],
+               b["publishedAt"],
+           ))],
+       "SEO full-book list must follow canonical Bible order, then publication time")
 verify(book_schema.get("numberOfItems")==len(books)==len(schema_entries), "SEO book count must match the catalog")
 verify([x.get("position") for x in schema_entries] == list(range(1, len(schema_entries) + 1)),
        "SEO book list positions must be consecutive")
