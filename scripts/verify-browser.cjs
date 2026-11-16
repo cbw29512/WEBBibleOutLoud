@@ -15,7 +15,10 @@ const storyClips = catalog.videos.filter(v => v.story);
 const storyNames = [...new Set(storyClips.map(v => v.story))];
 const total = catalog.videos.length;
 const bookOrder = ["Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi","Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"];
-const expectedBookNames = books.slice().sort((a,b)=>bookOrder.indexOf(a.bibleBook)-bookOrder.indexOf(b.bibleBook)).map(v=>v.bibleBook);
+const expectedBookNames = books.slice().sort((a,b)=>
+  bookOrder.indexOf(a.bibleBook)-bookOrder.indexOf(b.bibleBook) ||
+  a.chapter-b.chapter || a.verse-b.verse || a.publishedAt.localeCompare(b.publishedAt)
+).map(v=>v.bibleBook);
 const firstShortTitle = shorts.slice().sort((a,b)=>{
   const oa = (bookOrder.indexOf(a.bibleBook)+1)*1000000+a.chapter*1000+a.verse;
   const ob = (bookOrder.indexOf(b.bibleBook)+1)*1000000+b.chapter*1000+b.verse;
@@ -51,12 +54,21 @@ const firstShortTitle = shorts.slice().sort((a,b)=>{
       assert.equal(await page.locator("link[href='styles.css']").count(), 1);
 
       await page.locator('[data-filter="book"]').click();
+      for (let step = 0; step < 8 && await page.locator("#load-more").isVisible(); step++) {
+        await page.locator("#load-more").click();
+      }
       assert.equal(await page.locator('#video-grid .vid:visible').count(), books.length);
       assert.match(await page.locator("#video-count").innerText(), new RegExp(books.length + " of " + books.length));
       assert.equal(await page.locator('[data-filter="book"]').getAttribute("aria-pressed"), "true");
       assert.equal(await page.locator('#book-picker').count(), 0, "No unnecessary book dropdown");
       const bookTitles = await page.locator('#video-grid .vid:visible .vid-title').allInnerTexts();
-      assert.ok(bookTitles.every(t => /Full Book/i.test(t)), "Complete Books tab must contain complete books only");
+      const bookTags = await page.locator('#video-grid .vid:visible .type-tag').allInnerTexts();
+      assert.ok(bookTags.every(t => t.toLowerCase() === "complete book"), "Complete Books tab must contain complete books only");
+      const expectedBookTitles = books.slice().sort((a,b)=>
+        bookOrder.indexOf(a.bibleBook)-bookOrder.indexOf(b.bibleBook) ||
+        a.chapter-b.chapter || a.verse-b.verse || a.publishedAt.localeCompare(b.publishedAt)
+      ).map(v => v.title.split("|")[0].trim());
+      assert.deepEqual(bookTitles, expectedBookTitles, "Complete book cards must use the published titles in Bible order");
       const bibleBooks = await page.locator('#video-grid .vid:visible').evaluateAll(nodes => nodes.map(n => n.dataset.book));
       assert.deepEqual(bibleBooks, expectedBookNames, "Books must appear in canonical Bible order");
       // All five complete books are directly clickable; no additional selector.
