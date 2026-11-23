@@ -2,6 +2,7 @@
 "use strict";
 // Render semantic HTML from the one authoritative, editable video catalog.
 // This runs at Netlify build time; no API token or browser-side data fetch.
+// Shorts stay in data/videos.json for the weekly routine, but are not rendered as cards.
 const fs = require("node:fs");
 const path = require("node:path");
 const root = path.resolve(__dirname, "..");
@@ -39,68 +40,36 @@ const videos=dataset.videos.map(v=>{
     : v.title.startsWith(v.bibleBook);
   if(!titleMatchesBook)throw Error("Bible book metadata does not match title: "+v.title);
   if(v.story && (v.type!=="short" || typeof v.story!=="string" || !v.story.trim()))
-    throw Error("Only known short video story clips may enter the greatest-stories collection");
+    throw Error("Only known short video story clips may carry a story field");
   return {...v,id,scriptureOrder:(bookIndex+1)*1000000+v.chapter*1000+v.verse};
-
 }).sort((a,b)=>a.scriptureOrder-b.scriptureOrder ||
   (a.scope==="book"?0:a.scope==="passage"?1:2) -
   (b.scope==="book"?0:b.scope==="passage"?1:2) ||
   a.publishedAt.localeCompare(b.publishedAt));
 const shorts=videos.filter(v=>v.type==="short"),long=videos.filter(v=>v.type==="long");
-const newestShort=shorts.reduce((latest,v)=>!latest || v.publishedAt>latest.publishedAt?v:latest,null);
 const books=long.filter(v=>v.scope==="book"),passages=long.filter(v=>v.scope==="passage");
 if(books.length+passages.length!==long.length)throw Error("Every long reading needs a book/passage scope");
 if(books.some(v=>!/Full Book/i.test(v.title)) || passages.some(v=>/Full Book/i.test(v.title)))throw Error("Inaccurate full-book label in video catalog");
-if(!shorts.length||!long.length)throw Error("Expected both Shorts and full-length videos");
+if(!shorts.length||!long.length)throw Error("Expected both Shorts and full-length videos in the catalog");
+if(!books.length||!passages.length)throw Error("Expected published complete books and longer readings");
 const featured=books.find(v=>/^John 1.21/i.test(v.title))||books[0];
-const storyClips=videos.filter(v=>Boolean(v.story));
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const title=v=>v.title.split("|")[0].trim();
 const thumb=v=>"https://i.ytimg.com/vi/"+v.id+"/hqdefault.jpg";
 const date=v=>new Date(v.publishedAt).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric",timeZone:"UTC"});
-/* Story collections derive from the same published video records as regular cards.
-   Sorting uses the canonical book/chapter/verse key, never publication date. */
-const storyCollections=[...storyClips.reduce((map,video)=>{
-  if(!map.has(video.story))map.set(video.story,[]);
-  map.get(video.story).push(video);
-  return map;
-},new Map())].map(([name,clips])=>({
-  name,clips:clips.sort((a,b)=>a.scriptureOrder-b.scriptureOrder||a.publishedAt.localeCompare(b.publishedAt))
-})).sort((a,b)=>a.clips[0].scriptureOrder-b.clips[0].scriptureOrder);
-const storySection=(story,index)=>{
-  const first=story.clips[0];
-  const parts=story.clips.map((video,position)=>
-    '    <li><a class="story-clip-link" href="'+escape(video.url)+'" target="_blank" rel="noopener noreferrer">'+
-    '<span class="story-part-label">Part '+(position+1)+' of '+story.clips.length+'</span>'+
-    '<span class="story-part-title">'+escape(title(video))+'</span>'+
-    '<span class="story-part-action">Watch on YouTube ↗</span></a></li>').join("\n");
-  const search=(story.name+" "+story.clips.map(v=>v.title).join(" ")).toLocaleLowerCase();
-  return '<section class="story-collection" aria-labelledby="story-title-'+(index+1)+'" data-story-search="'+escape(search)+'">\n'+
-    '  <div class="story-collection-head"><span class="story-number">Story '+(index+1)+'</span>'+
-    '<h3 id="story-title-'+(index+1)+'">'+escape(story.name)+'</h3>'+
-    '<p class="story-reference">Starts at '+escape(first.bibleBook)+' '+first.chapter+':'+first.verse+
-    ' · '+story.clips.length+' '+(story.clips.length===1?'clip':'clips')+' available</p></div>\n'+
-    '  <ol class="story-clip-list">\n'+parts+'\n  </ol>\n</section>';
-};
 const hero='<article class="feature" aria-label="Featured full-length Bible reading">\n'+
-'  <a class="feature-media" href="'+escape(featured.url)+'" target="_blank" rel="noopener noreferrer" aria-label="Watch '+escape(title(featured))+' on YouTube">\n'+
-'    <img src="'+thumb(featured)+'" alt="'+escape(title(featured))+' video thumbnail" width="480" height="360" fetchpriority="high">\n'+
+'  <a class="feature-media" href="'+escape(featured.url)+'" target="_blank" rel="noopener noreferrer" aria-label="Watch '+escape(featured.title)+' on YouTube">\n'+
+'    <img src="'+thumb(featured)+'" alt="'+escape(featured.title)+' video thumbnail" width="480" height="360" fetchpriority="high">\n'+
 '    <span class="play-circle" aria-hidden="true">▶</span>\n'+
 '  </a>\n'+
 '  <div class="feature-info">\n'+
 '    <p class="feature-label">Featured · Full book reading</p>\n'+
-'    <h2 class="feature-title"><a href="'+escape(featured.url)+'" target="_blank" rel="noopener noreferrer">'+escape(title(featured))+'</a></h2>\n'+
+'    <h2 class="feature-title"><a href="'+escape(featured.url)+'" target="_blank" rel="noopener noreferrer">'+escape(featured.title)+'</a></h2>\n'+
 '    <p class="feature-sub">World English Bible · Captions · No music</p>\n'+
 '  </div>\n</article>';
-const stats='<div class="metrics" aria-label="Video library overview"><div class="metric"><strong>'+videos.length+'</strong> videos</div><div class="metric"><strong>'+shorts.length+'</strong> Shorts</div><div class="metric"><strong>'+books.length+'</strong> complete books</div><div class="metric"><strong>'+passages.length+'</strong> longer passages</div></div>';
-const pathCard=(v,label,action)=>'<a class="path-card" href="'+escape(v.url)+'" target="_blank" rel="noopener noreferrer">\n'+
-'  <img class="path-thumb" src="'+thumb(v)+'" alt="" width="112" height="84" loading="lazy">\n'+
-'  <span><span class="path-eyebrow">'+label+'</span><span class="path-name">'+escape(title(v))+'</span><span class="path-action">'+action+' ↗</span></span>\n</a>';
-const paths=pathCard(newestShort,"Latest short · Listen in minutes","Watch the latest Short")+
-  pathCard(featured,"Featured complete book · Take your time","Start listening");
-const card=v=>'<a class="vid" data-type="'+v.type+'" data-scope="'+(v.scope||"")+'" data-book="'+escape(v.bibleBook)+'" data-scripture-order="'+v.scriptureOrder+'" data-published="'+Date.parse(v.publishedAt)+'" data-story="'+(v.story?"yes":"no")+'" data-search="'+escape((v.title+" "+(v.story||"")).toLocaleLowerCase())+'" href="'+escape(v.url)+'" target="_blank" rel="noopener noreferrer">\n'+
-'  <span class="thumb"><img src="'+thumb(v)+'" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">'+(v.type==="short"?"Short":v.scope==="book"?"Complete book":"Chapter reading")+'</span></span>\n'+
-'  <span class="vid-content"><span class="vid-title">'+escape(title(v))+'</span>'+(v.story?'<span class="vid-story">'+escape(v.story)+'</span>':'')+'<span class="vid-meta"><span>'+escape(date(v))+'</span><span class="vid-cta">Watch ↗</span></span></span>\n</a>';
+const stats='<div class="metrics" aria-label="What is on this page"><div class="metric"><strong>'+passages.length+'</strong> stories</div><div class="metric"><strong>'+books.length+'</strong> complete books</div><div class="metric"><strong>'+merch.products.length+'</strong> shop items</div></div>';
+const card=(v,kind)=>'<a class="vid" data-type="long" data-scope="'+kind+'" data-book="'+escape(v.bibleBook)+'" data-scripture-order="'+v.scriptureOrder+'" href="'+escape(v.url)+'" target="_blank" rel="noopener noreferrer">\n'+
+'  <span class="thumb"><img src="'+thumb(v)+'" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">'+(kind==="book"?"Complete book":"Story")+'</span></span>\n'+
+'  <span class="vid-content"><span class="vid-title">'+escape(v.title)+'</span><span class="vid-meta"><span>'+escape(date(v))+'</span><span class="vid-cta">Watch ↗</span></span></span>\n</a>';
 let html=fs.readFileSync(htmlPath,"utf8");
 function inject(name,body){
   const a="<!-- "+name+"_START -->",b="<!-- "+name+"_END -->";
@@ -114,7 +83,14 @@ const bookSchema={
   "@type":"ItemList",
   "name":"Complete World English Bible books available on WEB Bible Out Loud",
   "numberOfItems":books.length,
-  "itemListElement":books.map((v,i)=>({"@type":"ListItem","position":i+1,"name":title(v),"url":v.url}))
+  "itemListElement":books.map((v,i)=>({"@type":"ListItem","position":i+1,"name":v.title,"url":v.url}))
+};
+const storiesSchema={
+  "@context":"https://schema.org",
+  "@type":"ItemList",
+  "name":"Longer World English Bible readings available on WEB Bible Out Loud",
+  "numberOfItems":passages.length,
+  "itemListElement":passages.map((v,i)=>({"@type":"ListItem","position":i+1,"name":v.title,"url":v.url}))
 };
 const shopCards=merch.products.map(product=>
   '<a class="product" href="'+escape(product.url)+'" target="_blank" rel="noopener noreferrer">'+
@@ -125,17 +101,23 @@ const shopCards=merch.products.map(product=>
 const shopFooter='<p>'+merch.products.length+' '+(merch.products.length===1?"item":"items")+' from the Printify shop. Each product opens its own Printify page.</p>\n        <a href="'+escape(merch.shopUrl)+'" target="_blank" rel="noopener noreferrer">Visit the full shop ↗</a>';
 inject("HERO_VIDEO",hero);
 inject("VIDEO_STATS",stats);
-inject("START_PATHS",paths);
-inject("VIDEO_CARDS",videos.map(card).join("\n"));
-inject("STORY_COLLECTIONS",storyCollections.map(storySection).join("\n"));
+inject("STORIES",passages.map(v=>card(v,"passage")).join("\n"));
+inject("FULL_BOOKS",books.map(v=>card(v,"book")).join("\n"));
 inject("FULL_BOOKS_SCHEMA",'<script type="application/ld+json" id="full-books-schema">'+JSON.stringify(bookSchema)+"</script>");
+inject("STORIES_SCHEMA",'<script type="application/ld+json" id="stories-schema">'+JSON.stringify(storiesSchema)+"</script>");
 inject("SHOP_PRODUCTS",shopCards);
 inject("SHOP_FOOTER",shopFooter);
+if((html.match(/https:\/\/www\.youtube\.com\/@webbibleoutloud\/shorts/g)||[]).length!==1)
+  throw Error("Expected exactly one Watch the Shorts on YouTube button URL");
+if(/youtube\.com\/shorts\/[A-Za-z0-9_-]{11}/.test(html))
+  throw Error("Shorts must not be rendered as video cards");
+if(html.includes('data-filter="short"') || html.includes('data-type="short"'))
+  throw Error("Shorts cards or Shorts filters must not be rendered");
 const original=fs.readFileSync(htmlPath,"utf8");
 if(process.argv.includes("--check")){
   if(original!==html)throw Error("Generated HTML is stale. Run node scripts/render-videos.cjs");
-  console.log("PASS: "+shorts.length+" Shorts, "+books.length+" ordered complete books, "+passages.length+" longer passages and "+storyClips.length+" story clips");
+  console.log("PASS: "+passages.length+" stories, "+books.length+" complete books, "+merch.products.length+" merch items; "+shorts.length+" Shorts kept in the catalog and not rendered as cards");
 }else{
   if(html!==original)fs.writeFileSync(htmlPath,html);
-  console.log("Rendered "+videos.length+" videos; "+books.length+" complete books and "+passages.length+" chapter readings");
+  console.log("Rendered "+passages.length+" stories and "+books.length+" complete books; "+shorts.length+" Shorts left in the catalog only");
 }
