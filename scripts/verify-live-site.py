@@ -3,7 +3,7 @@
 import time
 from urllib.request import Request, urlopen
 
-ORIGIN = "https://webbibleoutloud.netlify.app"
+ORIGIN = "https://webbibleoutloud.com"
 
 def fetch(path):
     last = None
