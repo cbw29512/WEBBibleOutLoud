@@ -9,7 +9,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "site"
-HOME = "https://webbibleoutloud.netlify.app/"
+HOME = "https://webbibleoutloud.com/"
 SUPPORT = "https://buymeacoffee.com/divclass016"
 
 class Page(HTMLParser):
