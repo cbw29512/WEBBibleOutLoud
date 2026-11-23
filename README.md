@@ -1,6 +1,6 @@
 # WEB Bible Out Loud
 
-**Live site:** https://webbibleoutloud.netlify.app/  
+**Live site:** https://webbibleoutloud.com/  
 **GitHub:** https://github.com/cbw29512/WEBBibleOutLoud  
 **Existing Netlify project:** https://app.netlify.com/projects/webbibleoutloud
 
