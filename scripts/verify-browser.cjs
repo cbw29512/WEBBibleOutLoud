@@ -76,6 +76,9 @@ const firstShortTitle = shorts.slice().sort((a,b)=>{
       assert.equal(new Set(bookLinks).size, books.length, "Each book card links to a unique video");
       assert.ok(bookLinks.every(link => link.startsWith("https://youtu.be/")), "Full books must open YouTube");
       await page.locator('[data-filter="passage"]').click();
+      for (let step = 0; step < 8 && await page.locator("#load-more").isVisible(); step++) {
+        await page.locator("#load-more").click();
+      }
       assert.equal(await page.locator('#video-grid .vid:visible').count(), passages.length);
       assert.match(await page.locator("#video-count").innerText(), new RegExp(passages.length + " of " + passages.length));
       const chapterTitles = await page.locator('#video-grid .vid:visible .vid-title').allInnerTexts();
