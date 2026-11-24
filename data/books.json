@@ -1,0 +1,1569 @@
+{
+ "note": "One page per complete book at /books/<slug>/. Summary lines are ours (not scripture). Chapter times come from each book's published chapter markers.",
+ "books": [
+  {
+   "bibleBook": "John",
+   "slug": "john",
+   "videoId": "QHARnxtj87A",
+   "summary": "John begins with the Word who was with God and became flesh, and follows Jesus through his signs, from water turned to wine to Lazarus raised from the dead. Jesus teaches that he is the bread of life, the light of the world and the good shepherd, and the book ends with his death on the cross, his resurrection and his appearing to his disciples.",
+   "durationSeconds": 7685,
+   "chapters": [
+    {
+     "t": 0,
+     "label": "John Chapter 1"
+    },
+    {
+     "t": 417,
+     "label": "John Chapter 2"
+    },
+    {
+     "t": 620,
+     "label": "John Chapter 3"
+    },
+    {
+     "t": 916,
+     "label": "John Chapter 4"
+    },
+    {
+     "t": 1362,
+     "label": "John Chapter 5"
+    },
+    {
+     "t": 1758,
+     "label": "John Chapter 6"
+    },
+    {
+     "t": 2345,
+     "label": "John Chapter 7"
+    },
+    {
+     "t": 2756,
+     "label": "John Chapter 8"
+    },
+    {
+     "t": 3291,
+     "label": "John Chapter 9"
+    },
+    {
+     "t": 3636,
+     "label": "John Chapter 10"
+    },
+    {
+     "t": 3962,
+     "label": "John Chapter 11"
+    },
+    {
+     "t": 4436,
+     "label": "John Chapter 12"
+    },
+    {
+     "t": 4881,
+     "label": "John Chapter 13"
+    },
+    {
+     "t": 5218,
+     "label": "John Chapter 14"
+    },
+    {
+     "t": 5495,
+     "label": "John Chapter 15"
+    },
+    {
+     "t": 5728,
+     "label": "John Chapter 16"
+    },
+    {
+     "t": 6032,
+     "label": "John Chapter 17"
+    },
+    {
+     "t": 6262,
+     "label": "John Chapter 18"
+    },
+    {
+     "t": 6667,
+     "label": "John Chapter 19"
+    },
+    {
+     "t": 7094,
+     "label": "John Chapter 20"
+    },
+    {
+     "t": 7391,
+     "label": "John Chapter 21"
+    }
+   ]
+  },
+  {
+   "bibleBook": "Psalms",
+   "slug": "psalms",
+   "videoId": "Xgd8a_CjHqs",
+   "summary": "Psalms is the Bible's book of songs and prayers: praise, lament, thanksgiving and trust in God, many of them titled as by David. It is gathered into five books and ends with everything that has breath praising the LORD.",
+   "durationSeconds": 19353,
+   "chapters": [
+    {
+     "t": 0,
+     "label": "Psalm 1"
+    },
+    {
+     "t": 48,
+     "label": "Psalm 2"
+    },
+    {
+     "t": 135,
+     "label": "Psalm 3"
+    },
+    {
+     "t": 207,
+     "label": "Psalm 4"
+    },
+    {
+     "t": 283,
+     "label": "Psalm 5"
+    },
+    {
+     "t": 401,
+     "label": "Psalm 6"
+    },
+    {
+     "t": 486,
+     "label": "Psalm 7"
+    },
+    {
+     "t": 635,
+     "label": "Psalm 8"
+    },
+    {
+     "t": 709,
+     "label": "Psalm 9"
+    },
+    {
+     "t": 880,
+     "label": "Psalm 10"
+    },
+    {
+     "t": 1039,
+     "label": "Psalm 11"
+    },
+    {
+     "t": 1105,
+     "label": "Psalm 12"
+    },
+    {
+     "t": 1177,
+     "label": "Psalm 13"
+    },
+    {
+     "t": 1229,
+     "label": "Psalm 14"
+    },
+    {
+     "t": 1298,
+     "label": "Psalm 15"
+    },
+    {
+     "t": 1343,
+     "label": "Psalm 16"
+    },
+    {
+     "t": 1435,
+     "label": "Psalm 17"
+    },
+    {
+     "t": 1568,
+     "label": "Psalm 18"
+    },
+    {
+     "t": 1982,
+     "label": "Psalm 19"
+    },
+    {
+     "t": 2106,
+     "label": "Psalm 20"
+    },
+    {
+     "t": 2178,
+     "label": "Psalm 21"
+    },
+    {
+     "t": 2283,
+     "label": "Psalm 22"
+    },
+    {
+     "t": 2543,
+     "label": "Psalm 23"
+    },
+    {
+     "t": 2596,
+     "label": "Psalm 24"
+    },
+    {
+     "t": 2675,
+     "label": "Psalm 25"
+    },
+    {
+     "t": 2831,
+     "label": "Psalm 26"
+    },
+    {
+     "t": 2914,
+     "label": "Psalm 27"
+    },
+    {
+     "t": 3057,
+     "label": "Psalm 28"
+    },
+    {
+     "t": 3147,
+     "label": "Psalm 29"
+    },
+    {
+     "t": 3231,
+     "label": "Psalm 30"
+    },
+    {
+     "t": 3336,
+     "label": "Psalm 31"
+    },
+    {
+     "t": 3555,
+     "label": "Psalm 32"
+    },
+    {
+     "t": 3662,
+     "label": "Psalm 33"
+    },
+    {
+     "t": 3813,
+     "label": "Psalm 34"
+    },
+    {
+     "t": 3968,
+     "label": "Psalm 35"
+    },
+    {
+     "t": 4216,
+     "label": "Psalm 36"
+    },
+    {
+     "t": 4322,
+     "label": "Psalm 37"
+    },
+    {
+     "t": 4622,
+     "label": "Psalm 38"
+    },
+    {
+     "t": 4783,
+     "label": "Psalm 39"
+    },
+    {
+     "t": 4910,
+     "label": "Psalm 40"
+    },
+    {
+     "t": 5093,
+     "label": "Psalm 41"
+    },
+    {
+     "t": 5202,
+     "label": "Psalm 42"
+    },
+    {
+     "t": 5319,
+     "label": "Psalm 43"
+    },
+    {
+     "t": 5375,
+     "label": "Psalm 44"
+    },
+    {
+     "t": 5574,
+     "label": "Psalm 45"
+    },
+    {
+     "t": 5735,
+     "label": "Psalm 46"
+    },
+    {
+     "t": 5833,
+     "label": "Psalm 47"
+    },
+    {
+     "t": 5908,
+     "label": "Psalm 48"
+    },
+    {
+     "t": 6017,
+     "label": "Psalm 49"
+    },
+    {
+     "t": 6171,
+     "label": "Psalm 50"
+    },
+    {
+     "t": 6346,
+     "label": "Psalm 51"
+    },
+    {
+     "t": 6506,
+     "label": "Psalm 52"
+    },
+    {
+     "t": 6593,
+     "label": "Psalm 53"
+    },
+    {
+     "t": 6667,
+     "label": "Psalm 54"
+    },
+    {
+     "t": 6736,
+     "label": "Psalm 55"
+    },
+    {
+     "t": 6936,
+     "label": "Psalm 56"
+    },
+    {
+     "t": 7051,
+     "label": "Psalm 57"
+    },
+    {
+     "t": 7172,
+     "label": "Psalm 58"
+    },
+    {
+     "t": 7270,
+     "label": "Psalm 59"
+    },
+    {
+     "t": 7437,
+     "label": "Psalm 60"
+    },
+    {
+     "t": 7553,
+     "label": "Psalm 61"
+    },
+    {
+     "t": 7621,
+     "label": "Psalm 62"
+    },
+    {
+     "t": 7739,
+     "label": "Psalm 63"
+    },
+    {
+     "t": 7826,
+     "label": "Psalm 64"
+    },
+    {
+     "t": 7911,
+     "label": "Psalm 65"
+    },
+    {
+     "t": 8034,
+     "label": "Psalm 66"
+    },
+    {
+     "t": 8188,
+     "label": "Psalm 67"
+    },
+    {
+     "t": 8249,
+     "label": "Psalm 68"
+    },
+    {
+     "t": 8569,
+     "label": "Psalm 69"
+    },
+    {
+     "t": 8862,
+     "label": "Psalm 70"
+    },
+    {
+     "t": 8914,
+     "label": "Psalm 71"
+    },
+    {
+     "t": 9106,
+     "label": "Psalm 72"
+    },
+    {
+     "t": 9266,
+     "label": "Psalm 73"
+    },
+    {
+     "t": 9456,
+     "label": "Psalm 74"
+    },
+    {
+     "t": 9639,
+     "label": "Psalm 75"
+    },
+    {
+     "t": 9727,
+     "label": "Psalm 76"
+    },
+    {
+     "t": 9827,
+     "label": "Psalm 77"
+    },
+    {
+     "t": 9991,
+     "label": "Psalm 78"
+    },
+    {
+     "t": 10509,
+     "label": "Psalm 79"
+    },
+    {
+     "t": 10629,
+     "label": "Psalm 80"
+    },
+    {
+     "t": 10775,
+     "label": "Psalm 81"
+    },
+    {
+     "t": 10900,
+     "label": "Psalm 82"
+    },
+    {
+     "t": 10960,
+     "label": "Psalm 83"
+    },
+    {
+     "t": 11087,
+     "label": "Psalm 84"
+    },
+    {
+     "t": 11196,
+     "label": "Psalm 85"
+    },
+    {
+     "t": 11294,
+     "label": "Psalm 86"
+    },
+    {
+     "t": 11433,
+     "label": "Psalm 87"
+    },
+    {
+     "t": 11488,
+     "label": "Psalm 88"
+    },
+    {
+     "t": 11640,
+     "label": "Psalm 89"
+    },
+    {
+     "t": 12027,
+     "label": "Psalm 90"
+    },
+    {
+     "t": 12159,
+     "label": "Psalm 91"
+    },
+    {
+     "t": 12275,
+     "label": "Psalm 92"
+    },
+    {
+     "t": 12386,
+     "label": "Psalm 93"
+    },
+    {
+     "t": 12432,
+     "label": "Psalm 94"
+    },
+    {
+     "t": 12584,
+     "label": "Psalm 95"
+    },
+    {
+     "t": 12666,
+     "label": "Psalm 96"
+    },
+    {
+     "t": 12770,
+     "label": "Psalm 97"
+    },
+    {
+     "t": 12863,
+     "label": "Psalm 98"
+    },
+    {
+     "t": 12941,
+     "label": "Psalm 99"
+    },
+    {
+     "t": 13021,
+     "label": "Psalm 100"
+    },
+    {
+     "t": 13065,
+     "label": "Psalm 101"
+    },
+    {
+     "t": 13140,
+     "label": "Psalm 102"
+    },
+    {
+     "t": 13345,
+     "label": "Psalm 103"
+    },
+    {
+     "t": 13504,
+     "label": "Psalm 104"
+    },
+    {
+     "t": 13762,
+     "label": "Psalm 105"
+    },
+    {
+     "t": 14050,
+     "label": "Psalm 106"
+    },
+    {
+     "t": 14389,
+     "label": "Psalm 107"
+    },
+    {
+     "t": 14675,
+     "label": "Psalm 108"
+    },
+    {
+     "t": 14778,
+     "label": "Psalm 109"
+    },
+    {
+     "t": 15011,
+     "label": "Psalm 110"
+    },
+    {
+     "t": 15070,
+     "label": "Psalm 111"
+    },
+    {
+     "t": 15148,
+     "label": "Psalm 112"
+    },
+    {
+     "t": 15231,
+     "label": "Psalm 113"
+    },
+    {
+     "t": 15284,
+     "label": "Psalm 114"
+    },
+    {
+     "t": 15335,
+     "label": "Psalm 115"
+    },
+    {
+     "t": 15455,
+     "label": "Psalm 116"
+    },
+    {
+     "t": 15575,
+     "label": "Psalm 117"
+    },
+    {
+     "t": 15592,
+     "label": "Psalm 118"
+    },
+    {
+     "t": 15793,
+     "label": "Psalm 119"
+    },
+    {
+     "t": 16901,
+     "label": "Psalm 120"
+    },
+    {
+     "t": 16943,
+     "label": "Psalm 121"
+    },
+    {
+     "t": 16993,
+     "label": "Psalm 122"
+    },
+    {
+     "t": 17050,
+     "label": "Psalm 123"
+    },
+    {
+     "t": 17085,
+     "label": "Psalm 124"
+    },
+    {
+     "t": 17137,
+     "label": "Psalm 125"
+    },
+    {
+     "t": 17180,
+     "label": "Psalm 126"
+    },
+    {
+     "t": 17223,
+     "label": "Psalm 127"
+    },
+    {
+     "t": 17270,
+     "label": "Psalm 128"
+    },
+    {
+     "t": 17313,
+     "label": "Psalm 129"
+    },
+    {
+     "t": 17368,
+     "label": "Psalm 130"
+    },
+    {
+     "t": 17421,
+     "label": "Psalm 131"
+    },
+    {
+     "t": 17452,
+     "label": "Psalm 132"
+    },
+    {
+     "t": 17576,
+     "label": "Psalm 133"
+    },
+    {
+     "t": 17605,
+     "label": "Psalm 134"
+    },
+    {
+     "t": 17627,
+     "label": "Psalm 135"
+    },
+    {
+     "t": 17771,
+     "label": "Psalm 136"
+    },
+    {
+     "t": 17940,
+     "label": "Psalm 137"
+    },
+    {
+     "t": 18008,
+     "label": "Psalm 138"
+    },
+    {
+     "t": 18082,
+     "label": "Psalm 139"
+    },
+    {
+     "t": 18261,
+     "label": "Psalm 140"
+    },
+    {
+     "t": 18375,
+     "label": "Psalm 141"
+    },
+    {
+     "t": 18463,
+     "label": "Psalm 142"
+    },
+    {
+     "t": 18533,
+     "label": "Psalm 143"
+    },
+    {
+     "t": 18650,
+     "label": "Psalm 144"
+    },
+    {
+     "t": 18777,
+     "label": "Psalm 145"
+    },
+    {
+     "t": 18928,
+     "label": "Psalm 146"
+    },
+    {
+     "t": 19008,
+     "label": "Psalm 147"
+    },
+    {
+     "t": 19146,
+     "label": "Psalm 148"
+    },
+    {
+     "t": 19244,
+     "label": "Psalm 149"
+    },
+    {
+     "t": 19309,
+     "label": "Psalm 150"
+    }
+   ]
+  },
+  {
+   "bibleBook": "Revelation",
+   "slug": "revelation",
+   "videoId": "pLGMTfwilh0",
+   "summary": "Revelation is the vision given to John on the island of Patmos, beginning with letters to seven churches and moving through seals, trumpets and bowls of judgment. It ends with the new heaven and the new earth, the holy city, and the promise that Jesus will return.",
+   "durationSeconds": 4568,
+   "chapters": [
+    {
+     "t": 0,
+     "label": "Revelation Chapter 1"
+    },
+    {
+     "t": 225,
+     "label": "Revelation Chapter 2"
+    },
+    {
+     "t": 529,
+     "label": "Revelation Chapter 3"
+    },
+    {
+     "t": 777,
+     "label": "Revelation Chapter 4"
+    },
+    {
+     "t": 914,
+     "label": "Revelation Chapter 5"
+    },
+    {
+     "t": 1072,
+     "label": "Revelation Chapter 6"
+    },
+    {
+     "t": 1264,
+     "label": "Revelation Chapter 7"
+    },
+    {
+     "t": 1454,
+     "label": "Revelation Chapter 8"
+    },
+    {
+     "t": 1601,
+     "label": "Revelation Chapter 9"
+    },
+    {
+     "t": 1825,
+     "label": "Revelation Chapter 10"
+    },
+    {
+     "t": 1947,
+     "label": "Revelation Chapter 11"
+    },
+    {
+     "t": 2171,
+     "label": "Revelation Chapter 12"
+    },
+    {
+     "t": 2360,
+     "label": "Revelation Chapter 13"
+    },
+    {
+     "t": 2563,
+     "label": "Revelation Chapter 14"
+    },
+    {
+     "t": 2803,
+     "label": "Revelation Chapter 15"
+    },
+    {
+     "t": 2899,
+     "label": "Revelation Chapter 16"
+    },
+    {
+     "t": 3114,
+     "label": "Revelation Chapter 17"
+    },
+    {
+     "t": 3320,
+     "label": "Revelation Chapter 18"
+    },
+    {
+     "t": 3618,
+     "label": "Revelation Chapter 19"
+    },
+    {
+     "t": 3873,
+     "label": "Revelation Chapter 20"
+    },
+    {
+     "t": 4054,
+     "label": "Revelation Chapter 21"
+    },
+    {
+     "t": 4339,
+     "label": "Revelation Chapter 22"
+    }
+   ]
+  },
+  {
+   "bibleBook": "Obadiah",
+   "slug": "obadiah",
+   "videoId": "cL9P1mUIBsw",
+   "summary": "Obadiah is a single vision about Edom, the nation descended from Esau, Jacob's brother. It warns Edom for its pride and for standing aside when Jerusalem was attacked, and it ends with the promise that the kingdom will be the LORD's.",
+   "durationSeconds": 251,
+   "chapters": [
+    {
+     "t": 0,
+     "label": "Obadiah Chapter 1"
+    }
+   ]
+  },
+  {
+   "bibleBook": "Genesis",
+   "slug": "genesis",
+   "videoId": "zcLH4KSf1BM",
+   "summary": "Genesis begins with God creating the heavens and the earth, the first man and woman in the garden, and the flood in Noah's day. It then follows Abraham, Isaac and Jacob, and ends with Joseph in Egypt, where Jacob's whole family comes to live.",
+   "durationSeconds": 15082,
+   "chapters": [
+    {
+     "t": 0,
+     "label": "Genesis Chapter 1"
+    },
+    {
+     "t": 309,
+     "label": "Genesis Chapter 2"
+    },
+    {
+     "t": 536,
+     "label": "Genesis Chapter 3"
+    },
+    {
+     "t": 782,
+     "label": "Genesis Chapter 4"
+    },
+    {
+     "t": 1040,
+     "label": "Genesis Chapter 5"
+    },
+    {
+     "t": 1281,
+     "label": "Genesis Chapter 6"
+    },
+    {
+     "t": 1496,
+     "label": "Genesis Chapter 7"
+    },
+    {
+     "t": 1707,
+     "label": "Genesis Chapter 8"
+    },
+    {
+     "t": 1922,
+     "label": "Genesis Chapter 9"
+    },
+    {
+     "t": 2176,
+     "label": "Genesis Chapter 10"
+    },
+    {
+     "t": 2419,
+     "label": "Genesis Chapter 11"
+    },
+    {
+     "t": 2698,
+     "label": "Genesis Chapter 12"
+    },
+    {
+     "t": 2897,
+     "label": "Genesis Chapter 13"
+    },
+    {
+     "t": 3068,
+     "label": "Genesis Chapter 14"
+    },
+    {
+     "t": 3313,
+     "label": "Genesis Chapter 15"
+    },
+    {
+     "t": 3497,
+     "label": "Genesis Chapter 16"
+    },
+    {
+     "t": 3669,
+     "label": "Genesis Chapter 17"
+    },
+    {
+     "t": 3946,
+     "label": "Genesis Chapter 18"
+    },
+    {
+     "t": 4274,
+     "label": "Genesis Chapter 19"
+    },
+    {
+     "t": 4685,
+     "label": "Genesis Chapter 20"
+    },
+    {
+     "t": 4889,
+     "label": "Genesis Chapter 21"
+    },
+    {
+     "t": 5198,
+     "label": "Genesis Chapter 22"
+    },
+    {
+     "t": 5447,
+     "label": "Genesis Chapter 23"
+    },
+    {
+     "t": 5657,
+     "label": "Genesis Chapter 24"
+    },
+    {
+     "t": 6350,
+     "label": "Genesis Chapter 25"
+    },
+    {
+     "t": 6662,
+     "label": "Genesis Chapter 26"
+    },
+    {
+     "t": 7011,
+     "label": "Genesis Chapter 27"
+    },
+    {
+     "t": 7509,
+     "label": "Genesis Chapter 28"
+    },
+    {
+     "t": 7739,
+     "label": "Genesis Chapter 29"
+    },
+    {
+     "t": 8071,
+     "label": "Genesis Chapter 30"
+    },
+    {
+     "t": 8476,
+     "label": "Genesis Chapter 31"
+    },
+    {
+     "t": 9025,
+     "label": "Genesis Chapter 32"
+    },
+    {
+     "t": 9349,
+     "label": "Genesis Chapter 33"
+    },
+    {
+     "t": 9548,
+     "label": "Genesis Chapter 34"
+    },
+    {
+     "t": 9854,
+     "label": "Genesis Chapter 35"
+    },
+    {
+     "t": 10112,
+     "label": "Genesis Chapter 36"
+    },
+    {
+     "t": 10498,
+     "label": "Genesis Chapter 37"
+    },
+    {
+     "t": 10871,
+     "label": "Genesis Chapter 38"
+    },
+    {
+     "t": 11179,
+     "label": "Genesis Chapter 39"
+    },
+    {
+     "t": 11408,
+     "label": "Genesis Chapter 40"
+    },
+    {
+     "t": 11621,
+     "label": "Genesis Chapter 41"
+    },
+    {
+     "t": 12166,
+     "label": "Genesis Chapter 42"
+    },
+    {
+     "t": 12554,
+     "label": "Genesis Chapter 43"
+    },
+    {
+     "t": 12918,
+     "label": "Genesis Chapter 44"
+    },
+    {
+     "t": 13246,
+     "label": "Genesis Chapter 45"
+    },
+    {
+     "t": 13534,
+     "label": "Genesis Chapter 46"
+    },
+    {
+     "t": 13859,
+     "label": "Genesis Chapter 47"
+    },
+    {
+     "t": 14235,
+     "label": "Genesis Chapter 48"
+    },
+    {
+     "t": 14486,
+     "label": "Genesis Chapter 49"
+    },
+    {
+     "t": 14806,
+     "label": "Genesis Chapter 50"
+    }
+   ]
+  },
+  {
+   "bibleBook": "Exodus",
+   "slug": "exodus",
+   "videoId": "BE00pyx62HI",
+   "summary": "Exodus begins with Israel enslaved in Egypt and God calling Moses at the burning bush to lead his people out. After the plagues, the Passover and the crossing of the Red Sea, God gives the Ten Commandments and the law at Mount Sinai, and the book ends with the tabernacle built and the LORD's glory filling it.",
+   "durationSeconds": 12275,
+   "chapters": [
+    {
+     "t": 0,
+     "label": "Exodus Chapter 1"
+    },
+    {
+     "t": 184,
+     "label": "Exodus Chapter 2"
+    },
+    {
+     "t": 430,
+     "label": "Exodus Chapter 3"
+    },
+    {
+     "t": 713,
+     "label": "Exodus Chapter 4"
+    },
+    {
+     "t": 1040,
+     "label": "Exodus Chapter 5"
+    },
+    {
+     "t": 1278,
+     "label": "Exodus Chapter 6"
+    },
+    {
+     "t": 1573,
+     "label": "Exodus Chapter 7"
+    },
+    {
+     "t": 1838,
+     "label": "Exodus Chapter 8"
+    },
+    {
+     "t": 2196,
+     "label": "Exodus Chapter 9"
+    },
+    {
+     "t": 2554,
+     "label": "Exodus Chapter 10"
+    },
+    {
+     "t": 2890,
+     "label": "Exodus Chapter 11"
+    },
+    {
+     "t": 3009,
+     "label": "Exodus Chapter 12"
+    },
+    {
+     "t": 3552,
+     "label": "Exodus Chapter 13"
+    },
+    {
+     "t": 3794,
+     "label": "Exodus Chapter 14"
+    },
+    {
+     "t": 4143,
+     "label": "Exodus Chapter 15"
+    },
+    {
+     "t": 4437,
+     "label": "Exodus Chapter 16"
+    },
+    {
+     "t": 4820,
+     "label": "Exodus Chapter 17"
+    },
+    {
+     "t": 4993,
+     "label": "Exodus Chapter 18"
+    },
+    {
+     "t": 5279,
+     "label": "Exodus Chapter 19"
+    },
+    {
+     "t": 5535,
+     "label": "Exodus Chapter 20"
+    },
+    {
+     "t": 5756,
+     "label": "Exodus Chapter 21"
+    },
+    {
+     "t": 6082,
+     "label": "Exodus Chapter 22"
+    },
+    {
+     "t": 6381,
+     "label": "Exodus Chapter 23"
+    },
+    {
+     "t": 6688,
+     "label": "Exodus Chapter 24"
+    },
+    {
+     "t": 6866,
+     "label": "Exodus Chapter 25"
+    },
+    {
+     "t": 7203,
+     "label": "Exodus Chapter 26"
+    },
+    {
+     "t": 7557,
+     "label": "Exodus Chapter 27"
+    },
+    {
+     "t": 7776,
+     "label": "Exodus Chapter 28"
+    },
+    {
+     "t": 8231,
+     "label": "Exodus Chapter 29"
+    },
+    {
+     "t": 8701,
+     "label": "Exodus Chapter 30"
+    },
+    {
+     "t": 9070,
+     "label": "Exodus Chapter 31"
+    },
+    {
+     "t": 9242,
+     "label": "Exodus Chapter 32"
+    },
+    {
+     "t": 9645,
+     "label": "Exodus Chapter 33"
+    },
+    {
+     "t": 9891,
+     "label": "Exodus Chapter 34"
+    },
+    {
+     "t": 10272,
+     "label": "Exodus Chapter 35"
+    },
+    {
+     "t": 10598,
+     "label": "Exodus Chapter 36"
+    },
+    {
+     "t": 10957,
+     "label": "Exodus Chapter 37"
+    },
+    {
+     "t": 11228,
+     "label": "Exodus Chapter 38"
+    },
+    {
+     "t": 11562,
+     "label": "Exodus Chapter 39"
+    },
+    {
+     "t": 11973,
+     "label": "Exodus Chapter 40"
+    }
+   ]
+  },
+  {
+   "bibleBook": "Ruth",
+   "slug": "ruth",
+   "videoId": "Y-4b_Hm4wgQ",
+   "summary": "Ruth tells of Naomi, who loses her husband and sons in Moab, and her Moabite daughter-in-law Ruth, who will not leave her and returns with her to Bethlehem. Ruth gleans in the fields of Boaz, a relative of Naomi's family, and the book ends with Boaz redeeming the land and marrying Ruth, and the birth of their son Obed, grandfather of David.",
+   "durationSeconds": 986,
+   "chapters": [
+    {
+     "t": 0,
+     "label": "Ruth Chapter 1"
+    },
+    {
+     "t": 248,
+     "label": "Ruth Chapter 2"
+    },
+    {
+     "t": 526,
+     "label": "Ruth Chapter 3"
+    },
+    {
+     "t": 725,
+     "label": "Ruth Chapter 4"
+    }
+   ]
+  },
+  {
+   "bibleBook": "Leviticus",
+   "slug": "leviticus",
+   "videoId": "S1wDL2d_Aow",
+   "summary": "Leviticus gives the laws the LORD spoke to Moses from the Tent of Meeting: the offerings, the ordination of Aaron and his sons as priests, the laws of clean and unclean, the Day of Atonement, and the call to be holy because the LORD is holy. Near the end come the feasts, the year of jubilee, and the blessings of obedience.",
+   "durationSeconds": 9132,
+   "chapters": [
+    {
+     "t": 0,
+     "label": "Leviticus Chapter 1"
+    },
+    {
+     "t": 185,
+     "label": "Leviticus Chapter 2"
+    },
+    {
+     "t": 361,
+     "label": "Leviticus Chapter 3"
+    },
+    {
+     "t": 541,
+     "label": "Leviticus Chapter 4"
+    },
+    {
+     "t": 922,
+     "label": "Leviticus Chapter 5"
+    },
+    {
+     "t": 1182,
+     "label": "Leviticus Chapter 6"
+    },
+    {
+     "t": 1515,
+     "label": "Leviticus Chapter 7"
+    },
+    {
+     "t": 1899,
+     "label": "Leviticus Chapter 8"
+    },
+    {
+     "t": 2262,
+     "label": "Leviticus Chapter 9"
+    },
+    {
+     "t": 2495,
+     "label": "Leviticus Chapter 10"
+    },
+    {
+     "t": 2739,
+     "label": "Leviticus Chapter 11"
+    },
+    {
+     "t": 3166,
+     "label": "Leviticus Chapter 12"
+    },
+    {
+     "t": 3263,
+     "label": "Leviticus Chapter 13"
+    },
+    {
+     "t": 3962,
+     "label": "Leviticus Chapter 14"
+    },
+    {
+     "t": 4561,
+     "label": "Leviticus Chapter 15"
+    },
+    {
+     "t": 4908,
+     "label": "Leviticus Chapter 16"
+    },
+    {
+     "t": 5309,
+     "label": "Leviticus Chapter 17"
+    },
+    {
+     "t": 5508,
+     "label": "Leviticus Chapter 18"
+    },
+    {
+     "t": 5791,
+     "label": "Leviticus Chapter 19"
+    },
+    {
+     "t": 6154,
+     "label": "Leviticus Chapter 20"
+    },
+    {
+     "t": 6491,
+     "label": "Leviticus Chapter 21"
+    },
+    {
+     "t": 6723,
+     "label": "Leviticus Chapter 22"
+    },
+    {
+     "t": 7063,
+     "label": "Leviticus Chapter 23"
+    },
+    {
+     "t": 7543,
+     "label": "Leviticus Chapter 24"
+    },
+    {
+     "t": 7749,
+     "label": "Leviticus Chapter 25"
+    },
+    {
+     "t": 8306,
+     "label": "Leviticus Chapter 26"
+    },
+    {
+     "t": 8773,
+     "label": "Leviticus Chapter 27"
+    }
+   ]
+  },
+  {
+   "bibleBook": "Jonah",
+   "slug": "jonah",
+   "videoId": "LW8IYlw357U",
+   "summary": "Jonah is sent by the LORD to warn Nineveh, but flees by ship; a storm and a great fish turn him back. He preaches, Nineveh repents, and Jonah is angry when God spares the city; the book ends with God's question about compassion for Nineveh.",
+   "durationSeconds": 511,
+   "chapters": [
+    {
+     "t": 0,
+     "label": "Jonah Chapter 1"
+    },
+    {
+     "t": 193,
+     "label": "Jonah Chapter 2"
+    },
+    {
+     "t": 282,
+     "label": "Jonah Chapter 3"
+    },
+    {
+     "t": 387,
+     "label": "Jonah Chapter 4"
+    }
+   ]
+  },
+  {
+   "bibleBook": "James",
+   "slug": "james",
+   "videoId": "IGZpymn1RUA",
+   "summary": "James writes to believers scattered among the nations: endure trials with joy, ask God for wisdom, and don't only hear the word but do it. He warns against favoring the rich over the poor, teaches that faith without works is dead, and calls for taming the tongue, humility before God, and patience; the book ends with prayer for the sick and turning back anyone who wanders from the truth.",
+   "durationSeconds": 958,
+   "chapters": [
+    {
+     "t": 0,
+     "label": "James Chapter 1"
+    },
+    {
+     "t": 226,
+     "label": "James Chapter 2"
+    },
+    {
+     "t": 442,
+     "label": "James Chapter 3"
+    },
+    {
+     "t": 602,
+     "label": "James Chapter 4"
+    },
+    {
+     "t": 760,
+     "label": "James Chapter 5"
+    }
+   ]
+  },
+  {
+   "bibleBook": "Numbers",
+   "slug": "numbers",
+   "videoId": "LVMUjVsWzpY",
+   "summary": "The full book of Numbers follows Israel from Mount Sinai through the wilderness toward the land of Canaan: the census of the tribes, the spies sent into the land and the people's refusal to go up, the years of wandering, the rebellion of Korah, the bronze serpent, and Balaam and his donkey. It ends with a new generation camped on the plains of Moab by the Jordan.",
+   "durationSeconds": 12772,
+   "chapters": [
+    {
+     "t": 0,
+     "label": "Numbers Chapter 1"
+    },
+    {
+     "t": 519,
+     "label": "Numbers Chapter 2"
+    },
+    {
+     "t": 831,
+     "label": "Numbers Chapter 3"
+    },
+    {
+     "t": 1322,
+     "label": "Numbers Chapter 4"
+    },
+    {
+     "t": 1821,
+     "label": "Numbers Chapter 5"
+    },
+    {
+     "t": 2158,
+     "label": "Numbers Chapter 6"
+    },
+    {
+     "t": 2438,
+     "label": "Numbers Chapter 7"
+    },
+    {
+     "t": 3281,
+     "label": "Numbers Chapter 8"
+    },
+    {
+     "t": 3549,
+     "label": "Numbers Chapter 9"
+    },
+    {
+     "t": 3815,
+     "label": "Numbers Chapter 10"
+    },
+    {
+     "t": 4146,
+     "label": "Numbers Chapter 11"
+    },
+    {
+     "t": 4526,
+     "label": "Numbers Chapter 12"
+    },
+    {
+     "t": 4681,
+     "label": "Numbers Chapter 13"
+    },
+    {
+     "t": 4974,
+     "label": "Numbers Chapter 14"
+    },
+    {
+     "t": 5427,
+     "label": "Numbers Chapter 15"
+    },
+    {
+     "t": 5832,
+     "label": "Numbers Chapter 16"
+    },
+    {
+     "t": 6339,
+     "label": "Numbers Chapter 17"
+    },
+    {
+     "t": 6469,
+     "label": "Numbers Chapter 18"
+    },
+    {
+     "t": 6878,
+     "label": "Numbers Chapter 19"
+    },
+    {
+     "t": 7141,
+     "label": "Numbers Chapter 20"
+    },
+    {
+     "t": 7449,
+     "label": "Numbers Chapter 21"
+    },
+    {
+     "t": 7817,
+     "label": "Numbers Chapter 22"
+    },
+    {
+     "t": 8255,
+     "label": "Numbers Chapter 23"
+    },
+    {
+     "t": 8551,
+     "label": "Numbers Chapter 24"
+    },
+    {
+     "t": 8813,
+     "label": "Numbers Chapter 25"
+    },
+    {
+     "t": 8986,
+     "label": "Numbers Chapter 26"
+    },
+    {
+     "t": 9600,
+     "label": "Numbers Chapter 27"
+    },
+    {
+     "t": 9837,
+     "label": "Numbers Chapter 28"
+    },
+    {
+     "t": 10140,
+     "label": "Numbers Chapter 29"
+    },
+    {
+     "t": 10536,
+     "label": "Numbers Chapter 30"
+    },
+    {
+     "t": 10721,
+     "label": "Numbers Chapter 31"
+    },
+    {
+     "t": 11205,
+     "label": "Numbers Chapter 32"
+    },
+    {
+     "t": 11605,
+     "label": "Numbers Chapter 33"
+    },
+    {
+     "t": 12003,
+     "label": "Numbers Chapter 34"
+    },
+    {
+     "t": 12234,
+     "label": "Numbers Chapter 35"
+    },
+    {
+     "t": 12602,
+     "label": "Numbers Chapter 36"
+    }
+   ]
+  },
+  {
+   "bibleBook": "Philippians",
+   "slug": "philippians",
+   "videoId": "VDek-EFK3W8",
+   "summary": "Paul writes from prison to the believers at Philippi with joy and thanks: for him to live is Christ, and he urges them to stand firm together and to have the mind of Christ, who humbled himself to death on a cross and was highly exalted. He counts everything loss compared with knowing Christ and presses on toward the goal; the book ends with the call to rejoice in the Lord always, to bring every request to God, and to think on whatever is true and lovely.",
+   "durationSeconds": 902,
+   "chapters": [
+    {
+     "t": 0,
+     "label": "Philippians Chapter 1"
+    },
+    {
+     "t": 253,
+     "label": "Philippians Chapter 2"
+    },
+    {
+     "t": 491,
+     "label": "Philippians Chapter 3"
+    },
+    {
+     "t": 697,
+     "label": "Philippians Chapter 4"
+    }
+   ]
+  }
+ ]
+}

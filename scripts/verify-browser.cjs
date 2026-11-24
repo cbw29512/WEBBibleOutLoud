@@ -8,21 +8,13 @@ const axeScript = require.resolve("axe-core/axe.min.js");
 const root = path.resolve(__dirname, "..");
 const catalog = JSON.parse(fs.readFileSync(path.join(root, "data/videos.json"), "utf8"));
 const merch = JSON.parse(fs.readFileSync(path.join(root, "data/merch.json"), "utf8"));
-const books = catalog.videos.filter(v => v.scope === "book");
-const passages = catalog.videos.filter(v => v.scope === "passage");
-const bookOrder = ["Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi","Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"];
-const expectedBookNames = books.slice().sort((a,b)=>
-  bookOrder.indexOf(a.bibleBook)-bookOrder.indexOf(b.bibleBook) ||
-  a.chapter-b.chapter || a.verse-b.verse || a.publishedAt.localeCompare(b.publishedAt)
-).map(v=>v.bibleBook);
-const expectedBookTitles = books.slice().sort((a,b)=>
-  bookOrder.indexOf(a.bibleBook)-bookOrder.indexOf(b.bibleBook) ||
-  a.chapter-b.chapter || a.verse-b.verse || a.publishedAt.localeCompare(b.publishedAt)
-).map(v => v.title);
-const expectedStoryTitles = passages.slice().sort((a,b)=>
-  bookOrder.indexOf(a.bibleBook)-bookOrder.indexOf(b.bibleBook) ||
-  a.chapter-b.chapter || a.verse-b.verse || a.publishedAt.localeCompare(b.publishedAt)
-).map(v => v.title);
+// The test orders cards with the same shared module the renderer uses, then asserts the
+// rendered page matches, so a new video has to land in its Bible-order slot to pass.
+const { HOME_LAYOUT, SUPPORT_URL, collections, slugOf } = require("./bible-order.cjs");
+const { stories: passages, books, sleep } = collections(catalog.videos);
+const expectedSections = HOME_LAYOUT.sections.map(s => s.id);
+const titlesOf = list => list.map(v => v.title);
+const booksOf = list => list.map(v => v.bibleBook);
 const SHORTS = "https://www.youtube.com/@webbibleoutloud/shorts";
 
 (async () => {
@@ -37,7 +29,6 @@ const SHORTS = "https://www.youtube.com/@webbibleoutloud/shorts";
       assert.equal(await page.locator("h1").innerText(), "Scripture,\nclearly heard.");
       assert.equal(await page.locator(".site-header .brand-title").innerText(), "Bible Out Loud");
       assert.equal(await page.locator(".feature-media").count(), 1);
-      assert.equal(await page.locator("a[href='https://buymeacoffee.com/divclass016']").count(), 1);
       assert.equal(await page.locator("#shorts-button").count(), 1, "Expected one Shorts button");
       assert.equal(await page.locator("#shorts-button").innerText(), "Watch the Shorts on YouTube");
       assert.equal(await page.locator("#shorts-button").getAttribute("href"), SHORTS);
@@ -45,26 +36,48 @@ const SHORTS = "https://www.youtube.com/@webbibleoutloud/shorts";
       assert.equal(await page.locator("a[href*='youtube.com/shorts/']").count(), 0, "Shorts video cards should not be present");
       assert.equal(await page.locator('[data-filter="short"], [data-type="short"]').count(), 0, "Shorts cards or Shorts filter still present");
       assert.equal(await page.locator("#video-search, #load-more").count(), 0, "Old library controls still present");
+
+      // Top to bottom: Greatest Stories Ever Told, Full Books, For Sleep, merch, support.
+      const sectionOrder = await page.locator("main [data-home-section]").evaluateAll(nodes => nodes.map(n => n.dataset.homeSection));
+      assert.deepEqual(sectionOrder, expectedSections, "Homepage sections are in the wrong order");
+
       assert.equal(await page.locator("#stories-grid .vid").count(), passages.length);
       assert.equal(await page.locator("#stories-grid .vid:visible").count(), passages.length);
       assert.equal(await page.locator('#stories-grid .vid').evaluateAll(nodes => nodes.filter(n => n.dataset.scope === "passage").length), passages.length);
-      const storyTitles = await page.locator("#stories-grid .vid-title").allInnerTexts();
-      assert.deepEqual(storyTitles, expectedStoryTitles, "Story cards must use the exact public titles in Bible order");
+      assert.deepEqual(await page.locator("#stories-grid .vid-title").allInnerTexts(), titlesOf(passages),
+        "Story cards must use the exact public titles in Bible order");
       const storyLinks = await page.locator("#stories-grid .vid").evaluateAll(nodes => nodes.map(n => n.href));
       assert.equal(new Set(storyLinks).size, passages.length, "Each story card links to a unique video");
       assert.ok(storyLinks.every(link => link.startsWith("https://youtu.be/")), "Stories must open YouTube");
+
       assert.equal(await page.locator("#books-grid .vid").count(), books.length);
       assert.equal(await page.locator("#books-grid .vid:visible").count(), books.length);
-      const bookTitles = await page.locator("#books-grid .vid-title").allInnerTexts();
-      assert.deepEqual(bookTitles, expectedBookTitles, "Complete book cards must use the exact public titles in Bible order");
+      assert.deepEqual(await page.locator("#books-grid .vid-title").allInnerTexts(), titlesOf(books),
+        "Complete book cards must use the exact public titles in Bible order");
       const bookTags = await page.locator("#books-grid .type-tag").allInnerTexts();
       assert.ok(bookTags.every(t => t.toLowerCase() === "complete book"), "Full Books section must contain complete books only");
-      const bibleBooks = await page.locator("#books-grid .vid").evaluateAll(nodes => nodes.map(n => n.dataset.book));
-      assert.deepEqual(bibleBooks, expectedBookNames, "Books must appear in canonical Bible order");
+      assert.deepEqual(await page.locator("#books-grid .vid").evaluateAll(nodes => nodes.map(n => n.dataset.book)), booksOf(books),
+        "Books must appear in canonical Bible order");
       const bookLinks = await page.locator("#books-grid .vid").evaluateAll(nodes => nodes.map(n => n.href));
       assert.equal(new Set(bookLinks).size, books.length, "Each book card links to a unique video");
-      assert.ok(bookLinks.every(link => link.startsWith("https://youtu.be/")), "Full books must open YouTube");
+      assert.ok(bookLinks.every(link => /\/books\/[a-z0-9-]+\/$/.test(link)), "Full book cards must open their on-site book pages");
+
+      assert.equal(await page.locator("#sleep-grid .vid").count(), sleep.length, "For Sleep cards must match the catalog");
+      assert.equal(await page.locator("#sleep-grid .vid:visible").count(), sleep.length);
+      assert.deepEqual(await page.locator("#sleep-grid .vid-title").allInnerTexts(), titlesOf(sleep),
+        "For Sleep cards must use the exact public titles in Bible order");
+      assert.deepEqual(await page.locator("#sleep-grid .vid").evaluateAll(nodes => nodes.map(n => n.dataset.book)), booksOf(sleep),
+        "For Sleep must appear in canonical Bible order");
+
+      // No card anywhere shows a posting date.
+      const cardMeta = await page.locator(".vid-meta > span:first-child").allInnerTexts();
+      assert.ok(cardMeta.length > 0 && cardMeta.every(t => /^[1-3]? ?[A-Za-z ]+$/.test(t.trim()) && !/\d/.test(t)),
+        "Cards must show the Bible book, never a posting date");
+
       assert.equal(await page.locator("#shop .product").count(), merch.products.length);
+      assert.equal(await page.locator(`#shop a[href='${SUPPORT_URL}']`).count(), 0, "Merch must not contain the Buy Me a Coffee link");
+      assert.equal(await page.locator(`a[href='${SUPPORT_URL}']`).count(), 1, "Expected exactly one Buy Me a Coffee link");
+      assert.equal(await page.locator(`#support a[href='${SUPPORT_URL}']:visible`).count(), 1, "The support link belongs in the support section");
       assert.equal(await page.locator("a[href='/privacy.html']").count(), 1);
       assert.equal(await page.locator("link[href='styles.css']").count(), 1);
       await page.addScriptTag({path:axeScript});
@@ -73,7 +86,36 @@ const SHORTS = "https://www.youtube.com/@webbibleoutloud/shorts";
       assert.deepEqual(failures, [], "page errors: " + failures.join("; "));
       await page.close();
     }
-    console.log("PASS: " + passages.length + " stories, " + books.length + " complete books, " + merch.products.length + " merch items, one Shorts button, and axe WCAG across 4 viewports");
+    // Book pages, book index and For Sleep page: exact title, player button, axe WCAG at phone and desktop widths.
+    const slugs = books.map(v => "books/" + slugOf(v.bibleBook) + "/index.html");
+    for (const rel of ["books/index.html", "sleep/index.html"].concat(slugs)) {
+      for (const [width, height] of [[390, 844], [1366, 768]]) {
+        const page = await browser.newPage({ viewport: { width, height } });
+        const failures = [];
+        page.on("pageerror", error => failures.push(error.message));
+        await page.goto(pathToFileURL(path.resolve(__dirname, "../site/" + rel)).href, { waitUntil: "domcontentloaded" });
+        assert.equal(await page.locator("h1").count(), 1, rel + " needs one h1");
+        if (rel === "books/index.html") {
+          assert.deepEqual(await page.locator("#book-pages-grid .vid-title").allInnerTexts(), titlesOf(books),
+            "/books/ must list complete books in Bible order");
+        }
+        if (rel === "sleep/index.html") {
+          assert.deepEqual(await page.locator("#sleep-grid .vid-title").allInnerTexts(), titlesOf(sleep),
+            "/sleep/ must list For Sleep readings in Bible order");
+        }
+        if (rel.startsWith("books/") && rel !== "books/index.html") {
+          const v = books.find(b => rel === "books/" + slugOf(b.bibleBook) + "/index.html");
+          assert.ok((await page.content()).includes(v.url), rel + " must link its YouTube video");
+          assert.equal(await page.locator(".lite-play").count(), 1, rel + " needs one play button");
+        }
+        await page.addScriptTag({path:axeScript});
+        const audit = await page.evaluate(async () => window.axe.run(document, {runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21a","wcag21aa","wcag22aa"]}}));
+        assert.deepEqual(audit.violations.map(v=>v.id), [], "Accessibility violations on " + rel + " " + width);
+        assert.deepEqual(failures.filter(f => !/goatcounter|gc\.zgo/i.test(f)), [], "page errors on " + rel + ": " + failures.join("; "));
+        await page.close();
+      }
+    }
+    console.log("PASS: sections " + expectedSections.join(" → ") + "; " + passages.length + " stories, " + books.length + " complete books, " + sleep.length + " For Sleep, " + merch.products.length + " merch items, one Shorts button, one support link, axe WCAG across 4 viewports, plus " + (slugs.length + 2) + " book/sleep pages");
   } finally {
     await browser.close();
   }

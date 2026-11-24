@@ -16,13 +16,29 @@ Open the **existing** [Netlify project](https://app.netlify.com/projects/webbibl
 
 After linking, every merge or push to `main` should build and deploy automatically. Verify the live Netlify deploy's `commit_ref` matches the merged GitHub commit.
 
+## Homepage layout
+
+The homepage runs top to bottom in this order:
+
+1. **Greatest Stories Ever Told** — the longer story readings, in Bible order
+2. **Full Books** — complete book readings, in Bible order
+3. **For Sleep** — voice-only whole-book readings, in Bible order
+4. **Wear the words** — merch from `data/merch.json`
+5. **Support our mission** — one quiet link to Buy Me a Coffee (proposed; pending approval)
+
+That order lives in `data/home-layout.json`, and the order inside every list lives in `data/bible-order.json`. Nothing on the homepage, `/books/` or `/sleep/` is hand-ordered: `scripts/render-videos.cjs` generates all of it, so adding a video to `data/videos.json` drops it into its Bible-order position everywhere it belongs. To reorder the homepage, reorder `data/home-layout.json` and re-run the renderer.
+
+Cards never show a posting date. The only metadata on a card is the Bible book.
+
 ## Update the public video catalog
 
-The public catalog lives in `data/videos.json`. The homepage shows **longer readings (stories)** and **complete books**, both in canonical Bible order, plus merch from `data/merch.json`. Shorts stay in the JSON catalog so the weekly routine can keep tracking them, but they are not rendered as cards. A single button, **Watch the Shorts on YouTube**, links to `https://www.youtube.com/@webbibleoutloud/shorts`. Do not list unpublished, Unlisted, or scheduled videos.
+The public catalog lives in `data/videos.json`. Shorts stay in the JSON catalog so the weekly routine can keep tracking them, but they are not rendered as cards. A single button, **Watch the Shorts on YouTube**, links to `https://www.youtube.com/@webbibleoutloud/shorts`. Do not list unpublished, Unlisted, or scheduled videos.
 
-Complete-book cards appear in canonical order from Genesis to Revelation, each directly linked to its video without a dropdown. When two recordings of the same book are published, the earlier one is listed first. Longer readings use the exact public YouTube title and link. This page is not presented as a complete list of every story or book in the Bible.
+Complete-book cards appear in canonical order from Genesis to Revelation, each directly linked to its book page. When two recordings of the same book are published, the earlier one is listed first. Longer readings use the exact public YouTube title and link. This page is not presented as a complete list of every story or book in the Bible.
 
-Edit **`data/videos.json`** whenever new videos go public. Edit **`data/merch.json`** when the live Printify shop changes, so the Wear the words section stays current. Entries require `title`, `url`, `type` (`short` or `long`), `publishedAt` (ISO YouTube timestamp), **`bibleBook`** (canonical Bible book name), **`chapter`**, and **`verse`** (the starting reference). Longer readings additionally require `scope`: `book` only for recordings of an entire Bible book, or `passage` for chapters and other sections. A Short may optionally have a `story` field in the catalog; that field is not used to render homepage cards. All videos are validated for URL uniqueness and Scripture metadata.
+A reading joins the **For Sleep** section when its exact public title contains `for Sleep`; no other flag is needed. Only add a For Sleep video once it is Public on the channel — Unlisted and Private videos must never appear on the site.
+
+Edit **`data/videos.json`** whenever new videos go public. Edit **`data/merch.json`** when the live Printify shop changes, so the Wear the words section stays current. Buy Me a Coffee never belongs in `data/merch.json`. Entries require `title`, `url`, `type` (`short` or `long`), `publishedAt` (ISO YouTube timestamp), **`bibleBook`** (canonical Bible book name), **`chapter`**, and **`verse`** (the starting reference). Longer readings additionally require `scope`: `book` only for recordings of an entire Bible book, or `passage` for chapters and other sections. A Short may optionally have a `story` field in the catalog; that field is not used to render homepage cards. All videos are validated for URL uniqueness and Scripture metadata.
 
 The Git-driven Netlify build runs `node scripts/render-videos.cjs` to generate all cards and thumbnails in `site/index.html` from the JSON catalog. Run locally to keep the HTML source synchronized:
 
