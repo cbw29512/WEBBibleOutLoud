@@ -29,6 +29,9 @@ const SHORTS = "https://www.youtube.com/@webbibleoutloud/shorts";
       assert.equal(await page.locator("h1").innerText(), "Scripture,\nclearly heard.");
       assert.equal(await page.locator(".site-header .brand-title").innerText(), "Bible Out Loud");
       assert.equal(await page.locator(".feature-media").count(), 1);
+      // The featured card sits straight at every width: no tilt, skew or other transform.
+      assert.equal(await page.locator(".feature").evaluate(n => getComputedStyle(n).transform), "none",
+        "The featured card must not be tilted at " + width + "x" + height);
       assert.equal(await page.locator("#shorts-button").count(), 1, "Expected one Shorts button");
       assert.equal(await page.locator("#shorts-button").innerText(), "Watch the Shorts on YouTube");
       assert.equal(await page.locator("#shorts-button").getAttribute("href"), SHORTS);
