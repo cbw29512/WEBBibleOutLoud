@@ -30,6 +30,8 @@ That order lives in `data/home-layout.json`, and the order inside every list liv
 
 Cards never show a posting date. The only metadata on a card is the Bible book.
 
+The hero carries one progress line, "N of 66 books read aloud, word for word", with a bar. N is the number of distinct Bible books that have a public whole-book recording in `data/videos.json` (a read-along Full Book or a For Sleep reading of that book, counted once), and 66 is the length of `data/bible-order.json`. Adding a book's first whole-book recording moves the line; nothing about it is typed in by hand.
+
 ## Update the public video catalog
 
 The public catalog lives in `data/videos.json`. Shorts stay in the JSON catalog so the weekly routine can keep tracking them, but they are not rendered as cards. A single button, **Watch the Shorts on YouTube**, links to `https://www.youtube.com/@webbibleoutloud/shorts`. Do not list unpublished, Unlisted, or scheduled videos.

@@ -112,6 +112,21 @@ verify(len(set(page.videos)) == len(page.videos), "duplicate video cards")
 verify(all("/shorts/" not in url for url in page.videos), "Shorts must not be rendered as cards")
 verify('data-type="short"' not in html and 'data-filter="short"' not in html, "Shorts filter or Shorts cards still present")
 verify('id="video-search"' not in html and 'id="load-more"' not in html, "old library search or load-more controls still present")
+# The hero states whole-Bible progress, computed here the same way the renderer does:
+# distinct Bible books that have a public whole-book recording, against the canon.
+read_aloud = {x["bibleBook"] for x in data["videos"] if x["type"] == "long" and x.get("scope") == "book"}
+canon_total = len(CANONICAL_BOOKS)
+progress_label = str(len(read_aloud)) + " of " + str(canon_total) + " books read aloud, word for word"
+stats_block = re.search(r"<!-- VIDEO_STATS_START -->(.*)<!-- VIDEO_STATS_END -->", html, re.S)
+stats_text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", stats_block.group(1))).strip() if stats_block else ""
+verify(stats_text == progress_label, "hero progress must equal the computed whole-Bible count, got: " + stats_text)
+verify('class="metrics"' not in html and "shop picks" not in html, "the old four-count hero strip must be gone")
+bar = re.search(r'role="progressbar" aria-valuenow="(\d+)" aria-valuemin="0" aria-valuemax="(\d+)"', html)
+verify(bar is not None and bar.group(1) == str(len(read_aloud)) and bar.group(2) == str(canon_total),
+       "progress bar values must be the computed count and the canon size")
+fill = re.search(r'class="bible-progress-fill" style="width:([0-9.]+)%"', html)
+verify(fill is not None and abs(float(fill.group(1)) - len(read_aloud) * 100 / canon_total) < 0.051,
+       "progress bar width must be the computed share of the canon")
 verify(html.count('id="shorts-button"') == 1, "expected one Shorts button")
 verify(html.count(SHORTS) == 1, "Shorts button URL missing or duplicated")
 verify("".join(page.text).strip() == "Watch the Shorts on YouTube", "Shorts button text is wrong")

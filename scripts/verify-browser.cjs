@@ -10,8 +10,11 @@ const catalog = JSON.parse(fs.readFileSync(path.join(root, "data/videos.json"), 
 const merch = JSON.parse(fs.readFileSync(path.join(root, "data/merch.json"), "utf8"));
 // The test orders cards with the same shared module the renderer uses, then asserts the
 // rendered page matches, so a new video has to land in its Bible-order slot to pass.
-const { HOME_LAYOUT, SUPPORT_URL, collections, slugOf } = require("./bible-order.cjs");
+const { HOME_LAYOUT, SUPPORT_URL, BIBLE_BOOKS, collections, slugOf } = require("./bible-order.cjs");
 const { stories: passages, books, sleep } = collections(catalog.videos);
+// Same definition the renderer uses: distinct books with any public whole-book recording.
+const booksReadAloud = new Set(catalog.videos.filter(v => v.type === "long" && v.scope === "book").map(v => v.bibleBook)).size;
+const progressLabel = booksReadAloud + " of " + BIBLE_BOOKS.length + " books read aloud, word for word";
 const expectedSections = HOME_LAYOUT.sections.map(s => s.id);
 const titlesOf = list => list.map(v => v.title);
 const booksOf = list => list.map(v => v.bibleBook);
@@ -29,6 +32,24 @@ const SHORTS = "https://www.youtube.com/@webbibleoutloud/shorts";
       assert.equal(await page.locator("h1").innerText(), "Scripture,\nclearly heard.");
       assert.equal(await page.locator(".site-header .brand-title").innerText(), "Bible Out Loud");
       assert.equal(await page.locator(".feature-media").count(), 1);
+      // The featured card sits straight at every width: no tilt, skew or other transform.
+      assert.equal(await page.locator(".feature").evaluate(n => getComputedStyle(n).transform), "none",
+        "The featured card must not be tilted at " + width + "x" + height);
+      assert.equal((await page.locator(".bible-progress-label").innerText()).replace(/\s+/g, " ").trim(), progressLabel,
+        "Hero progress must state the computed whole-Bible count");
+      assert.equal(await page.locator(".metrics").count(), 0, "The old four-count hero strip must be gone");
+      const bar = page.locator(".bible-progress-bar");
+      assert.equal(await bar.getAttribute("role"), "progressbar");
+      assert.equal(await bar.getAttribute("aria-valuenow"), String(booksReadAloud));
+      assert.equal(await bar.getAttribute("aria-valuemin"), "0");
+      assert.equal(await bar.getAttribute("aria-valuemax"), String(BIBLE_BOOKS.length));
+      assert.equal(await bar.getAttribute("aria-labelledby"), "bible-progress-label");
+      const share = await page.locator(".bible-progress-fill").evaluate(el => {
+        const track = el.parentElement.getBoundingClientRect().width;
+        return track ? el.getBoundingClientRect().width / track : 0;
+      });
+      assert.ok(Math.abs(share - booksReadAloud / BIBLE_BOOKS.length) < 0.02,
+        "Progress fill must be " + booksReadAloud + "/" + BIBLE_BOOKS.length + " of the track");
       assert.equal(await page.locator("#shorts-button").count(), 1, "Expected one Shorts button");
       assert.equal(await page.locator("#shorts-button").innerText(), "Watch the Shorts on YouTube");
       assert.equal(await page.locator("#shorts-button").getAttribute("href"), SHORTS);

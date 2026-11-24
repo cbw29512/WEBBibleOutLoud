@@ -9,7 +9,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const root = path.resolve(__dirname, "..");
 const htmlPath = path.join(root, "site/index.html");
-const {HOME_LAYOUT, SUPPORT_URL, isSleep, scriptureOrder, collections, bookPagePath} = require("./bible-order.cjs");
+const {HOME_LAYOUT, SUPPORT_URL, BIBLE_BOOKS, isSleep, scriptureOrder, collections, bookPagePath} = require("./bible-order.cjs");
 const dataset = JSON.parse(fs.readFileSync(path.join(root, "data/videos.json"),"utf8"));
 const merch = JSON.parse(fs.readFileSync(path.join(root, "data/merch.json"),"utf8"));
 // The homepage shows a short, hand-picked set of products with photos, not the whole catalog;
@@ -85,7 +85,19 @@ const hero='<article class="feature" aria-label="Featured Bible reading">\n'+
 const ogImage='<meta property="og:image" content="'+thumb(featured)+'">\n  '+
 '<meta property="og:image:alt" content="'+escape(featured.title)+'">\n  '+
 '<meta name="twitter:card" content="summary_large_image">';
-const stats='<div class="metrics" aria-label="What is on this page"><div class="metric"><strong>'+passages.length+'</strong> stories</div><div class="metric"><strong>'+books.length+'</strong> complete books</div><div class="metric"><strong>'+sleep.length+'</strong> for sleep</div><div class="metric"><strong>'+merch.products.length+'</strong> shop picks</div></div>';
+// One line of whole-Bible progress instead of a tally of what is on the page. A book counts
+// once it has any public whole-book recording — the read-along Full Book or the voice-only
+// For Sleep reading — and a second recording of the same book does not count again. The total
+// is the canon in data/bible-order.json, so neither number is written by hand.
+const booksReadAloud=[...new Set(long.filter(v=>v.scope==="book").map(v=>v.bibleBook))];
+if(booksReadAloud.length<1 || booksReadAloud.length>BIBLE_BOOKS.length) throw Error("Whole-Bible progress is outside the canon");
+const canonSize=BIBLE_BOOKS.length;
+const fillWidth=(booksReadAloud.length*100/canonSize).toFixed(2);
+const stats='<div class="bible-progress">\n'+
+'  <p class="bible-progress-label" id="bible-progress-label"><strong>'+booksReadAloud.length+'</strong> of <strong>'+canonSize+'</strong> books read aloud, word for word</p>\n'+
+'  <div class="bible-progress-bar" role="progressbar" aria-valuenow="'+booksReadAloud.length+'" aria-valuemin="0" aria-valuemax="'+canonSize+'" aria-labelledby="bible-progress-label">\n'+
+'    <span class="bible-progress-fill" style="width:'+fillWidth+'%"></span>\n'+
+'  </div>\n</div>';
 // Cards never show a posting date; the Bible book is the only metadata on a card.
 const card=(v,kind)=>'<a class="vid" data-type="long" data-scope="'+kind+'" data-book="'+escape(v.bibleBook)+'" data-scripture-order="'+v.scriptureOrder+'" href="'+escape(kind==="book"?bookPagePath(v):v.url)+'"'+(kind==="book"?'':' target="_blank" rel="noopener noreferrer"')+'>\n'+
 '  <span class="thumb"><img src="'+thumb(v)+'" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">'+(kind==="book"?"Complete book":kind==="sleep"?"For Sleep":"Story")+'</span></span>\n'+
