@@ -9,8 +9,13 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "site"
 HOME = "https://webbibleoutloud.com/"
-SUPPORT = "https://buymeacoffee.com/divclass016"
 SHORTS = "https://www.youtube.com/@webbibleoutloud/shorts"
+# Section order and Bible order both come from data, so this test fails whenever the
+# generated HTML stops matching the catalog instead of encoding an order of its own.
+LAYOUT = json.loads((ROOT / "data/home-layout.json").read_text(encoding="utf-8"))
+CANONICAL_BOOKS = json.loads((ROOT / "data/bible-order.json").read_text(encoding="utf-8"))["books"]
+SUPPORT = LAYOUT["supportUrl"]
+EXPECTED_SECTIONS = [s["id"] for s in LAYOUT["sections"]]
 
 class Page(HTMLParser):
     def __init__(self):
@@ -78,7 +83,8 @@ verify('id="hero-title">Scripture,' in html and 'class="brand-title">Bible Out L
 verify(page.canonicals == [HOME], "incorrect canonical homepage")
 verify('name="description"' in html and 'property="og:image"' in html and 'name="twitter:card"' in html,
        "SEO metadata or social preview missing")
-verify('id="full-books-schema"' in html and 'id="stories-schema"' in html, "structured data missing")
+verify('id="full-books-schema"' in html and 'id="stories-schema"' in html and 'id="for-sleep-schema"' in html,
+       "structured data missing")
 verify('href="favicon.svg"' in html and (SITE / "favicon.svg").exists(), "favicon missing")
 verify('<a class="brand" href="/">' in html, "brand link should use its visible text for accessibility")
 verify(len(shorts) >= 1 and len(books) >= 1 and len(passages) >= 1, "catalog must still include Shorts, books, and passages")
@@ -99,6 +105,8 @@ for x in books:
         verify(x["title"] in t and x["url"] in t and 'rel="canonical" href="' + HOME + book_page(x).lstrip("/") + '"' in t, "book page title/link/canonical wrong: " + book_page(x))
         verify(HOME + book_page(x).lstrip("/") in sitemap, "book page missing from sitemap: " + book_page(x))
 verify((SITE / "sleep/index.html").exists() and all(x["url"] in (SITE / "sleep/index.html").read_text(encoding="utf-8") for x in sleep), "For Sleep page missing a sleep video")
+books_index = (SITE / "books/index.html").read_text(encoding="utf-8")
+sleep_index = (SITE / "sleep/index.html").read_text(encoding="utf-8")
 verify("frame-src https://www.youtube-nocookie.com" in headers, "book-page player needs frame-src youtube-nocookie")
 verify(len(set(page.videos)) == len(page.videos), "duplicate video cards")
 verify(all("/shorts/" not in url for url in page.videos), "Shorts must not be rendered as cards")
@@ -121,26 +129,48 @@ verify(all(url in page.links for url in product_urls), "published merch product 
 verify(len([x for x in page.links if "printify.me/product/" in x]) == len(product_urls), "shop product links do not match merch.json")
 verify(any(x.rstrip("/") == merch["shopUrl"].rstrip("/") for x in page.links), "full shop link missing")
 verify("buymeacoffee" not in json.dumps(merch).lower(), "Buy Me a Coffee must not be added to merch.json")
-canonical_book_order = ["Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi","Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"]
+
 def scripture_key(item):
-    return (canonical_book_order.index(item["bibleBook"]), item["chapter"], item["verse"], 0 if item.get("scope")=="book" else 1, item["publishedAt"])
+    return (CANONICAL_BOOKS.index(item["bibleBook"]), item["chapter"], item["verse"],
+            0 if item.get("scope") == "book" else 1, item["publishedAt"])
 ordered_books = sorted(books, key=scripture_key)
 ordered_passages = sorted(passages, key=scripture_key)
-# Parse cards in document order so Bible-order checks follow the rendered HTML.
-ordered_cards = re.findall(r'<a class="vid"[^>]*>', html)
-book_order_hrefs = []
-passage_order_hrefs = []
-for tag in ordered_cards:
-    href = re.search(r'href="([^"]+)"', tag)
-    scope = re.search(r'data-scope="([^"]+)"', tag)
-    if not href or not scope:
-        continue
-    if scope.group(1) == "book":
-        book_order_hrefs.append(href.group(1))
-    elif scope.group(1) == "passage":
-        passage_order_hrefs.append(href.group(1))
-verify(book_order_hrefs == [book_page(x) for x in ordered_books], "Full Books must appear in canonical Bible order")
-verify(passage_order_hrefs == [x["url"] for x in ordered_passages], "stories must appear in canonical Bible order")
+ordered_sleep = sorted(sleep, key=scripture_key)
+
+# Homepage sections are generated in the order declared in data/home-layout.json.
+sections = {m.group(1): m.group(2)
+            for m in re.finditer(r'<section id="([^"]+)"[^>]*data-home-section="[^"]*"(.*?)</section>', html, re.S)}
+rendered_order = re.findall(r'data-home-section="([^"]+)"', html)
+verify(rendered_order == EXPECTED_SECTIONS,
+       "homepage sections must be rendered in data/home-layout.json order, got " + " → ".join(rendered_order))
+verify("<!-- HOME_SECTIONS_START -->" in html, "homepage section render marker missing")
+
+def card_hrefs(section_id):
+    block = sections.get(section_id, "")
+    return [m.group(1) for m in re.finditer(r'<a class="vid"[^>]*?href="([^"]+)"', block)]
+verify(card_hrefs("stories") == [x["url"] for x in ordered_passages],
+       "Greatest Stories Ever Told must appear in canonical Bible order")
+verify(card_hrefs("books") == [book_page(x) for x in ordered_books],
+       "Full Books must appear in canonical Bible order")
+verify(card_hrefs("sleep") == [x["url"] for x in ordered_sleep],
+       "For Sleep must appear in canonical Bible order")
+
+
+# /books/ and /sleep/ use the same Bible order as the matching homepage sections.
+verify([m.group(1) for m in re.finditer(r'<a class="vid"[^>]*?href="([^"]+)"', books_index)]
+       == [book_page(x) for x in ordered_books], "/books/ must list complete books in canonical Bible order")
+verify([m.group(1) for m in re.finditer(r'<a class="vid"[^>]*?href="([^"]+)"', sleep_index)]
+       == [x["url"] for x in ordered_sleep], "/sleep/ must list For Sleep readings in canonical Bible order")
+
+# Cards carry the Bible book, never a posting date.
+card_meta = re.findall(r'<span class="vid-meta"><span>([^<]*)</span>', html)
+verify(card_meta and all(x in CANONICAL_BOOKS for x in card_meta),
+       "video cards must show the Bible book and no posting date")
+for page_file in SITE.rglob("*.html"):
+    text = page_file.read_text(encoding="utf-8")
+    verify(not re.search(r'>\s*(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+\d{1,2},\s*\d{4}\s*<', text),
+           "posting date shown on " + page_file.relative_to(SITE).as_posix())
+
 for video in books + passages + sleep:
     verify(video["title"] in html, "missing exact public title: " + video["title"])
 verify('id="book-picker"' not in html, "redundant full-book dropdown must stay removed")
@@ -153,7 +183,9 @@ verify("Sitemap: " + HOME + "sitemap.xml" in robots, "robots.txt points to wrong
 verify(HOME + "privacy.html" in sitemap and "<loc>" + HOME + "</loc>" in sitemap, "sitemap incomplete")
 verify('publish = "site"' in config and 'command = "node scripts/render-videos.cjs"' in config,
        "Git-based Netlify build or publish settings wrong")
-verify("<!-- STORIES_START -->" in html and "<!-- FULL_BOOKS_START -->" in html, "render markers missing")
+verify(all("<!-- " + m + "_START -->" in html for m in
+           ["OG_IMAGE", "HERO_VIDEO", "VIDEO_STATS", "HOME_SECTIONS", "FULL_BOOKS_SCHEMA", "STORIES_SCHEMA", "FOR_SLEEP_SCHEMA"]),
+       "render markers missing")
 verify('src="library.js"' not in html, "old library filter script should not be loaded")
 for link in page.links:
     if link.startswith("/") and not link.startswith("//"):

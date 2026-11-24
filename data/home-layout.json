@@ -1,0 +1,44 @@
+{
+  "note": "Top-to-bottom order of the homepage sections, and the heading copy for each one. scripts/render-videos.cjs renders sections in exactly this order, so reordering the homepage means reordering this list and re-running the renderer. Card order inside a video section always follows data/bible-order.json.",
+  "supportUrl": "https://buymeacoffee.com/divclass016",
+  "sections": [
+    {
+      "id": "stories",
+      "kind": "videos",
+      "collection": "stories",
+      "kicker": "Greatest Stories Ever Told",
+      "heading": "Longer readings of the best-known passages.",
+      "description": "The famous Bible stories, in Bible order from Genesis to Revelation. Every card uses the video's public title and opens on YouTube.",
+      "gridLabel": "Greatest stories ever told"
+    },
+    {
+      "id": "books",
+      "kind": "videos",
+      "collection": "books",
+      "kicker": "Full Books",
+      "heading": "Complete book readings, in Bible order.",
+      "description": "Every whole-book recording published so far. Each one has its own page with the full reading, a short summary, and chapter links.",
+      "gridLabel": "Complete Bible book readings"
+    },
+    {
+      "id": "sleep",
+      "kind": "videos",
+      "collection": "sleep",
+      "kicker": "For Sleep",
+      "heading": "Whole books, voice only, for sleep.",
+      "description": "After a short title card the screen stays black: just the voice reading every word, with no music. In Bible order, same as above.",
+      "descriptionLink": {
+        "href": "/sleep/",
+        "label": "All For Sleep readings →"
+      },
+      "gridLabel": "For Sleep readings"
+    },
+    {
+      "id": "shop",
+      "kind": "shop",
+      "kicker": "Beyond the screen",
+      "heading": "Wear the words.",
+      "description": "Scripture-inspired shirts, hoodies, and more from our Printify shop. Purchases take place on Printify, not on this website."
+    }
+  ]
+}

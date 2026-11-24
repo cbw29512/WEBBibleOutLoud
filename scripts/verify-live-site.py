@@ -7,6 +7,8 @@ from pathlib import Path
 
 ORIGIN = "https://webbibleoutloud.com"
 SHORTS = "https://www.youtube.com/@webbibleoutloud/shorts"
+LAYOUT_PATH = "data/home-layout.json"
+BIBLE_ORDER_PATH = "data/bible-order.json"
 
 def fetch(path):
     last = None
@@ -28,11 +30,17 @@ css,_=fetch("/styles.css")
 root=Path(__file__).resolve().parents[1]
 catalog=json.loads((root/"data/videos.json").read_text(encoding="utf-8"))
 merch=json.loads((root/"data/merch.json").read_text(encoding="utf-8"))
+layout=json.loads((root/LAYOUT_PATH).read_text(encoding="utf-8"))
+canonical=json.loads((root/BIBLE_ORDER_PATH).read_text(encoding="utf-8"))["books"]
+support=layout["supportUrl"]
 is_sleep=lambda v: re.search(r"\bfor Sleep\b", v["title"]) is not None
 sleep=[v for v in catalog["videos"] if v["type"]=="long" and is_sleep(v)]
 books=[v for v in catalog["videos"] if v.get("scope")=="book" and not is_sleep(v)]
 passages=[v for v in catalog["videos"] if v.get("scope")=="passage" and not is_sleep(v)]
-assert home.count("buymeacoffee.com/divclass016")==1, "Expected exactly one donation link"
+key=lambda v:(canonical.index(v["bibleBook"]), v["chapter"], v["verse"], v["publishedAt"])
+assert home.count(support)==1, "Expected exactly one donation link"
+assert [m.group(1) for m in re.finditer(r'data-home-section="([^"]+)"', home)]==[s["id"] for s in layout["sections"]], \
+    "Live homepage section order does not match data/home-layout.json"
 assert home.count('id="shorts-button"')==1, "Expected one Shorts button"
 assert home.count(SHORTS)==1, "Shorts button URL missing or duplicated"
 assert "Watch the Shorts on YouTube" in home, "Shorts button text missing"
@@ -47,7 +55,14 @@ for v in books:
     assert v["title"] in page and v["url"] in page, "book page wrong for "+v["bibleBook"]
 sleep_page,_=fetch("/sleep/")
 assert all(v["url"] in sleep_page for v in sleep), "For Sleep page incomplete"
-assert 'id="stories"' in home and 'id="books"' in home and 'id="shop"' in home, "Stories, Full Books, or shop section missing"
+assert 'id="stories"' in home and 'id="books"' in home and 'id="sleep"' in home and 'id="shop"' in home, "Stories, Full Books, For Sleep, or shop section missing"
+for section_id, expected in (("books", [f"/books/{v['bibleBook'].lower().replace(' ','-')}/" for v in sorted(books,key=key)]),
+                             ("stories", [v["url"] for v in sorted(passages,key=key)]),
+                             ("sleep", [v["url"] for v in sorted(sleep,key=key)])):
+    block=re.search(r'<section id="'+section_id+r'"(.*?)</section>', home, re.S)
+    assert block, f"{section_id} section missing from the live homepage"
+    assert [m.group(1) for m in re.finditer(r'<a class="vid"[^>]*?href="([^"]+)"', block.group(1))]==expected, \
+        f"live {section_id} section is not in canonical Bible order"
 assert 'class="feature"' in home, "Featured full-book area missing"
 assert 'id="video-search"' not in home and 'id="load-more"' not in home, "Old library controls still published"
 assert 'href="styles.css"' in home and 'src="library.js"' not in home, "Unexpected UI assets"

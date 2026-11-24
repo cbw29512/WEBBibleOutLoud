@@ -1,9 +1,69 @@
 {
   "description": "All currently public uploads with Bible-reference metadata. Complete books, Shorts, longer passages, and curated Greatest Bible Stories are shown in canonical scripture order.",
   "sourceChannel": "https://www.youtube.com/@WEBBibleOutLoud",
-  "lastSynced": "2026-11-22",
+  "lastSynced": "2026-11-24",
   "featuredShorts": 12,
   "videos": [
+    {
+      "title": "Revelation for Sleep — Voice Only, Black Screen | Full Book Audio Bible (WEB, No Music)",
+      "url": "https://youtu.be/QrfwKGaSZN8",
+      "type": "long",
+      "publishedAt": "2026-11-24T14:01:51Z",
+      "bibleBook": "Revelation",
+      "chapter": 1,
+      "verse": 1,
+      "scope": "book"
+    },
+    {
+      "title": "James for Sleep — Voice Only, Black Screen | Full Book Audio Bible (WEB, No Music)",
+      "url": "https://youtu.be/OkqiN7bv-T8",
+      "type": "long",
+      "publishedAt": "2026-11-24T14:01:20Z",
+      "bibleBook": "James",
+      "chapter": 1,
+      "verse": 1,
+      "scope": "book"
+    },
+    {
+      "title": "Philippians for Sleep — Voice Only, Black Screen | Full Book Audio Bible (WEB, No Music)",
+      "url": "https://youtu.be/L-e-1IN09Hw",
+      "type": "long",
+      "publishedAt": "2026-11-24T14:00:54Z",
+      "bibleBook": "Philippians",
+      "chapter": 1,
+      "verse": 1,
+      "scope": "book"
+    },
+    {
+      "title": "Jonah for Sleep — Voice Only, Black Screen | Full Book Audio Bible (WEB, No Music)",
+      "url": "https://youtu.be/ZeBCIqNXNOk",
+      "type": "long",
+      "publishedAt": "2026-11-24T14:00:27Z",
+      "bibleBook": "Jonah",
+      "chapter": 1,
+      "verse": 1,
+      "scope": "book"
+    },
+    {
+      "title": "Obadiah for Sleep — Voice Only, Black Screen | Full Book Audio Bible (WEB, No Music)",
+      "url": "https://youtu.be/jAnGlEDNF98",
+      "type": "long",
+      "publishedAt": "2026-11-24T13:59:14Z",
+      "bibleBook": "Obadiah",
+      "chapter": 1,
+      "verse": 1,
+      "scope": "book"
+    },
+    {
+      "title": "Ruth for Sleep — Voice Only, Black Screen | Full Book Audio Bible (WEB, No Music)",
+      "url": "https://youtu.be/oeY-SJzHIR4",
+      "type": "long",
+      "publishedAt": "2026-11-24T13:58:30Z",
+      "bibleBook": "Ruth",
+      "chapter": 1,
+      "verse": 1,
+      "scope": "book"
+    },
     {
       "title": "John 12:20–36 — The Hour Has Come: “Unless a Grain of Wheat Falls” | WEB Audio Bible, No Music",
       "url": "https://youtube.com/shorts/g1uRInGRtSc",

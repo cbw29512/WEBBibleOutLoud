@@ -9,8 +9,7 @@ const root = path.resolve(__dirname, "..");
 const site = path.join(root, "site");
 const HOME = "https://webbibleoutloud.com/";
 const FULL_BOOKS_PLAYLIST = "https://www.youtube.com/playlist?list=PLVdofbBWuaIo";
-const ORDER = ["Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi","Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"];
-const isSleep = v => /\bfor Sleep\b/.test(v.title);
+const {isSleep, collections, slugOf} = require("./bible-order.cjs");
 const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const idOf = v => new URL(v.url).pathname.split("/").pop();
 const hms = s => { const h = Math.floor(s/3600), m = Math.floor(s/60)%60, x = s%60; return (h ? h+":"+String(m).padStart(2,"0") : m)+":"+String(x).padStart(2,"0"); };
@@ -18,9 +17,8 @@ const iso = s => "PT"+(Math.floor(s/3600)?Math.floor(s/3600)+"H":"")+(Math.floor
 function build(){
   const catalog = JSON.parse(fs.readFileSync(path.join(root, "data/videos.json"), "utf8")).videos;
   const meta = JSON.parse(fs.readFileSync(path.join(root, "data/books.json"), "utf8")).books;
-  const longs = catalog.filter(v => v.type === "long");
-  const fullBooks = longs.filter(v => v.scope === "book" && !isSleep(v)).sort((a,b) => ORDER.indexOf(a.bibleBook) - ORDER.indexOf(b.bibleBook));
-  const sleep = longs.filter(isSleep).sort((a,b) => ORDER.indexOf(a.bibleBook) - ORDER.indexOf(b.bibleBook));
+  // /books/ and /sleep/ use the same Bible ordering as the homepage sections.
+  const {books: fullBooks, sleep} = collections(catalog);
   const pages = [];
   const header = '<a class="skip" href="#main">Skip to content</a>\n<header class="site-header">\n  <div class="wrap header-inner">\n    <a class="brand" href="/">\n      <span class="brand-mark" aria-hidden="true">W</span>\n      <span><span class="brand-title">Bible Out Loud</span><span class="brand-kicker">World English Bible</span></span>\n    </a>\n    <nav class="site-nav" aria-label="Main navigation">\n      <a href="/#stories">Stories</a>\n      <a href="/books/">Books</a>\n      <a href="/sleep/">For Sleep</a>\n      <a class="nav-shop" href="/#shop">Shop</a>\n    </nav>\n  </div>\n</header>';
   const footer = '<footer class="site-footer">\n  <div class="wrap footer-inner">\n    <div><p class="footer-name">WEB Bible Out Loud</p><p class="footer-copy">The World English Bible, read with clarity. © 2026.</p></div>\n    <nav class="footer-links" aria-label="Footer navigation">\n      <a href="/">Home</a>\n      <a href="/books/">Complete books</a>\n      <a href="/sleep/">For Sleep</a>\n      <a href="https://www.youtube.com/@WEBBibleOutLoud" target="_blank" rel="noopener noreferrer">YouTube</a>\n      <a href="/privacy.html">Privacy</a>\n    </nav>\n  </div>\n</footer>';
@@ -28,7 +26,7 @@ function build(){
   const player = (v, label) => '<div class="lite-yt" data-id="'+idOf(v)+'" data-title="'+esc(v.title)+'">\n  <img src="https://i.ytimg.com/vi/'+idOf(v)+'/hqdefault.jpg" alt="" width="480" height="360" fetchpriority="high">\n  <button type="button" class="lite-play" aria-label="Play '+esc(label)+' here (loads YouTube)"><span aria-hidden="true">▶</span></button>\n</div>\n<p class="lite-note">Press play to load the video from YouTube (privacy-enhanced mode). Or <a href="'+esc(v.url)+'" target="_blank" rel="noopener noreferrer">watch on YouTube ↗</a>.</p>';
   const write = (rel, html) => { const p = path.join(site, rel); fs.mkdirSync(path.dirname(p), {recursive:true}); fs.writeFileSync(p, html); pages.push(rel.replace(/index\.html$/, "")); };
   const metaBy = Object.fromEntries(meta.map(m => [m.bibleBook, m]));
-  const slug = b => b.toLowerCase().replace(/ /g, "-");
+  const slug = slugOf;
   fullBooks.forEach((v, i) => {
     const m = metaBy[v.bibleBook]; if(!m) throw Error("data/books.json missing "+v.bibleBook);
     if(m.videoId !== idOf(v)) throw Error("data/books.json video ID differs from catalog for "+v.bibleBook);
@@ -61,5 +59,5 @@ function build(){
   fs.writeFileSync(path.join(site, "sitemap.xml"), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+urls.map(u => '  <url><loc>'+u+'</loc></url>').join("\n")+'\n</urlset>\n');
   return {fullBooks, sleep, pages};
 }
-module.exports = {build, isSleep};
+module.exports = {build};
 if(require.main === module){ const r = build(); console.log("Rendered "+r.pages.length+" pages ("+r.fullBooks.length+" book pages, "+r.sleep.length+" For Sleep)"); }
