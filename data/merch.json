@@ -1,127 +1,54 @@
 {
-  "shopUrl": "https://web-bible-out-loud.printify.me",
-  "lastSynced": "2026-11-22",
-  "source": "https://web-bible-out-loud.printify.me/",
+  "note": "A small, hand-picked set of currently published products from the public Printify storefront, shown with real mockup photos on the homepage. This file is deliberately not the whole catalog: the storefront carries the full line, and shopUrl is linked prominently under the grid. Pick visually different items (different garment, different color, different verse design). Buy Me a Coffee never belongs here. After editing this list run scripts/fetch-merch-images.py to re-download and re-compress the photos, then node scripts/render-videos.cjs.",
+  "shopUrl": "https://web-bible-out-loud.printify.me/",
+  "shopLinkLabel": "See the full line in the store ↗",
+  "shopFooterNote": "A few favorites from the shop. Every product opens on Printify, where the order is placed.",
+  "lastSynced": "2026-11-24",
+  "source": "https://web-bible-out-loud.printify.me/sitemap.xml",
   "products": [
     {
-      "id": "34885953",
-      "name": "God Is Our Refuge and Strength Hoodie, Sand, Psalm 46:1 Bible Verse",
-      "url": "https://web-bible-out-loud.printify.me/product/34885953"
+      "id": "33297658",
+      "name": "For God So Loved the World Shirt, Black, John 3:16 Bible Verse",
+      "storefrontTitle": "For God So Loved the World Shirt, Black, John 3:16 Bible Verse | WEB Bible Out Loud",
+      "url": "https://web-bible-out-loud.printify.me/product/33297658/for-god-so-loved-the-world-shirt-black-john-316-bible-verse-web-bible-out-loud",
+      "image": "assets/merch/for-god-so-loved-the-world-shirt-black-john-316.webp",
+      "imageFallback": "assets/merch/for-god-so-loved-the-world-shirt-black-john-316.jpg",
+      "imageWidth": 640,
+      "imageHeight": 640,
+      "sourceImage": "https://images-api.printify.com/mockup/6ad61d2f7872ca15840c1dd2/73204/98445/for-god-so-loved-the-world-shirt-black-john-316-bible-verse-web-bible-out-loud.jpg?camera_label=front&revision=1795053807489"
     },
     {
-      "id": "34885951",
-      "name": "God Is Our Refuge and Strength Hoodie, Black, Psalm 46:1 Bible Verse",
-      "url": "https://web-bible-out-loud.printify.me/product/34885951"
-    },
-    {
-      "id": "34885948",
-      "name": "God Is Our Refuge and Strength Mug, 15 Ounce, Psalm 46:1 Bible Verse",
-      "url": "https://web-bible-out-loud.printify.me/product/34885948"
-    },
-    {
-      "id": "34885943",
-      "name": "God Is Our Refuge and Strength Crewneck Sweatshirt, Bone, Psalm 46:1 Bible Verse",
-      "url": "https://web-bible-out-loud.printify.me/product/34885943"
-    },
-    {
-      "id": "34885935",
-      "name": "God Is Our Refuge and Strength Crewneck Sweatshirt, Black, Psalm 46:1 Bible Verse",
-      "url": "https://web-bible-out-loud.printify.me/product/34885935"
-    },
-    {
-      "id": "34885927",
-      "name": "God Is Our Refuge and Strength Shirt, Ivory, Psalm 46:1 Bible Verse",
-      "url": "https://web-bible-out-loud.printify.me/product/34885927"
-    },
-    {
-      "id": "34885912",
-      "name": "God Is Our Refuge and Strength Shirt, Black, Psalm 46:1 Bible Verse",
-      "url": "https://web-bible-out-loud.printify.me/product/34885912"
+      "id": "33297656",
+      "name": "The Truth Will Make You Free Shirt, Ivory, John 8:32 Bible Verse",
+      "storefrontTitle": "The Truth Will Make You Free Shirt, Ivory, John 8:32 Bible Verse | WEB Bible Out Loud",
+      "url": "https://web-bible-out-loud.printify.me/product/33297656/the-truth-will-make-you-free-shirt-ivory-john-832-bible-verse-web-bible-out-loud",
+      "image": "assets/merch/the-truth-will-make-you-free-shirt-ivory-john-832.webp",
+      "imageFallback": "assets/merch/the-truth-will-make-you-free-shirt-ivory-john-832.jpg",
+      "imageWidth": 640,
+      "imageHeight": 640,
+      "sourceImage": "https://images-api.printify.com/mockup/6ad61d223df011670d0bd09e/78993/98445/the-truth-will-make-you-free-shirt-ivory-john-832-bible-verse-web-bible-out-loud.jpg?camera_label=front&revision=1795053822053"
     },
     {
       "id": "34214938",
       "name": "The Lord Is My Shepherd Hoodie, Sand, Psalm 23:1 Bible Verse",
-      "url": "https://web-bible-out-loud.printify.me/product/34214938"
+      "storefrontTitle": "The Lord Is My Shepherd Hoodie, Sand, Psalm 23:1 Bible Verse | WEB Bible Out Loud",
+      "url": "https://web-bible-out-loud.printify.me/product/34214938/the-lord-is-my-shepherd-hoodie-sand-psalm-231-bible-verse-web-bible-out-loud",
+      "image": "assets/merch/the-lord-is-my-shepherd-hoodie-sand-psalm-231.webp",
+      "imageFallback": "assets/merch/the-lord-is-my-shepherd-hoodie-sand-psalm-231.jpg",
+      "imageWidth": 640,
+      "imageHeight": 640,
+      "sourceImage": "https://images-api.printify.com/mockup/6af0bb95d0555ac41903580c/42166/98424/the-lord-is-my-shepherd-hoodie-sand-psalm-231-bible-verse-web-bible-out-loud.jpg?camera_label=front&revision=1795053684863"
     },
     {
-      "id": "34214935",
-      "name": "The Lord Is My Shepherd Hoodie, Black, Psalm 23:1 Bible Verse",
-      "url": "https://web-bible-out-loud.printify.me/product/34214935"
-    },
-    {
-      "id": "34214532",
-      "name": "The Lord Is My Shepherd Mug, 15 Ounce, Psalm 23:1 Bible Verse",
-      "url": "https://web-bible-out-loud.printify.me/product/34214532"
-    },
-    {
-      "id": "34214531",
-      "name": "The Lord Is My Shepherd Crewneck Sweatshirt, Bone, Psalm 23:1 Bible Verse",
-      "url": "https://web-bible-out-loud.printify.me/product/34214531"
-    },
-    {
-      "id": "34214530",
-      "name": "The Lord Is My Shepherd Crewneck Sweatshirt, Black, Psalm 23:1 Bible Verse",
-      "url": "https://web-bible-out-loud.printify.me/product/34214530"
-    },
-    {
-      "id": "34214526",
-      "name": "The Lord Is My Shepherd Shirt, Ivory, Psalm 23:1 Bible Verse",
-      "url": "https://web-bible-out-loud.printify.me/product/34214526"
-    },
-    {
-      "id": "34214522",
-      "name": "The Lord Is My Shepherd Shirt, Black, Psalm 23:1 Bible Verse",
-      "url": "https://web-bible-out-loud.printify.me/product/34214522"
-    },
-    {
-      "id": "33920192",
-      "name": "I Am the Good Shepherd Hoodie, Sand, John 10:11 Bible Verse",
-      "url": "https://web-bible-out-loud.printify.me/product/33920192"
-    },
-    {
-      "id": "33920190",
-      "name": "I Am the Good Shepherd Hoodie, Black, John 10:11 Bible Verse",
-      "url": "https://web-bible-out-loud.printify.me/product/33920190"
-    },
-    {
-      "id": "33848593",
-      "name": "I Am the Way, the Truth, and the Life Mug, 15 Ounce, John 14:6 Bible Verse",
-      "url": "https://web-bible-out-loud.printify.me/product/33848593"
-    },
-    {
-      "id": "33848592",
-      "name": "I Am the Way, the Truth, and the Life Crewneck Sweatshirt, Bone, John 14:6 Bible Verse",
-      "url": "https://web-bible-out-loud.printify.me/product/33848592"
-    },
-    {
-      "id": "33848588",
-      "name": "I Am the Way, the Truth, and the Life Crewneck Sweatshirt, Black, John 14:6 Bible Verse",
-      "url": "https://web-bible-out-loud.printify.me/product/33848588"
-    },
-    {
-      "id": "33848584",
-      "name": "I Am the Way, the Truth, and the Life Shirt, Ivory, John 14:6 Bible Verse",
-      "url": "https://web-bible-out-loud.printify.me/product/33848584"
-    },
-    {
-      "id": "33848577",
-      "name": "I Am the Way, the Truth, and the Life Shirt, Black, John 14:6 Bible Verse",
-      "url": "https://web-bible-out-loud.printify.me/product/33848577"
-    },
-    {
-      "id": "33585608",
-      "name": "I Am the Good Shepherd Shirt, Ivory, John 10:11 Bible Verse",
-      "url": "https://web-bible-out-loud.printify.me/product/33585608"
-    },
-    {
-      "id": "33585606",
-      "name": "I Am the Good Shepherd Shirt, Black, John 10:11 Bible Verse",
-      "url": "https://web-bible-out-loud.printify.me/product/33585606"
-    },
-    {
-      "id": "33585604",
-      "name": "I Am the Good Shepherd Mug, 15 Ounce, John 10:11 Bible Verse",
-      "url": "https://web-bible-out-loud.printify.me/product/33585604"
+      "id": "34885948",
+      "name": "God Is Our Refuge and Strength Mug, 15 Ounce, Psalm 46:1 Bible Verse",
+      "storefrontTitle": "God Is Our Refuge and Strength Mug, 15 Ounce, Psalm 46:1 Bible Verse",
+      "url": "https://web-bible-out-loud.printify.me/product/34885948/god-is-our-refuge-and-strength-mug-15-ounce-psalm-461-bible-verse",
+      "image": "assets/merch/god-is-our-refuge-and-strength-mug-15-ounce-psalm-461.webp",
+      "imageFallback": "assets/merch/god-is-our-refuge-and-strength-mug-15-ounce-psalm-461.jpg",
+      "imageWidth": 640,
+      "imageHeight": 640,
+      "sourceImage": "https://images-api.printify.com/mockup/6afe59b20ef5a611d100d500/62014/2711/god-is-our-refuge-and-strength-mug-15-ounce-psalm-461-bible-verse.jpg?camera_label=front&revision=1795372519748"
     }
   ]
 }
