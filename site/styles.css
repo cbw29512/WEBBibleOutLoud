@@ -57,10 +57,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
 .feature-label{margin:0 0 7px;font-size:12px;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;font-weight:850}
 .feature-title{margin:0;font:400 23px/1.26 Georgia,serif;letter-spacing:-.02em}
 .feature-sub{color:var(--muted);font-size:12px;margin:8px 0 0}
-.metrics{display:flex;align-items:center;gap:26px;border-top:1px solid var(--line);padding-top:24px;margin-top:50px}
-.metric{display:flex;gap:10px;align-items:baseline;font-size:12px;color:var(--muted)}
-.metric strong{font:400 26px/1 Georgia,serif;color:#f8f5ec}
-.metric + .metric{border-left:1px solid #536063;padding-left:26px}
+.bible-progress{border-top:1px solid var(--line);padding-top:24px;margin-top:50px}
+.bible-progress-label{margin:0 0 14px;color:#cdd5d4;font-size:15px}
+.bible-progress-label strong{font:400 28px/1 Georgia,serif;color:#f8f5ec;letter-spacing:-.03em}
+.bible-progress-bar{height:4px;border-radius:999px;background:rgba(255,255,255,.14);overflow:hidden}
+.bible-progress-fill{display:block;height:100%;border-radius:999px;background:var(--gold)}
 .section-pad{padding:78px 0}
 .section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:30px}
 .section-kicker{color:var(--gold);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:850;margin:0 0 11px}
@@ -167,10 +168,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
   .hero-inner{grid-template-columns:1fr;gap:38px}
   .hero h1{font-size:clamp(3.35rem,11vw,5rem);margin:17px 0}
   .feature{max-width:540px}
-  .metrics{gap:12px;margin-top:35px;justify-content:space-between}
-  .metric{display:block;font-size:11px}
-  .metric strong{display:block;margin-bottom:4px}
-  .metric+.metric{padding-left:12px}
+  .bible-progress{margin-top:35px}
   .section-pad{padding:53px 0}
   .path-grid{grid-template-columns:1fr}
   .section-head{align-items:start;flex-direction:column;gap:12px}
@@ -198,7 +196,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
   .hero-description{font-size:16px}
   .hero-actions{display:grid;grid-template-columns:1fr}
   .primary-cta,.secondary-cta{width:100%}
-  .metrics{gap:8px}
   .path-card{padding:15px;gap:14px}
   .path-thumb{width:86px}
   .path-name{font-size:17px}
