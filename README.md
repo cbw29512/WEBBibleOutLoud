@@ -24,6 +24,7 @@ The homepage runs top to bottom in this order:
 2. **Full Books** — complete book readings, in Bible order
 3. **For Sleep** — voice-only whole-book readings, in Bible order
 4. **Wear the words** — merch from `data/merch.json`
+5. **Support our mission** — one quiet link to Buy Me a Coffee (proposed; pending approval)
 
 That order lives in `data/home-layout.json`, and the order inside every list lives in `data/bible-order.json`. Nothing on the homepage, `/books/` or `/sleep/` is hand-ordered: `scripts/render-videos.cjs` generates all of it, so adding a video to `data/videos.json` drops it into its Bible-order position everywhere it belongs. To reorder the homepage, reorder `data/home-layout.json` and re-run the renderer.
 

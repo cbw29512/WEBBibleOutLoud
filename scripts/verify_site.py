@@ -155,6 +155,11 @@ verify(card_hrefs("books") == [book_page(x) for x in ordered_books],
 verify(card_hrefs("sleep") == [x["url"] for x in ordered_sleep],
        "For Sleep must appear in canonical Bible order")
 
+# Merch stays free of the donation link; the one support link lives in its own last section.
+verify(SUPPORT not in sections.get("shop", ""), "Buy Me a Coffee must not appear inside the merch section")
+verify(sections.get("support", "").count(SUPPORT) == 1, "the support section needs exactly one Buy Me a Coffee link")
+verify(EXPECTED_SECTIONS[-1] == "support" and rendered_order[-1] == "support",
+       "the support section belongs at the very bottom, after merch")
 
 # /books/ and /sleep/ use the same Bible order as the matching homepage sections.
 verify([m.group(1) for m in re.finditer(r'<a class="vid"[^>]*?href="([^"]+)"', books_index)]

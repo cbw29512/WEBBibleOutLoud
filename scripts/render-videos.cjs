@@ -118,7 +118,7 @@ const sectionHead=s=>'      <div class="section-head">\n        <div>\n         
 '          <p class="section-desc">'+escape(s.description)+
   (s.descriptionLink?' <a href="'+escape(s.descriptionLink.href)+'">'+escape(s.descriptionLink.label)+'</a>':'')+'</p>\n'+
 '        </div>\n      </div>';
-const sectionClass={stories:"library-section section-pad",books:"library-section section-pad",sleep:"library-section section-pad sleep-band",shop:"shop section-pad"};
+const sectionClass={stories:"library-section section-pad",books:"library-section section-pad",sleep:"library-section section-pad sleep-band",shop:"shop section-pad",support:"support-band section-pad"};
 function renderSection(s){
   const open='  <section id="'+s.id+'" class="'+sectionClass[s.id]+'" aria-labelledby="'+s.id+'-title" data-home-section="'+s.id+'">\n    <div class="wrap">\n';
   const close='    </div>\n  </section>';
@@ -132,6 +132,10 @@ function renderSection(s){
     return open+'      <div class="shop-head">\n        <p class="section-kicker">'+escape(s.kicker)+'</p>\n        <h2 id="shop-title">'+escape(s.heading)+'</h2>\n        <p class="section-desc">'+escape(s.description)+'</p>\n      </div>\n'+
       '      <div class="shop-grid">\n        '+shopCards+'\n      </div>\n'+
       '      <div class="shop-footer">\n        '+shopFooter+'\n      </div>\n'+close;
+  }
+  if(s.kind==="support"){
+    return open+'      <div class="support-inner">\n        <p class="section-kicker">'+escape(s.kicker)+'</p>\n        <h2 id="support-title">'+escape(s.heading)+'</h2>\n        <p class="section-desc">'+escape(s.description)+'</p>\n'+
+      '        <a class="support-cta" href="'+escape(SUPPORT_URL)+'" target="_blank" rel="noopener noreferrer">'+escape(s.linkLabel)+'</a>\n      </div>\n'+close;
   }
   throw Error("Unknown homepage section kind: "+s.kind);
 }

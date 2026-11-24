@@ -39,6 +39,15 @@
       "kicker": "Beyond the screen",
       "heading": "Wear the words.",
       "description": "Scripture-inspired shirts, hoodies, and more from our Printify shop. Purchases take place on Printify, not on this website."
+    },
+    {
+      "id": "support",
+      "kind": "support",
+      "proposed": "Proposed addition, pending Chris's approval. Delete this section from the list and re-run the renderer to remove it.",
+      "kicker": "Support our mission",
+      "heading": "Keeping the Bible read aloud, free for everyone.",
+      "description": "Every reading on this site is free to listen to, and we would like to keep it that way for everyone. If these readings have been good to you, you can help cover the cost of recording more.",
+      "linkLabel": "Buy us a coffee ↗"
     }
   ]
 }

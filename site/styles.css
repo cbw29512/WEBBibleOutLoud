@@ -230,3 +230,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
 .book-nav a{display:inline-flex;align-items:center;min-height:44px;padding:8px 16px;border-radius:999px;border:1px solid #c3a46c;color:#3a2c0f;text-decoration:none;font-weight:750;font-size:14px;background:#fff}
 .sleep-page{background:#0b1114;color:#e8e4da}.sleep-page .page-h1{color:#efe9dc}.sleep-page .section-desc{color:#b9c5c5}.sleep-page .section-kicker{color:#c4a35a}.sleep-page .book-more a{color:#e9c984}
 .sleep-band{background:#0b1114;color:#e8e4da}.sleep-band .section-head h2{color:#efe9dc}.sleep-band .section-desc{color:#b9c5c5}.sleep-band .section-desc a{color:#e9c984}.sleep-band .section-kicker{color:#c4a35a}
+/* Quiet support band at the very bottom of the homepage: no banner, no pop-up, one link. */
+.support-band{background:#10191d;border-top:1px solid var(--line);padding:56px 0}
+.support-inner{max-width:680px}
+.support-inner h2{margin:0;font:400 clamp(1.7rem,3.2vw,2.5rem)/1.14 Georgia,serif;letter-spacing:-.03em;color:#f3efe4}
+.support-inner .section-desc{color:#c5cfce;max-width:640px}
+.support-cta{display:inline-flex;align-items:center;min-height:48px;margin-top:22px;padding:12px 20px;border:1px solid rgba(233,201,132,.6);border-radius:10px;color:var(--gold);text-decoration:none;font-size:14px;font-weight:800}
+.support-cta:hover{background:var(--gold);color:#182127}

@@ -77,6 +77,7 @@ const SHORTS = "https://www.youtube.com/@webbibleoutloud/shorts";
       assert.equal(await page.locator("#shop .product").count(), merch.products.length);
       assert.equal(await page.locator(`#shop a[href='${SUPPORT_URL}']`).count(), 0, "Merch must not contain the Buy Me a Coffee link");
       assert.equal(await page.locator(`a[href='${SUPPORT_URL}']`).count(), 1, "Expected exactly one Buy Me a Coffee link");
+      assert.equal(await page.locator(`#support a[href='${SUPPORT_URL}']:visible`).count(), 1, "The support link belongs in the support section");
       assert.equal(await page.locator("a[href='/privacy.html']").count(), 1);
       assert.equal(await page.locator("link[href='styles.css']").count(), 1);
       await page.addScriptTag({path:axeScript});
