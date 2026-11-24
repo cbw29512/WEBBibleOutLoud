@@ -28,8 +28,10 @@ css,_=fetch("/styles.css")
 root=Path(__file__).resolve().parents[1]
 catalog=json.loads((root/"data/videos.json").read_text(encoding="utf-8"))
 merch=json.loads((root/"data/merch.json").read_text(encoding="utf-8"))
-books=[v for v in catalog["videos"] if v.get("scope")=="book"]
-passages=[v for v in catalog["videos"] if v.get("scope")=="passage"]
+is_sleep=lambda v: re.search(r"\bfor Sleep\b", v["title"]) is not None
+sleep=[v for v in catalog["videos"] if v["type"]=="long" and is_sleep(v)]
+books=[v for v in catalog["videos"] if v.get("scope")=="book" and not is_sleep(v)]
+passages=[v for v in catalog["videos"] if v.get("scope")=="passage" and not is_sleep(v)]
 assert home.count("buymeacoffee.com/divclass016")==1, "Expected exactly one donation link"
 assert home.count('id="shorts-button"')==1, "Expected one Shorts button"
 assert home.count(SHORTS)==1, "Shorts button URL missing or duplicated"
@@ -38,7 +40,13 @@ assert 'data-type="short"' not in home and 'data-filter="short"' not in home, "S
 assert not re.search(r"youtube\.com/shorts/[A-Za-z0-9_-]{11}", home), "Shorts video cards still on the live site"
 assert home.count('data-scope="book"')==len(books), "Full Book count does not match the catalog"
 assert home.count('data-scope="passage"')==len(passages), "story count does not match the catalog"
-assert home.count('class="vid"')==len(books)+len(passages), "only stories and Full Books should appear as cards"
+assert home.count('data-scope="sleep"')==len(sleep), "For Sleep count does not match the catalog"
+assert home.count('class="vid"')==len(books)+len(passages)+len(sleep), "only stories, Full Books and For Sleep should appear as cards"
+for v in books:
+    page,_=fetch("/books/"+v["bibleBook"].lower().replace(" ","-")+"/")
+    assert v["title"] in page and v["url"] in page, "book page wrong for "+v["bibleBook"]
+sleep_page,_=fetch("/sleep/")
+assert all(v["url"] in sleep_page for v in sleep), "For Sleep page incomplete"
 assert 'id="stories"' in home and 'id="books"' in home and 'id="shop"' in home, "Stories, Full Books, or shop section missing"
 assert 'class="feature"' in home, "Featured full-book area missing"
 assert 'id="video-search"' not in home and 'id="load-more"' not in home, "Old library controls still published"

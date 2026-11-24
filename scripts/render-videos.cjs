@@ -47,8 +47,11 @@ const videos=dataset.videos.map(v=>{
   (b.scope==="book"?0:b.scope==="passage"?1:2) ||
   a.publishedAt.localeCompare(b.publishedAt));
 const shorts=videos.filter(v=>v.type==="short"),long=videos.filter(v=>v.type==="long");
-const books=long.filter(v=>v.scope==="book"),passages=long.filter(v=>v.scope==="passage");
-if(books.length+passages.length!==long.length)throw Error("Every long reading needs a book/passage scope");
+const {build:buildBookPages,isSleep}=require("./render-book-pages.cjs");
+const sleep=long.filter(isSleep);
+const books=long.filter(v=>v.scope==="book"&&!isSleep(v)),passages=long.filter(v=>v.scope==="passage"&&!isSleep(v));
+const bookPage=v=>"/books/"+v.bibleBook.toLowerCase().replace(/ /g,"-")+"/";
+if(books.length+passages.length+sleep.length!==long.length)throw Error("Every long reading needs a book/passage scope");
 if(books.some(v=>!/Full Book/i.test(v.title)) || passages.some(v=>/Full Book/i.test(v.title)))throw Error("Inaccurate full-book label in video catalog");
 if(!shorts.length||!long.length)throw Error("Expected both Shorts and full-length videos in the catalog");
 if(!books.length||!passages.length)throw Error("Expected published complete books and longer readings");
@@ -66,10 +69,10 @@ const hero='<article class="feature" aria-label="Featured full-length Bible read
 '    <h2 class="feature-title"><a href="'+escape(featured.url)+'" target="_blank" rel="noopener noreferrer">'+escape(featured.title)+'</a></h2>\n'+
 '    <p class="feature-sub">World English Bible · Captions · No music</p>\n'+
 '  </div>\n</article>';
-const stats='<div class="metrics" aria-label="What is on this page"><div class="metric"><strong>'+passages.length+'</strong> stories</div><div class="metric"><strong>'+books.length+'</strong> complete books</div><div class="metric"><strong>'+merch.products.length+'</strong> shop items</div></div>';
-const card=(v,kind)=>'<a class="vid" data-type="long" data-scope="'+kind+'" data-book="'+escape(v.bibleBook)+'" data-scripture-order="'+v.scriptureOrder+'" href="'+escape(v.url)+'" target="_blank" rel="noopener noreferrer">\n'+
-'  <span class="thumb"><img src="'+thumb(v)+'" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">'+(kind==="book"?"Complete book":"Story")+'</span></span>\n'+
-'  <span class="vid-content"><span class="vid-title">'+escape(v.title)+'</span><span class="vid-meta"><span>'+escape(date(v))+'</span><span class="vid-cta">Watch ↗</span></span></span>\n</a>';
+const stats='<div class="metrics" aria-label="What is on this page"><div class="metric"><strong>'+passages.length+'</strong> stories</div><div class="metric"><strong>'+books.length+'</strong> complete books</div><div class="metric"><strong>'+sleep.length+'</strong> for sleep</div><div class="metric"><strong>'+merch.products.length+'</strong> shop items</div></div>';
+const card=(v,kind)=>'<a class="vid" data-type="long" data-scope="'+kind+'" data-book="'+escape(v.bibleBook)+'" data-scripture-order="'+v.scriptureOrder+'" href="'+escape(kind==="book"?bookPage(v):v.url)+'"'+(kind==="book"?'':' target="_blank" rel="noopener noreferrer"')+'>\n'+
+'  <span class="thumb"><img src="'+thumb(v)+'" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">'+(kind==="book"?"Complete book":kind==="sleep"?"For Sleep":"Story")+'</span></span>\n'+
+'  <span class="vid-content"><span class="vid-title">'+escape(v.title)+'</span><span class="vid-meta"><span>'+escape(date(v))+'</span><span class="vid-cta">'+(kind==="book"?"Open →":"Watch ↗")+'</span></span></span>\n</a>';
 let html=fs.readFileSync(htmlPath,"utf8");
 function inject(name,body){
   const a="<!-- "+name+"_START -->",b="<!-- "+name+"_END -->";
@@ -83,7 +86,7 @@ const bookSchema={
   "@type":"ItemList",
   "name":"Complete World English Bible books available on WEB Bible Out Loud",
   "numberOfItems":books.length,
-  "itemListElement":books.map((v,i)=>({"@type":"ListItem","position":i+1,"name":v.title,"url":v.url}))
+  "itemListElement":books.map((v,i)=>({"@type":"ListItem","position":i+1,"name":v.title,"url":"https://webbibleoutloud.com"+bookPage(v)}))
 };
 const storiesSchema={
   "@context":"https://schema.org",
@@ -103,6 +106,7 @@ inject("HERO_VIDEO",hero);
 inject("VIDEO_STATS",stats);
 inject("STORIES",passages.map(v=>card(v,"passage")).join("\n"));
 inject("FULL_BOOKS",books.map(v=>card(v,"book")).join("\n"));
+inject("FOR_SLEEP",sleep.map(v=>card(v,"sleep")).join("\n"));
 inject("FULL_BOOKS_SCHEMA",'<script type="application/ld+json" id="full-books-schema">'+JSON.stringify(bookSchema)+"</script>");
 inject("STORIES_SCHEMA",'<script type="application/ld+json" id="stories-schema">'+JSON.stringify(storiesSchema)+"</script>");
 inject("SHOP_PRODUCTS",shopCards);
@@ -119,5 +123,7 @@ if(process.argv.includes("--check")){
   console.log("PASS: "+passages.length+" stories, "+books.length+" complete books, "+merch.products.length+" merch items; "+shorts.length+" Shorts kept in the catalog and not rendered as cards");
 }else{
   if(html!==original)fs.writeFileSync(htmlPath,html);
-  console.log("Rendered "+passages.length+" stories and "+books.length+" complete books; "+shorts.length+" Shorts left in the catalog only");
+  const r=buildBookPages();
+  console.log("Rendered "+r.pages.length+" book/sleep pages and sitemap.xml");
+  console.log("Rendered "+passages.length+" stories, "+books.length+" complete books and "+sleep.length+" For Sleep; "+shorts.length+" Shorts left in the catalog only");
 }

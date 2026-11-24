@@ -68,8 +68,11 @@ def verify(condition, issue):
 
 shorts = [x for x in data["videos"] if x["type"] == "short"]
 readings = [x for x in data["videos"] if x["type"] == "long"]
-books = [x for x in readings if x.get("scope") == "book"]
-passages = [x for x in readings if x.get("scope") == "passage"]
+is_sleep = lambda x: re.search(r"\bfor Sleep\b", x["title"]) is not None
+sleep = [x for x in readings if is_sleep(x)]
+books = [x for x in readings if x.get("scope") == "book" and not is_sleep(x)]
+passages = [x for x in readings if x.get("scope") == "passage" and not is_sleep(x)]
+book_page = lambda x: "/books/" + x["bibleBook"].lower().replace(" ", "-") + "/"
 
 verify('id="hero-title">Scripture,' in html and 'class="brand-title">Bible Out Loud' in html, "missing site heading or branding")
 verify(page.canonicals == [HOME], "incorrect canonical homepage")
@@ -84,9 +87,19 @@ verify(all("Full Book" in x["title"] for x in books), "full books must have all 
 verify(all("Full Book" not in x["title"] for x in passages), "chapter readings mislabeled as books")
 verify(html.count('data-scope="book"') == len(books), "Full Book card count does not match the catalog")
 verify(html.count('data-scope="passage"') == len(passages), "story card count does not match the catalog")
-verify(len(page.videos) == len(books) + len(passages), "only stories and Full Books should be rendered as cards")
+verify(html.count('data-scope="sleep"') == len(sleep), "For Sleep card count does not match the catalog")
+verify(len(page.videos) == len(books) + len(passages) + len(sleep), "only stories, Full Books and For Sleep should be rendered as cards")
 verify(set(page.story_hrefs) == {x["url"] for x in passages}, "story links differ from longer passages in JSON")
-verify(set(page.book_hrefs) == {x["url"] for x in books}, "Full Book links differ from JSON")
+verify(set(page.book_hrefs) == {book_page(x) for x in books}, "Full Book cards must open their on-site book pages")
+for x in books:
+    bp = (SITE / book_page(x).strip("/") / "index.html")
+    verify(bp.exists(), "missing book page " + book_page(x))
+    if bp.exists():
+        t = bp.read_text(encoding="utf-8")
+        verify(x["title"] in t and x["url"] in t and 'rel="canonical" href="' + HOME + book_page(x).lstrip("/") + '"' in t, "book page title/link/canonical wrong: " + book_page(x))
+        verify(HOME + book_page(x).lstrip("/") in sitemap, "book page missing from sitemap: " + book_page(x))
+verify((SITE / "sleep/index.html").exists() and all(x["url"] in (SITE / "sleep/index.html").read_text(encoding="utf-8") for x in sleep), "For Sleep page missing a sleep video")
+verify("frame-src https://www.youtube-nocookie.com" in headers, "book-page player needs frame-src youtube-nocookie")
 verify(len(set(page.videos)) == len(page.videos), "duplicate video cards")
 verify(all("/shorts/" not in url for url in page.videos), "Shorts must not be rendered as cards")
 verify('data-type="short"' not in html and 'data-filter="short"' not in html, "Shorts filter or Shorts cards still present")
@@ -126,9 +139,9 @@ for tag in ordered_cards:
         book_order_hrefs.append(href.group(1))
     elif scope.group(1) == "passage":
         passage_order_hrefs.append(href.group(1))
-verify(book_order_hrefs == [x["url"] for x in ordered_books], "Full Books must appear in canonical Bible order")
+verify(book_order_hrefs == [book_page(x) for x in ordered_books], "Full Books must appear in canonical Bible order")
 verify(passage_order_hrefs == [x["url"] for x in ordered_passages], "stories must appear in canonical Bible order")
-for video in books + passages:
+for video in books + passages + sleep:
     verify(video["title"] in html, "missing exact public title: " + video["title"])
 verify('id="book-picker"' not in html, "redundant full-book dropdown must stay removed")
 verify("instagram.com/webbibleoutloud" in html and "facebook.com/people/WEB-Bible-Out-Loud/61595111923682" in html, "social profile links missing")
@@ -148,4 +161,4 @@ for link in page.links:
 if errors:
     print("WEB Bible Out Loud audit failed:\n" + "\n".join(" - " + e for e in errors), file=sys.stderr)
     sys.exit(1)
-print("PASS: " + str(len(passages)) + " stories, " + str(len(books)) + " complete books, " + str(len(merch["products"])) + " merch items, one Shorts button, one support link, privacy, security and Netlify configuration")
+print("PASS: " + str(len(passages)) + " stories, " + str(len(books)) + " complete books, " + str(len(sleep)) + " For Sleep, " + str(len(merch["products"])) + " merch items, one Shorts button, one support link, privacy, security and Netlify configuration")

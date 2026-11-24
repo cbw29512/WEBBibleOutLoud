@@ -8,8 +8,10 @@ const axeScript = require.resolve("axe-core/axe.min.js");
 const root = path.resolve(__dirname, "..");
 const catalog = JSON.parse(fs.readFileSync(path.join(root, "data/videos.json"), "utf8"));
 const merch = JSON.parse(fs.readFileSync(path.join(root, "data/merch.json"), "utf8"));
-const books = catalog.videos.filter(v => v.scope === "book");
-const passages = catalog.videos.filter(v => v.scope === "passage");
+const isSleep = v => /\bfor Sleep\b/.test(v.title);
+const books = catalog.videos.filter(v => v.scope === "book" && !isSleep(v));
+const passages = catalog.videos.filter(v => v.scope === "passage" && !isSleep(v));
+const sleep = catalog.videos.filter(v => v.type === "long" && isSleep(v));
 const bookOrder = ["Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi","Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"];
 const expectedBookNames = books.slice().sort((a,b)=>
   bookOrder.indexOf(a.bibleBook)-bookOrder.indexOf(b.bibleBook) ||
@@ -63,7 +65,8 @@ const SHORTS = "https://www.youtube.com/@webbibleoutloud/shorts";
       assert.deepEqual(bibleBooks, expectedBookNames, "Books must appear in canonical Bible order");
       const bookLinks = await page.locator("#books-grid .vid").evaluateAll(nodes => nodes.map(n => n.href));
       assert.equal(new Set(bookLinks).size, books.length, "Each book card links to a unique video");
-      assert.ok(bookLinks.every(link => link.startsWith("https://youtu.be/")), "Full books must open YouTube");
+      assert.ok(bookLinks.every(link => /\/books\/[a-z0-9-]+\/$/.test(link)), "Full book cards must open their on-site book pages");
+      assert.equal(await page.locator("#sleep-grid .vid").count(), sleep.length, "For Sleep cards must match the catalog");
       assert.equal(await page.locator("#shop .product").count(), merch.products.length);
       assert.equal(await page.locator("a[href='/privacy.html']").count(), 1);
       assert.equal(await page.locator("link[href='styles.css']").count(), 1);
@@ -73,7 +76,28 @@ const SHORTS = "https://www.youtube.com/@webbibleoutloud/shorts";
       assert.deepEqual(failures, [], "page errors: " + failures.join("; "));
       await page.close();
     }
-    console.log("PASS: " + passages.length + " stories, " + books.length + " complete books, " + merch.products.length + " merch items, one Shorts button, and axe WCAG across 4 viewports");
+    // Book pages, book index and For Sleep page: exact title, player button, axe WCAG at phone and desktop widths.
+    const slugs = books.map(v => "books/" + v.bibleBook.toLowerCase().replace(/ /g, "-") + "/index.html");
+    for (const rel of ["books/index.html", "sleep/index.html"].concat(slugs)) {
+      for (const [width, height] of [[390, 844], [1366, 768]]) {
+        const page = await browser.newPage({ viewport: { width, height } });
+        const failures = [];
+        page.on("pageerror", error => failures.push(error.message));
+        await page.goto(pathToFileURL(path.resolve(__dirname, "../site/" + rel)).href, { waitUntil: "domcontentloaded" });
+        assert.equal(await page.locator("h1").count(), 1, rel + " needs one h1");
+        if (rel.startsWith("books/") && rel !== "books/index.html") {
+          const v = books.find(b => rel === "books/" + b.bibleBook.toLowerCase().replace(/ /g, "-") + "/index.html");
+          assert.ok((await page.content()).includes(v.url), rel + " must link its YouTube video");
+          assert.equal(await page.locator(".lite-play").count(), 1, rel + " needs one play button");
+        }
+        await page.addScriptTag({path:axeScript});
+        const audit = await page.evaluate(async () => window.axe.run(document, {runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21a","wcag21aa","wcag22aa"]}}));
+        assert.deepEqual(audit.violations.map(v=>v.id), [], "Accessibility violations on " + rel + " " + width);
+        assert.deepEqual(failures.filter(f => !/goatcounter|gc\.zgo/i.test(f)), [], "page errors on " + rel + ": " + failures.join("; "));
+        await page.close();
+      }
+    }
+    console.log("PASS: " + passages.length + " stories, " + books.length + " complete books, " + merch.products.length + " merch items, one Shorts button, axe WCAG across 4 viewports, plus " + (slugs.length + 2) + " book/sleep pages");
   } finally {
     await browser.close();
   }
