@@ -12,13 +12,29 @@ const htmlPath = path.join(root, "site/index.html");
 const {HOME_LAYOUT, SUPPORT_URL, isSleep, scriptureOrder, collections, bookPagePath} = require("./bible-order.cjs");
 const dataset = JSON.parse(fs.readFileSync(path.join(root, "data/videos.json"),"utf8"));
 const merch = JSON.parse(fs.readFileSync(path.join(root, "data/merch.json"),"utf8"));
-if(!Array.isArray(merch.products) || merch.products.length<1 || merch.products.length>80) throw Error("Expected 1-80 published merch products");
+// The homepage shows a short, hand-picked set of products with photos, not the whole catalog;
+// the full line stays one click away behind merch.shopUrl.
+if(!Array.isArray(merch.products) || merch.products.length<2 || merch.products.length>8) throw Error("Expected 2-8 featured merch products");
+const SHOP_HOST="web-bible-out-loud.printify.me";
+if(new URL(merch.shopUrl).hostname!==SHOP_HOST) throw Error("Invalid Printify shop URL: "+merch.shopUrl);
 for(const product of merch.products){
   if(typeof product.name!=="string" || !product.name.trim() || product.name.length>180) throw Error("Invalid merch name");
+  // The displayed name is the storefront title, optionally without the shop-name suffix the
+  // storefront appends for SEO. Nothing about a product may be invented here.
+  if(product.storefrontTitle!==product.name && product.storefrontTitle!==product.name+" | WEB Bible Out Loud")
+    throw Error("Merch name must come from the storefront title: "+product.name);
   const shopUrl=new URL(product.url);
-  if(shopUrl.protocol!=="https:" || shopUrl.hostname!=="web-bible-out-loud.printify.me" || !/^\/product\/\d+$/.test(shopUrl.pathname))
+  if(shopUrl.protocol!=="https:" || shopUrl.hostname!==SHOP_HOST || !new RegExp("^/product/"+product.id+"(/[a-z0-9-]+)?$").test(shopUrl.pathname))
     throw Error("Invalid Printify product URL: "+product.url);
+  for(const key of ["image","imageFallback"]){
+    if(!/^assets\/merch\/[a-z0-9-]+\.(webp|jpg)$/.test(product[key]||"")) throw Error("Invalid merch image path: "+product[key]);
+    if(!fs.existsSync(path.join(root,"site",product[key]))) throw Error("Missing merch image, run scripts/fetch-merch-images.py: "+product[key]);
+  }
+  if(!Number.isInteger(product.imageWidth) || !Number.isInteger(product.imageHeight))
+    throw Error("Merch photos need width and height so the grid never shifts: "+product.name);
 }
+if(new Set(merch.products.map(p=>p.url)).size!==merch.products.length) throw Error("Duplicate featured merch product");
+if(JSON.stringify(merch).toLowerCase().includes("buymeacoffee")) throw Error("Buy Me a Coffee must not appear in data/merch.json");
 if(!Array.isArray(dataset.videos) || dataset.videos.length<1 || dataset.videos.length>400) throw Error("Expected 1-400 published videos");
 const seen=new Set();
 const videos=dataset.videos.map(v=>{
@@ -69,7 +85,7 @@ const hero='<article class="feature" aria-label="Featured Bible reading">\n'+
 const ogImage='<meta property="og:image" content="'+thumb(featured)+'">\n  '+
 '<meta property="og:image:alt" content="'+escape(featured.title)+'">\n  '+
 '<meta name="twitter:card" content="summary_large_image">';
-const stats='<div class="metrics" aria-label="What is on this page"><div class="metric"><strong>'+passages.length+'</strong> stories</div><div class="metric"><strong>'+books.length+'</strong> complete books</div><div class="metric"><strong>'+sleep.length+'</strong> for sleep</div><div class="metric"><strong>'+merch.products.length+'</strong> shop items</div></div>';
+const stats='<div class="metrics" aria-label="What is on this page"><div class="metric"><strong>'+passages.length+'</strong> stories</div><div class="metric"><strong>'+books.length+'</strong> complete books</div><div class="metric"><strong>'+sleep.length+'</strong> for sleep</div><div class="metric"><strong>'+merch.products.length+'</strong> shop picks</div></div>';
 // Cards never show a posting date; the Bible book is the only metadata on a card.
 const card=(v,kind)=>'<a class="vid" data-type="long" data-scope="'+kind+'" data-book="'+escape(v.bibleBook)+'" data-scripture-order="'+v.scriptureOrder+'" href="'+escape(kind==="book"?bookPagePath(v):v.url)+'"'+(kind==="book"?'':' target="_blank" rel="noopener noreferrer"')+'>\n'+
 '  <span class="thumb"><img src="'+thumb(v)+'" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="type-tag">'+(kind==="book"?"Complete book":kind==="sleep"?"For Sleep":"Story")+'</span></span>\n'+
@@ -103,13 +119,20 @@ const sleepSchema={
   "numberOfItems":sleep.length,
   "itemListElement":sleep.map((v,i)=>({"@type":"ListItem","position":i+1,"name":v.title,"url":v.url}))
 };
+// Each card is the product's own storefront mockup: lazy, sized up front so nothing shifts,
+// WebP first with a JPEG fallback, and alt text that is exactly the product name on the card.
 const shopCards=merch.products.map(product=>
-  '<a class="product" href="'+escape(product.url)+'" target="_blank" rel="noopener noreferrer">'+
-  '<span class="product-mark" aria-hidden="true">✦</span>'+
+  '<a class="product" href="'+escape(product.url)+'" target="_blank" rel="noopener noreferrer" data-merch-id="'+escape(product.id)+'">'+
+  '<span class="product-photo"><picture>'+
+  '<source srcset="'+escape(product.image)+'" type="image/webp">'+
+  '<img src="'+escape(product.imageFallback)+'" alt="'+escape(product.name)+'" loading="lazy" decoding="async" width="'+product.imageWidth+'" height="'+product.imageHeight+'">'+
+  '</picture></span>'+
+  '<span class="product-body">'+
   '<span class="product-name">'+escape(product.name)+'</span>'+
-  '<span class="product-action">View product ↗</span></a>'
+  '<span class="product-action">View product ↗</span></span></a>'
 ).join("\n        ");
-const shopFooter='<p>'+merch.products.length+' '+(merch.products.length===1?"item":"items")+' from the Printify shop. Each product opens its own Printify page.</p>\n        <a href="'+escape(merch.shopUrl)+'" target="_blank" rel="noopener noreferrer">Visit the full shop ↗</a>';
+const shopFooter='<p>'+escape(merch.shopFooterNote)+'</p>\n        '+
+  '<a class="shop-cta" href="'+escape(merch.shopUrl)+'" target="_blank" rel="noopener noreferrer">'+escape(merch.shopLinkLabel)+'</a>';
 
 const cardKind={stories:"passage",books:"book",sleep:"sleep"};
 const collectionCards={stories:passages,books:books,sleep:sleep};

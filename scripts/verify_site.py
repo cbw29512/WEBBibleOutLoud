@@ -157,6 +157,35 @@ verify(card_hrefs("sleep") == [x["url"] for x in ordered_sleep],
 
 # Merch stays free of the donation link; the one support link lives in its own last section.
 verify(SUPPORT not in sections.get("shop", ""), "Buy Me a Coffee must not appear inside the merch section")
+
+# The merch section is a short featured selection shown with real storefront photos. Every card
+# carries one product photo and opens that product's own page on the Printify storefront.
+shop = sections.get("shop", "")
+shop_cards = re.findall(r'<a class="product"[^>]*href="([^"]+)"[^>]*>(.*?)</a>', shop, re.S)
+verify(2 <= len(merch["products"]) <= 8, "the homepage shows a few featured products, not the whole catalog")
+verify([href for href, _ in shop_cards] == [p["url"] for p in merch["products"]],
+       "merch cards must link to each product's storefront page, in data/merch.json order")
+verify(shop.count("<img ") == len(merch["products"]), "every merch card needs exactly one product photo")
+for (_, inner), product in zip(shop_cards, merch["products"]):
+    tag = re.search(r"<img ([^>]*)>", inner)
+    img = dict(re.findall(r'([a-z-]+)="([^"]*)"', tag.group(1))) if tag else {}
+    verify(img.get("src") == product["imageFallback"], "merch card photo missing: " + product["name"])
+    verify(img.get("alt") == product["name"], "merch photo alt text must be the product title: " + product["name"])
+    verify(img.get("loading") == "lazy" and img.get("decoding") == "async",
+           "merch photos must be lazy-loaded: " + product["name"])
+    verify(img.get("width") == str(product["imageWidth"]) and img.get("height") == str(product["imageHeight"]),
+           "merch photos need width and height so nothing shifts: " + product["name"])
+    verify('<source srcset="' + product["image"] + '" type="image/webp">' in inner,
+           "merch card needs a WebP source with a fallback: " + product["name"])
+    verify(product["storefrontTitle"] in (product["name"], product["name"] + " | WEB Bible Out Loud"),
+           "merch card titles must come from the storefront: " + product["name"])
+    for key in ("image", "imageFallback"):
+        asset = SITE / product[key]
+        verify(asset.exists(), "merch image missing, run scripts/fetch-merch-images.py: " + product[key])
+        verify(not asset.exists() or asset.stat().st_size <= 160_000, "merch image is too heavy: " + product[key])
+verify('class="shop-cta" href="' + merch["shopUrl"] + '"' in shop and merch["shopLinkLabel"] in shop,
+       "the merch section needs a prominent link to the whole storefront")
+verify("$" not in re.sub(r"<[^>]+>", " ", shop), "merch cards must not show prices")
 verify(sections.get("support", "").count(SUPPORT) == 1, "the support section needs exactly one Buy Me a Coffee link")
 verify(EXPECTED_SECTIONS[-1] == "support" and rendered_order[-1] == "support",
        "the support section belongs at the very bottom, after merch")

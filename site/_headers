@@ -4,3 +4,7 @@
   X-Frame-Options: DENY
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Content-Security-Policy: default-src 'self'; script-src 'self' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.ytimg.com https://chrisgrowth-webbible.goatcounter.com; connect-src 'self' https://chrisgrowth-webbible.goatcounter.com; frame-src https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'none'; upgrade-insecure-requests
+
+# Merch photos only change when data/merch.json changes, so a day of caching is safe.
+/assets/merch/*
+  Cache-Control: public, max-age=86400

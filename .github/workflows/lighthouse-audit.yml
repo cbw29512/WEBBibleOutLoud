@@ -4,6 +4,8 @@ on:
     paths:
       - 'site/**'
       - 'data/videos.json'
+      - 'data/merch.json'
+      - 'data/home-layout.json'
       - 'scripts/render-videos.cjs'
       - '.github/workflows/lighthouse-audit.yml'
   workflow_dispatch:

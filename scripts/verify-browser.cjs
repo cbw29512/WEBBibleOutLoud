@@ -74,7 +74,33 @@ const SHORTS = "https://www.youtube.com/@webbibleoutloud/shorts";
       assert.ok(cardMeta.length > 0 && cardMeta.every(t => /^[1-3]? ?[A-Za-z ]+$/.test(t.trim()) && !/\d/.test(t)),
         "Cards must show the Bible book, never a posting date");
 
+      // Merch shows a few real product photos, each card opening that product on the storefront.
       assert.equal(await page.locator("#shop .product").count(), merch.products.length);
+      assert.deepEqual(await page.locator("#shop .product").evaluateAll(nodes => nodes.map(n => n.href)),
+        merch.products.map(p => p.url), "Each merch card must link to its own storefront product page");
+      assert.deepEqual(await page.locator("#shop .product-name").allInnerTexts(), merch.products.map(p => p.name),
+        "Merch cards must show the exact storefront product titles");
+      await page.locator("#shop").scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        () => Array.from(document.querySelectorAll("#shop .product img")).every(i => i.complete && i.naturalWidth > 0),
+        null, { timeout: 20000 });
+      const photos = await page.locator("#shop .product img").evaluateAll(nodes => nodes.map(i => ({
+        alt: i.alt, loading: i.loading, width: i.getAttribute("width"), height: i.getAttribute("height"),
+        rendered: Math.round(i.getBoundingClientRect().width), chosen: i.currentSrc.split("/").pop()
+      })));
+      assert.equal(photos.length, merch.products.length, "Every merch card needs one photo");
+      assert.deepEqual(photos.map(p => p.alt), merch.products.map(p => p.name),
+        "Merch photo alt text must be the product title");
+      assert.ok(photos.every(p => p.loading === "lazy"), "Merch photos must be lazy-loaded");
+      assert.deepEqual(photos.map(p => `${p.width}x${p.height}`),
+        merch.products.map(p => `${p.imageWidth}x${p.imageHeight}`),
+        "Merch photos need width and height so the grid never shifts");
+      assert.ok(photos.every(p => p.rendered > 60), "Merch photos must actually render at " + width + "px wide");
+      assert.deepEqual(photos.map(p => decodeURIComponent(p.chosen)),
+        merch.products.map(p => p.image.split("/").pop()), "Chrome should pick the WebP source");
+      assert.equal(await page.locator(`#shop .shop-cta[href='${merch.shopUrl}']:visible`).count(), 1,
+        "The merch section needs one prominent link to the whole storefront");
+      assert.ok(!(await page.locator("#shop").innerText()).includes("$"), "Merch must not show prices");
       assert.equal(await page.locator(`#shop a[href='${SUPPORT_URL}']`).count(), 0, "Merch must not contain the Buy Me a Coffee link");
       assert.equal(await page.locator(`a[href='${SUPPORT_URL}']`).count(), 1, "Expected exactly one Buy Me a Coffee link");
       assert.equal(await page.locator(`#support a[href='${SUPPORT_URL}']:visible`).count(), 1, "The support link belongs in the support section");
