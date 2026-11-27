@@ -1564,6 +1564,110 @@
      "label": "Philippians Chapter 4"
     }
    ]
+  },
+  {
+   "bibleBook": "Luke",
+   "slug": "luke",
+   "videoId": "RYJQgQz6hxc",
+   "summary": "Luke begins with the births of John the Baptist and Jesus, and follows Jesus through Galilee as he teaches, heals, and welcomes outsiders. He tells the parables of the good Samaritan, the lost sheep, and the prodigal son, then goes up to Jerusalem, where he is crucified and raised; the book ends with him meeting his disciples and ascending.",
+   "chapters": [
+    {
+     "t": 0,
+     "label": "Luke Chapter 1"
+    },
+    {
+     "t": 612,
+     "label": "Luke Chapter 2"
+    },
+    {
+     "t": 1036,
+     "label": "Luke Chapter 3"
+    },
+    {
+     "t": 1393,
+     "label": "Luke Chapter 4"
+    },
+    {
+     "t": 1790,
+     "label": "Luke Chapter 5"
+    },
+    {
+     "t": 2152,
+     "label": "Luke Chapter 6"
+    },
+    {
+     "t": 2615,
+     "label": "Luke Chapter 7"
+    },
+    {
+     "t": 3085,
+     "label": "Luke Chapter 8"
+    },
+    {
+     "t": 3640,
+     "label": "Luke Chapter 9"
+    },
+    {
+     "t": 4202,
+     "label": "Luke Chapter 10"
+    },
+    {
+     "t": 4599,
+     "label": "Luke Chapter 11"
+    },
+    {
+     "t": 5126,
+     "label": "Luke Chapter 12"
+    },
+    {
+     "t": 5656,
+     "label": "Luke Chapter 13"
+    },
+    {
+     "t": 5987,
+     "label": "Luke Chapter 14"
+    },
+    {
+     "t": 6308,
+     "label": "Luke Chapter 15"
+    },
+    {
+     "t": 6591,
+     "label": "Luke Chapter 16"
+    },
+    {
+     "t": 6905,
+     "label": "Luke Chapter 17"
+    },
+    {
+     "t": 7212,
+     "label": "Luke Chapter 18"
+    },
+    {
+     "t": 7569,
+     "label": "Luke Chapter 19"
+    },
+    {
+     "t": 7960,
+     "label": "Luke Chapter 20"
+    },
+    {
+     "t": 8332,
+     "label": "Luke Chapter 21"
+    },
+    {
+     "t": 8637,
+     "label": "Luke Chapter 22"
+    },
+    {
+     "t": 9210,
+     "label": "Luke Chapter 23"
+    },
+    {
+     "t": 9666,
+     "label": "Luke Chapter 24"
+    }
+   ]
   }
  ]
 }

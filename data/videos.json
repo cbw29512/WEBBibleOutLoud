@@ -1,9 +1,69 @@
 {
   "description": "All currently public uploads with Bible-reference metadata. Complete books, Shorts, longer passages, and curated Greatest Bible Stories are shown in canonical scripture order.",
   "sourceChannel": "https://www.youtube.com/@WEBBibleOutLoud",
-  "lastSynced": "2026-11-24",
+  "lastSynced": "2026-11-26",
   "featuredShorts": 12,
   "videos": [
+    {
+      "title": "Luke 1–24 — The Book of Luke, Full Book | Audio Bible With Text, Every Verse (WEB, No Music)",
+      "url": "https://youtu.be/RYJQgQz6hxc",
+      "type": "long",
+      "publishedAt": "2026-11-25T17:00:23Z",
+      "bibleBook": "Luke",
+      "chapter": 1,
+      "verse": 1,
+      "scope": "book"
+    },
+    {
+      "title": "Genesis for Sleep — Voice Only, Black Screen | Full Book Audio Bible (WEB, No Music)",
+      "url": "https://youtu.be/3oyodMxLfs8",
+      "type": "long",
+      "publishedAt": "2026-11-24T00:00:00Z",
+      "bibleBook": "Genesis",
+      "chapter": 1,
+      "verse": 1,
+      "scope": "book"
+    },
+    {
+      "title": "Exodus for Sleep — Voice Only, Black Screen | Full Book Audio Bible (WEB, No Music)",
+      "url": "https://youtu.be/PHHRISEiHxU",
+      "type": "long",
+      "publishedAt": "2026-11-24T15:42:23Z",
+      "bibleBook": "Exodus",
+      "chapter": 1,
+      "verse": 1,
+      "scope": "book"
+    },
+    {
+      "title": "Leviticus for Sleep — Voice Only, Black Screen | Full Book Audio Bible (WEB, No Music)",
+      "url": "https://youtu.be/Rv90DdmUJo0",
+      "type": "long",
+      "publishedAt": "2026-11-24T15:41:42Z",
+      "bibleBook": "Leviticus",
+      "chapter": 1,
+      "verse": 1,
+      "scope": "book"
+    },
+    {
+      "title": "Numbers for Sleep — Voice Only, Black Screen | Full Book Audio Bible (WEB, No Music)",
+      "url": "https://youtu.be/9h-aCyt4cME",
+      "type": "long",
+      "publishedAt": "2026-11-24T00:00:00Z",
+      "bibleBook": "Numbers",
+      "chapter": 1,
+      "verse": 1,
+      "scope": "book"
+    },
+    {
+      "title": "John for Sleep — Voice Only, Black Screen | Full Book Audio Bible (WEB, No Music)",
+      "url": "https://youtu.be/IRWI1_cfG_o",
+      "type": "long",
+      "publishedAt": "2026-11-24T00:00:00Z",
+      "bibleBook": "John",
+      "chapter": 1,
+      "verse": 1,
+      "scope": "book"
+    },
     {
       "title": "Revelation for Sleep — Voice Only, Black Screen | Full Book Audio Bible (WEB, No Music)",
       "url": "https://youtu.be/QrfwKGaSZN8",
