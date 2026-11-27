@@ -149,6 +149,8 @@ const SHORTS = "https://www.youtube.com/@webbibleoutloud/shorts";
         if (rel === "sleep/index.html") {
           assert.deepEqual(await page.locator("#sleep-grid .vid-title").allInnerTexts(), titlesOf(sleep),
             "/sleep/ must list For Sleep readings in Bible order");
+          assert.equal(await page.locator("a[href='https://www.youtube.com/playlist?list=PLF5WA__O4zfE']").count(), 1,
+            "/sleep/ needs the For Sleep playlist link");
         }
         if (rel.startsWith("books/") && rel !== "books/index.html") {
           const v = books.find(b => rel === "books/" + slugOf(b.bibleBook) + "/index.html");

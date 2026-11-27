@@ -105,6 +105,7 @@ for x in books:
         verify(x["title"] in t and x["url"] in t and 'rel="canonical" href="' + HOME + book_page(x).lstrip("/") + '"' in t, "book page title/link/canonical wrong: " + book_page(x))
         verify(HOME + book_page(x).lstrip("/") in sitemap, "book page missing from sitemap: " + book_page(x))
 verify((SITE / "sleep/index.html").exists() and all(x["url"] in (SITE / "sleep/index.html").read_text(encoding="utf-8") for x in sleep), "For Sleep page missing a sleep video")
+verify("https://www.youtube.com/playlist?list=PLF5WA__O4zfE" in (SITE / "sleep/index.html").read_text(encoding="utf-8"), "For Sleep page missing the For Sleep playlist")
 books_index = (SITE / "books/index.html").read_text(encoding="utf-8")
 sleep_index = (SITE / "sleep/index.html").read_text(encoding="utf-8")
 verify("frame-src https://www.youtube-nocookie.com" in headers, "book-page player needs frame-src youtube-nocookie")
@@ -210,6 +211,11 @@ verify([m.group(1) for m in re.finditer(r'<a class="vid"[^>]*?href="([^"]+)"', b
        == [book_page(x) for x in ordered_books], "/books/ must list complete books in canonical Bible order")
 verify([m.group(1) for m in re.finditer(r'<a class="vid"[^>]*?href="([^"]+)"', sleep_index)]
        == [x["url"] for x in ordered_sleep], "/sleep/ must list For Sleep readings in canonical Bible order")
+for video in ordered_sleep:
+    book_html = SITE / "books" / video["bibleBook"].lower().replace(" ", "-") / "index.html"
+    if book_html.exists():
+        verify(video["url"] in book_html.read_text(encoding="utf-8"),
+               "book page missing its For Sleep link: " + video["bibleBook"])
 
 # Cards carry the Bible book, never a posting date.
 card_meta = re.findall(r'<span class="vid-meta"><span>([^<]*)</span>', html)
