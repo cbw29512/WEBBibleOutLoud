@@ -1,9 +1,19 @@
 {
   "description": "All currently public uploads with Bible-reference metadata. Complete books, Shorts, longer passages, and curated Greatest Bible Stories are shown in canonical scripture order.",
   "sourceChannel": "https://www.youtube.com/@WEBBibleOutLoud",
-  "lastSynced": "2026-11-26",
+  "lastSynced": "2026-11-27",
   "featuredShorts": 12,
   "videos": [
+    {
+      "title": "Luke for Sleep — Voice Only, Black Screen | Full Book Audio Bible (WEB, No Music)",
+      "url": "https://youtu.be/fgLWKZN5n-s",
+      "type": "long",
+      "publishedAt": "2026-11-27T12:48:16Z",
+      "bibleBook": "Luke",
+      "chapter": 1,
+      "verse": 1,
+      "scope": "book"
+    },
     {
       "title": "Luke 1–24 — The Book of Luke, Full Book | Audio Bible With Text, Every Verse (WEB, No Music)",
       "url": "https://youtu.be/RYJQgQz6hxc",
